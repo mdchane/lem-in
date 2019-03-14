@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 17:44:47 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/14 17:51:15 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		is_path(char *line)
 
 	split = ft_strsplit(line, '-');
 	if (!split)
+		return (0);
+	if (line[ft_strlen(split[0]) + 1] == '-')
 		return (0);
 	if (is_name_room(split[0]) && is_name_room(split[1]) && split[2] == NULL)
 		return (1);
