@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/14 16:54:37 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 17:54:49 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_tab(char **tab)
 {
 	int i;
 
-	i = -1;
+	i = 0;
 	while (tab[i])
 	{
 		ft_strdel(&(tab[i]));

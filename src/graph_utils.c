@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/14 17:15:45 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 18:04:16 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ t_graph		*graph_new(char *name, int x, int y)
 	}
 	else
 		g->name = NULL;
+	g->point.x = x;
+	g->point.y = y;
 	g->path = NULL;
 	g->next = NULL;
+	return (g);
 }
 
-void			graph_push_front(t_graph **head, t_graph *new)
+void		graph_push_front(t_graph **head, t_graph *new)
 {
 	if (*head)
 	{
@@ -40,7 +43,7 @@ void			graph_push_front(t_graph **head, t_graph *new)
 		*head = new;
 }
 
-void			graph_push_back(t_graph **head, t_graph *new)
+void		graph_push_back(t_graph **head, t_graph *new)
 {
 	if (*head)
 	{

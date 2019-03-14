@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 17:40:49 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/14 18:00:14 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
-int		main(int argc, char **argv)
+int		main(void)
 {
+	t_env	e;
+
+	parsing(&e);
 	// t_anthill	*at;
-	if (argc < 2)
-		error("ERROR\n");
 	// printf("is_nbr = %d\n", is_nbr(argv[1]));
 	// printf("is_room = %d\n", is_room(argv[1]));
-	printf("is_path = %d\n", is_path(argv[1]));
+	// printf("is_path = %d\n", is_path(argv[1]));
 	return (0);
 }
