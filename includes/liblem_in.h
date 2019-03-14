@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 10:53:23 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/14 13:42:20 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ typedef struct		s_anthill
 	char	**rooms;
 	char	**tubes;
 }					t_anthill;
+
+typedef struct		s_path
+{
+	t_graph			*name;
+	t_path			*next;
+}					t_path;
+
+typedef struct		s_graph
+{
+	int				ants;
+	char			*name;
+	t_path			*path;
+	t_graph			*next;
+}					t_graph;
 
 int				is_nbr(char *str);
 int				is_room(char *str);
