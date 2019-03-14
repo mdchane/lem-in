@@ -6,13 +6,13 @@
 #    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/03/13 10:21:06 by mdchane          ###   ########.fr        #
+#    Updated: 2019/03/14 11:52:35 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
-HEADER_NAME =
+HEADER_NAME = liblem_in.h
 
 CC = gcc
 
@@ -24,7 +24,7 @@ HEADER = $(addprefix $(HEADER_PATH)/,$(HEADER_NAME))
 
 SRC_PATH = src
 
-SRC_NAME =
+SRC_NAME = main.c parse_utils.c
 
 OBJ_PATH = obj
 
@@ -51,11 +51,11 @@ $(OBJ_PATH):
 clean:
 	@make -C libft/ fclean
 	@rm -rf $(OBJ_PATH) || true
-	@echo $(OBJ_PATH)" deleted"
+	@$(info $(OBJ_PATH) deleted)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Executable "$(NAME) deleted"
+	@$(info Executable $(NAME) deleted)
 
 re: fclean all
 	@echo "Make re done"
