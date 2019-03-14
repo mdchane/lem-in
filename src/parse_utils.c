@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 16:34:52 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/14 17:26:26 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		is_room(char *line)
 	if (!split)
 		return (0);
 	if (split[0])
-		if (split[0][0] == 'L' || split[0][0] == '#')
+		if (split[0][0] == 'L' || split[0][0] == '#' || ft_strchr(line, '-'))
 			return (0);
 	if (split[1] && split[2] && split[3] == NULL)
 		if (is_nbr(split[1]) && is_nbr(split[2]))

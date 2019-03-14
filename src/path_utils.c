@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graph_utils.c                                      :+:      :+:    :+:   */
+/*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/14 17:15:45 by sarobber         ###   ########.fr       */
+/*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
+/*   Updated: 2019/03/14 17:30:25 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-t_graph		*graph_new(char *name, int x, int y)
+void		create_path(char **split, t_env *e)
 {
-	t_graph	*g;
+	while(ft_strcmp(e->graph->name, split[0]) != 0)
+		e->graph = e->graph->next;
+	
+}
 
-	if (!(g = (t_graph *)malloc(sizeof(t_graph))))
+
+t_path		*path_new(char *name, int x, int y)
+{
+	t_path	*p;
+
+	if (!(p = (t_path *)malloc(sizeof(t_path))))
 		error("malloc error\n");
 	if (name)
 	{
@@ -29,18 +37,7 @@ t_graph		*graph_new(char *name, int x, int y)
 	g->next = NULL;
 }
 
-void			graph_push_front(t_graph **head, t_graph *new)
-{
-	if (*head)
-	{
-		new->next = *head;
-		*head = new;
-	}
-	else
-		*head = new;
-}
-
-void			graph_push_back(t_graph **head, t_graph *new)
+void			path_push_back(t_path **head, t_path *new)
 {
 	if (*head)
 	{
