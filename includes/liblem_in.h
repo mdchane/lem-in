@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 14:54:37 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 15:04:08 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ typedef struct		s_path
 	struct s_graph		*name;
 	struct s_path		*next;
 }					t_path;
+
+typedef struct 		s_point
+{
+	int				x;
+	int				y;
+}					t_point;
 
 typedef struct		s_graph
 {
