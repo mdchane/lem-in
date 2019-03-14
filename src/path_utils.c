@@ -6,10 +6,11 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/14 17:30:25 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 17:32:23 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include "liblem_in.h"
 
 void		create_path(char **split, t_env *e)
@@ -47,4 +48,4 @@ void			path_push_back(t_path **head, t_path *new)
 	}
 	else
 		*head = new;
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 17:31:16 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 17:41:32 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*parse_rooms(t_env *e)
 			graph_push_back(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
 		else if (type == ROOM)
 			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
-		else if (is_tube(line))
+		else if (is_path(line))
 		{
 			graph_push_front(&e->graph, start);
 			free_tab(split);
@@ -76,7 +76,7 @@ char	*parse_rooms(t_env *e)
 	return (NULL);
 }
 /*
-void	parse_tube(t_env *e, char *line)
+void	parse_path(t_env *e, char *line)
 {
 	char **split;
 
@@ -87,13 +87,24 @@ void	parse_tube(t_env *e, char *line)
 	while (get_next_line(stdin, &line) > 0)
 	{
 		split = ft_strsplit(line, '-');	
-		if (is_tube(line))
+		if (is_path(line))
 			create_path(split, e);
 		free_tab(split);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
 }*/
+
+void	print_liste(t_env *e)
+{
+	printf("nb_ants = %d\n", e->nb_ants);
+	printf("----------GRAPH---------\n");
+	while (e->graph)
+	{
+		printf("%s   ants_bool = [%d] X = %d Y = %d path = %p\n\n", e->graph->name, e->graph->ants, e->graph->point.x, e->graph->point.y, e->graph->path);
+		e->graph = e->graph->next;
+	}
+}
 
 void	parsing(t_env *e)
 {
@@ -102,6 +113,7 @@ void	parsing(t_env *e)
 
 	parse_nb_ants(e);
 	line = parse_rooms(e);
+	print_liste(e);
 	//if (line)
-	//	parse_tube(e, line);
+	//	parse_path(e, line);
 }
