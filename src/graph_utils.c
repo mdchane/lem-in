@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/14 16:23:00 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 16:55:58 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,25 @@ t_graph		*graph_new(char *name, int x, int y)
 	g->next = NULL;
 }
 
-void			graph_push_front(t_graph **head, char *name, int x, int y)
+void			graph_push_front(t_graph **head, t_graph *new)
 {
-	t_graph		*graph;
-
 	if (*head)
 	{
-		graph = graph_new(name, x, y);
-		graph->next = *head;
-		*head = graph;
+		new->next = *head;
+		*head = new;
 	}
 	else
-		*head = graph_new(name, x, y);
+		*head = new;
 }
 
-void			graph_push_back(t_graph **head, char *name, int x, int y)
+void			graph_push_back(t_graph **head, t_graph *new)
 {
-	t_graph		*graph;
-
-	graph = *head;
-	if (! graph)
-		graph = graph_new(name, x, y);
-	else
+	if (*head)
 	{
-		while (graph->next)
-			graph = graph->next;
-		graph->next = graph_new(name, x, y);
+		while ((*head)->next)
+			(*head) = (*head)->next;
+		(*head)->next = new;
 	}
+	else
+		*head = new;
 }
