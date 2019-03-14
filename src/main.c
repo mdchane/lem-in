@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 14:54:47 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 16:30:19 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(int argc, char **argv)
 	// t_anthill	*at;
 	if (argc < 2)
 		error("ERROR\n");
-	printf("is_nbr = %d\n", is_nbr(argv[1]));
-	// printf("is_room = %d\n", is_room(argv[1]));
+	// printf("is_nbr = %d\n", is_nbr(argv[1]));
+	printf("is_room = %d\n", is_room(argv[1]));
 	return (0);
 }
