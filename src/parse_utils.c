@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 17:26:26 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/14 17:44:47 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ int		is_nbr(char *str)
 	return (0);
 }
 
+int		is_name_room(char *room)
+{
+	if (!room)
+		return (0);
+	if (room[0] == 'L' || room[0] == '#' || ft_strchr(room, '-'))
+			return (0);
+	return (1);
+}
+
 int		is_room(char *line)
 {
 	char	**split;
@@ -56,7 +65,7 @@ int		is_room(char *line)
 	if (!split)
 		return (0);
 	if (split[0])
-		if (split[0][0] == 'L' || split[0][0] == '#' || ft_strchr(line, '-'))
+		if (is_name_room(split[0]))
 			return (0);
 	if (split[1] && split[2] && split[3] == NULL)
 		if (is_nbr(split[1]) && is_nbr(split[2]))
@@ -64,3 +73,14 @@ int		is_room(char *line)
 	return (0);
 }
 
+int		is_path(char *line)
+{
+	char	**split;
+
+	split = ft_strsplit(line, '-');
+	if (!split)
+		return (0);
+	if (is_name_room(split[0]) && is_name_room(split[1]) && split[2] == NULL)
+		return (1);
+	return (0);
+}
