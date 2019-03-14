@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 10:54:44 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/14 14:54:48 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,4 @@ int		is_room(char *str)
 		return (0);
 	return (1);
 }
+

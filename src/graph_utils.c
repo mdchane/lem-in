@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   graph_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 14:54:47 by sarobber         ###   ########.fr       */
+/*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
+/*   Updated: 2019/03/14 15:00:05 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void	error(char *msg)
+void			graph_push_front(t_graph **graph, char *name)
 {
-	ft_putstr_fd(msg, 1);
-	exit(EXIT_FAILURE);
+	t_graph		graph;
 }
 
-int		main(int argc, char **argv)
+void			graph_push_back(t_graph **graph, char *name)
 {
-	// t_anthill	*at;
-	if (argc < 2)
-		error("ERROR\n");
-	printf("is_nbr = %d\n", is_nbr(argv[1]));
-	// printf("is_room = %d\n", is_room(argv[1]));
-	return (0);
+
 }
