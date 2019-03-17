@@ -6,22 +6,14 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/14 17:32:23 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 10:00:17 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
+
 #include "liblem_in.h"
 
-void		create_path(char **split, t_env *e)
-{
-	while(ft_strcmp(e->graph->name, split[0]) != 0)
-		e->graph = e->graph->next;
-	
-}
-
-
-t_path		*path_new(char *name, int x, int y)
+t_path		*path_new(char *name)
 {
 	t_path	*p;
 
@@ -29,18 +21,17 @@ t_path		*path_new(char *name, int x, int y)
 		error("malloc error\n");
 	if (name)
 	{
-		if (!(g->name = ft_strdup(name)))
+		if (!(p->name = ft_strdup(name)))
 			error("malloc error\n");
 	}
 	else
-		g->name = NULL;
-	g->path = NULL;
-	g->next = NULL;
+		p->name = NULL;
+	p->next = NULL;
 }
 
 void			path_push_back(t_path **head, t_path *new)
 {
-	if (*head)
+	if (*head && head)
 	{
 		while ((*head)->next)
 			(*head) = (*head)->next;
@@ -48,4 +39,13 @@ void			path_push_back(t_path **head, t_path *new)
 	}
 	else
 		*head = new;
-}*/
+}
+
+void			create_path(char **split, t_env *env)
+{
+	t_graph		*graph;	
+
+	graph = graph_search(&env->graph, split[0]);
+	if (graph)
+		path_push_back(&graph, path_new(split[1]));
+}

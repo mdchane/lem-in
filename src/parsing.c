@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 08:56:38 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 09:46:19 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*parse_rooms(t_env *e)
 	ft_strdel(&line);
 	return (NULL);
 }
-/*
+
 void	parse_path(t_env *e, char *line)
 {
 	char **split;
@@ -95,7 +95,7 @@ void	parse_path(t_env *e, char *line)
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-}*/
+}
 
 void	print_liste(t_env *e)
 {
@@ -115,6 +115,6 @@ void	parsing(t_env *e)
 	parse_nb_ants(e);
 	line = parse_rooms(e);
 	print_liste(e);
-	//if (line)
-	//	parse_path(e, line);
+	if (line)
+		parse_path(e, line);
 }
