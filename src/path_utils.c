@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/17 10:48:57 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 11:07:37 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_path		*path_new(t_graph *g)
 	if (!(p = (t_path *)malloc(sizeof(t_path))))
 		error("malloc error\n");
 	if (g)
-		p->name = g;
+		p->adjacent = g;
 	else
-		p->name = NULL;
+		p->adjacent = NULL;
 	p->next = NULL;
 	return (p);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 10:49:58 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 11:07:09 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	parse_nb_ants(t_env *e)
 
 	while (get_next_line(0, &line) > 0)
 	{
+		ft_printf("line = %s\n", line);
 		if (is_nbr(line))
 		{
 			e->nb_ants = ft_atoi(line);
@@ -113,7 +114,7 @@ void	print_liste(t_env *e)
 		begp = e->graph->path;
 		while (e->graph->path)
 		{
-			ft_printf("->%s", e->graph->path->name->name);
+			ft_printf("->%s", e->graph->path->adjacent->name);
 			e->graph->path = e->graph->path->next;
 		}
 		ft_putchar('\n');
