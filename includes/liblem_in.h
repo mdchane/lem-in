@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 09:15:28 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 10:12:43 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int				is_path(char *line);
 void			graph_push_back(t_graph **head, t_graph *new);
 void			graph_push_front(t_graph **head, t_graph *new);
 t_graph			*graph_new(char *name, int x, int y);
+t_graph			*graph_search(t_graph *head, char *name);
 
 
 void			parsing(t_env *e);

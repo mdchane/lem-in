@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/17 09:23:06 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 10:14:46 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,12 @@ void		graph_push_back(t_graph **head, t_graph *new)
 	else
 		*head = new;
 }
-/*
-t_graph		*graph_search(t_graph **head, char *name)
-{
 
-}*/
+t_graph		*graph_search(t_graph *head, char *name)
+{
+	if (!head)
+		return (NULL);
+	while (head && ft_strcmp(head->name, name))
+		head = head->next;
+	return (head);
+}

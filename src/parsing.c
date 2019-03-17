@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 09:46:19 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 10:18:07 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	parse_path(t_env *e, char *line)
 	create_path(split, e);
 	free_tab(split);
 	ft_strdel(&line);
-	while (get_next_line(stdin, &line) > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		split = ft_strsplit(line, '-');
 		if (is_path(line))
@@ -99,13 +99,17 @@ void	parse_path(t_env *e, char *line)
 
 void	print_liste(t_env *e)
 {
+	t_graph	*beg;
+
+	beg = e->graph;
 	printf("nb_ants = %d\n", e->nb_ants);
 	printf("----------GRAPH---------\n");
 	while (e->graph)
 	{
-		printf("%s\n", e->graph->name);
+		printf("%p = %s\n", e->graph, e->graph->name);
 		e->graph = e->graph->next;
 	}
+	e->graph = beg;
 }
 
 void	parsing(t_env *e)
