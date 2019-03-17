@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 10:27:57 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 10:49:58 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,14 @@ void	print_liste(t_env *e)
 	ft_printf("----------GRAPH---------\n");
 	while (e->graph)
 	{
-		ft_printf("%p = %s:", e->graph, e->graph->name);
+		ft_printf("%s:", e->graph->name);
 		begp = e->graph->path;
 		while (e->graph->path)
 		{
-			ft_printf("-> %s", e->graph->path->name);
+			ft_printf("->%s", e->graph->path->name->name);
 			e->graph->path = e->graph->path->next;
 		}
+		ft_putchar('\n');
 		ft_putchar('\n');
 		e->graph->path = begp;
 		e->graph = e->graph->next;
