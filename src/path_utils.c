@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/17 11:07:37 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 11:20:29 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,22 @@ t_path		*path_new(t_graph *g)
 
 void			path_push_back(t_path **head, t_path *new)
 {
+	t_path	*beg_p;
+
+	beg_p = (*head);
 	if (*head && head)
 	{
 		while ((*head)->next)
+		{
+			if (ft_strcmp(new->adjacent->name, (*head)->adjacent->name) == 0)
+			{
+				(*head) = beg_p;
+				return ;
+			}
 			(*head) = (*head)->next;
+		}
 		(*head)->next = new;
+	(*head) = beg_p;
 	}
 	else
 		*head = new;
