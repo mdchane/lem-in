@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 10:12:43 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 10:28:18 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void			graph_push_front(t_graph **head, t_graph *new);
 t_graph			*graph_new(char *name, int x, int y);
 t_graph			*graph_search(t_graph *head, char *name);
 
+void			create_path(char **split, t_env *env);
 
 void			parsing(t_env *e);
 

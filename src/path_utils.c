@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/17 10:00:17 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 10:30:22 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void			path_push_back(t_path **head, t_path *new)
 
 void			create_path(char **split, t_env *env)
 {
-	t_graph		*graph;	
+	t_graph		*graph;
 
 	graph = graph_search(&env->graph, split[0]);
 	if (graph)
-		path_push_back(&graph, path_new(split[1]));
+		path_push_back(&graph->path, path_new(split[1]));
 }

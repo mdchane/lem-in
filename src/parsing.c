@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 10:18:07 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 10:27:57 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ void	parse_path(t_env *e, char *line)
 	ft_strdel(&line);
 	while (get_next_line(0, &line) > 0)
 	{
-		split = ft_strsplit(line, '-');
 		if (is_path(line))
+		{
+			split = ft_strsplit(line, '-');
 			create_path(split, e);
-		free_tab(split);
+			free_tab(split);
+		}
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
@@ -100,13 +102,22 @@ void	parse_path(t_env *e, char *line)
 void	print_liste(t_env *e)
 {
 	t_graph	*beg;
+	t_path	*begp;
 
 	beg = e->graph;
-	printf("nb_ants = %d\n", e->nb_ants);
-	printf("----------GRAPH---------\n");
+	ft_printf("nb_ants = %d\n", e->nb_ants);
+	ft_printf("----------GRAPH---------\n");
 	while (e->graph)
 	{
-		printf("%p = %s\n", e->graph, e->graph->name);
+		ft_printf("%p = %s:", e->graph, e->graph->name);
+		begp = e->graph->path;
+		while (e->graph->path)
+		{
+			ft_printf("-> %s", e->graph->path->name);
+			e->graph->path = e->graph->path->next;
+		}
+		ft_putchar('\n');
+		e->graph->path = begp;
 		e->graph = e->graph->next;
 	}
 	e->graph = beg;
@@ -118,7 +129,7 @@ void	parsing(t_env *e)
 
 	parse_nb_ants(e);
 	line = parse_rooms(e);
-	print_liste(e);
 	if (line)
 		parse_path(e, line);
+	print_liste(e);
 }
