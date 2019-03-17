@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 11:12:05 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/17 11:24:23 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*parse_rooms(t_env *e)
 	char	*line;
 	int		type;
 	char	**split;
-	t_graph	*start;
 
 	e->graph = NULL;
 	type = -1;
@@ -61,14 +60,17 @@ char	*parse_rooms(t_env *e)
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
 		if (type == START_ROOM)
-			start = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			e->start = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 		else if (type == END_ROOM)
-			graph_push_back(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
+		{
+			e->end = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			graph_push_back(&e->graph, e->end);
+		}
 		else if (type == ROOM)
 			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
 		else if (is_path(line))
 		{
-			graph_push_front(&e->graph, start);
+			graph_push_front(&e->graph, e->start);
 			free_tab(split);
 			return (line);
 		}
