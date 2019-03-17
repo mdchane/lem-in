@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/14 18:04:16 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 09:09:53 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_graph		*graph_new(char *name, int x, int y)
 
 void		graph_push_front(t_graph **head, t_graph *new)
 {
-	if (*head)
+	if (head || *head)
 	{
 		new->next = *head;
 		*head = new;
@@ -45,7 +45,7 @@ void		graph_push_front(t_graph **head, t_graph *new)
 
 void		graph_push_back(t_graph **head, t_graph *new)
 {
-	if (*head)
+	if (head || *head)
 	{
 		while ((*head)->next)
 			(*head) = (*head)->next;
@@ -53,4 +53,9 @@ void		graph_push_back(t_graph **head, t_graph *new)
 	}
 	else
 		*head = new;
+}
+
+t_graph		*graph_search(t_graph **head, char *name)
+{
+
 }
