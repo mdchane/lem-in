@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/17 11:29:41 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 12:25:40 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ void			path_push_back(t_path **head, t_path *new)
 	{
 		while ((*head)->next)
 		{
-			if (ft_strcmp(new->adjacent->name, (*head)->adjacent->name) == 0)
-			{
-				(*head) = beg_p;
-				return ;
-			}
 			(*head) = (*head)->next;
 		}
 		(*head)->next = new;
@@ -49,14 +44,26 @@ void			path_push_back(t_path **head, t_path *new)
 		*head = new;
 }
 
+int				path_doublon(t_path *path, char *name)
+{
+	while (path)
+	{
+		if (ft_strcmp(name, path->adjacent->name) == 0)
+			return (1);
+		path = path->next;
+	}
+	return (0);
+}
+
+
 void			create_path(char **split, t_env *env)
 {
 	t_graph		*graph;
 
 	graph = graph_search(env->graph, split[0]);
-	if (graph )
+	if (graph && !path_doublon(graph->path, split[1]))
 		path_push_back(&graph->path, path_new(graph_search(env->graph, split[1])));
 	graph = graph_search(env->graph, split[1]);
-	if (graph)
+	if (graph && !path_doublon(graph->path, split[0]))
 		path_push_back(&graph->path, path_new(graph_search(env->graph, split[0])));
 }
