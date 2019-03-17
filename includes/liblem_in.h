@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 18:03:07 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 08:33:35 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct	s_env
 {
 	int			nb_ants;
 	t_graph		*graph;
+	t_graph		*begin;
+	t_graph		*end;
 }				t_env;
 
 void			error(char *msg);

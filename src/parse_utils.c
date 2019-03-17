@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 18:16:20 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 08:55:59 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		is_room(char *line)
 	if (!split)
 		return (0);
 	if (split[0])
-		if (is_name_room(split[0]))
+		if (!is_name_room(split[0]))
 			return (0);
 	if (split[1] && split[2] && split[3] == NULL)
 		if (is_nbr(split[1]) && is_nbr(split[2]))
