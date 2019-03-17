@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 12:17:50 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/17 12:54:12 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	parse_nb_ants(t_env *e)
 
 	while (get_next_line(0, &line) > 0)
 	{
-		ft_printf("line = %s\n", line);
 		if (is_nbr(line))
 		{
 			e->nb_ants = ft_atoi(line);
@@ -127,6 +126,39 @@ void	print_liste(t_env *e)
 	e->graph = beg;
 }
 
+void	print_same(t_env *e)
+{
+	t_graph	*beg;
+	t_path	*begp;
+
+	ft_printf("%d\n", e->nb_ants);
+	ft_printf("##start\n");
+	ft_printf("%s %d %d\n", e->start->name, e->start->point.x, e->start->point.y);
+	ft_printf("##end\n");
+	ft_printf("%s %d %d\n", e->end->name, e->end->point.x, e->end->point.y);
+	beg = e->graph;
+	while (e->graph)
+	{
+		if (ft_strcmp(e->graph->name, "start") && ft_strcmp(e->graph->name, "end"))
+			ft_printf("%s %d %d\n", e->graph->name, e->graph->point.x, e->graph->point.y);
+		e->graph = e->graph->next;
+	}
+	e->graph = beg;
+	while (e->graph)
+	{
+		begp = e->graph->path;
+		while (e->graph->path)
+		{
+			ft_printf("%s-%s\n", e->graph->name, e->graph->path->adjacent->name);
+			e->graph->path = e->graph->path->next;
+		}
+		e->graph->path = begp;
+		e->graph = e->graph->next;
+	}
+	e->graph = beg;
+}
+
+
 void	parsing(t_env *e)
 {
 	char	*line;
@@ -135,5 +167,7 @@ void	parsing(t_env *e)
 	line = parse_rooms(e);
 	if (line)
 		parse_path(e, line);
-	print_liste(e);
+	// print_liste(e);
+	print_same(e);
+
 }
