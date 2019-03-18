@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 15:03:32 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:11:27 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*parse_rooms(t_env *e)
 			free_tab(split);
 			return (line);
 		}
+		else if (line[0] != '#')
+			error("ERROR\n");
 		free_tab(split);
 		free(line);
 	}
@@ -166,5 +168,5 @@ void	parsing(t_env *e)
 		error("ERROR\n");
 	else
 		parse_path(e, line);
-	print_same(e);
+	//  print_same(e);
 }

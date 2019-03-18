@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/18 14:59:50 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:18:37 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_graph		*graph_new(char *name, int x, int y)
 
 void		graph_push_front(t_graph **head, t_graph *new)
 {
-	if (head && *head)
+	if (head && *head && new)
 	{
 		new->next = *head;
 		*head = new;
@@ -48,7 +48,7 @@ void		graph_push_back(t_graph **head, t_graph *new)
 	t_graph		*beg;
 
 	beg = *head;
-	if (head && *head)
+	if (head && *head && new)
 	{
 		while ((*head)->next)
 			(*head) = (*head)->next;
