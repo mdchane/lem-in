@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:08:04 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/18 14:43:40 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 14:52:25 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		check_end(char *keep)
 int		get_next_line(int const fd, char **line)
 {
 	char		buff[BUFF_SIZE + 1];
-	static char	*keep[256];
+	static char	*keep[1];
 	int			ret;
 	char		*tmp;
 

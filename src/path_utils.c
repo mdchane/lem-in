@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/18 13:29:27 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 15:02:02 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,9 @@ void			create_path(char **split, t_env *env)
 	t_graph		*graph;
 
 	graph = graph_search(env->graph, split[0]);
-	if (graph)
-		if (!path_doublon(graph->path, split[1]))
+	if (graph && !path_doublon(graph->path, split[1]))
 			path_push_back(&graph->path, path_new(graph_search(env->graph, split[1])));
-	// graph = graph_search(env->graph, split[1]);
-	// if (graph)
-	// 	// if (!path_doublon(graph->path, split[0]))
-	// 		path_push_back(&graph->path, path_new(graph_search(env->graph, split[0])));
+	 graph = graph_search(env->graph, split[1]);
+	 if (graph && !path_doublon(graph->path, split[0]))
+	 		path_push_back(&graph->path, path_new(graph_search(env->graph, split[0])));
 }

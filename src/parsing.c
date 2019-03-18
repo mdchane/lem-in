@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 14:49:43 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:03:32 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,4 @@ void	parsing(t_env *e)
 	else
 		parse_path(e, line);
 	print_same(e);
-
 }
