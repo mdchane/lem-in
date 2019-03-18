@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 09:11:00 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/18 14:11:42 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,8 @@ int		is_name_room(char *room)
 	return (1);
 }
 
-int		is_room(char *line)
+int		is_room(char **split)
 {
-	char	**split;
-
-	split = ft_strsplit(line, ' ');
 	if (!split)
 		return (0);
 	if (split[0])

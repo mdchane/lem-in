@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 13:34:50 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 14:12:39 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,14 @@ char	*parse_rooms(t_env *e)
 	{
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
-		if (type == -1 && is_room(line))
+		if (type == -1 && is_room(split))
 			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
-		else if (type == START && is_room(line))
+		else if (type == START && is_room(split))
 		{
 			e->start = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 			type = -1;
 		}
-		else if (type == END && is_room(line))
+		else if (type == END && is_room(split))
 		{
 			e->end = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 			graph_push_back(&e->graph, e->end);
@@ -213,10 +213,10 @@ void	parsing(t_env *e)
 
 	parse_nb_ants(e);
 	line = parse_rooms(e);
-	if (!e->start && !e->end && !line)
-		error("ERROR\n");
-	else
-		parse_path(e, line);
+	// if (!e->start && !e->end && !line)
+	// 	error("ERROR\n");
+	// else
+	// 	parse_path(e, line);
 	// print_liste(e);
 	// print_same(e);
 

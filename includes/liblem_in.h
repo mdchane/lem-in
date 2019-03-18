@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 11:22:24 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 14:12:00 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_env
 
 void			error(char *msg);
 int				is_nbr(char *str);
-int				is_room(char *str);
+int				is_room(char **split);
 int				is_path(char *line);
 
 void			graph_push_back(t_graph **head, t_graph *new);
