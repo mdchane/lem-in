@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 15:11:27 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 15:52:27 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*parse_rooms(t_env *e)
 	{
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
+		if (graph_search(e->graph, split[0]))
+			error("ERROR\n");
 		if (type == -1 && is_room(split))
 			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
 		else if (type == START && is_room(split))
