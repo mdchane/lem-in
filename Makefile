@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+         #
+#    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/03/18 14:21:34 by sarobber         ###   ########.fr        #
+#    Updated: 2019/03/18 14:44:27 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem-in1
+NAME = lem-in
 
 HEADER_NAME = liblem_in.h
 
