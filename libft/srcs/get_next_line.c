@@ -3,76 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 10:32:40 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/04 16:53:54 by mdchane          ###   ########.fr       */
+/*   Created: 2018/10/09 15:08:04 by sarobber          #+#    #+#             */
+/*   Updated: 2019/03/18 14:24:53 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_read_it(char **str, int fd, int *error)
+size_t  ft_strclen(char *keep)
 {
-	int		nbread;
-	char	buff[BUFF_SIZE + 1];
-	char	*tmp;
+        size_t  i;
 
-	while ((nbread = read(fd, (void *)buff, BUFF_SIZE)) > 0)
-	{
-		buff[nbread] = '\0';
-		if (!(tmp = ft_strjoin(*str, buff)))
-		{
-			*error = -1;
-			return (NULL);
-		}
-		ft_strdel(str);
-		*str = tmp;
-		if (ft_strchr(*str, '\n'))
-			return (*str);
-	}
-	if (nbread < 0)
-		*error = -1;
-	return (*str);
+        i = 0;
+        while (keep[i] != '\n' && keep[i] != '\0')
+                i++;
+        return (i);
 }
 
-int		ft_errors(char **str, int fd, char **line)
+int             check_end(char *keep)
 {
-	if (fd < 0 || line == NULL || fd > OPEN_MAX)
-		return (1);
-	if (!(*str))
-	{
-		if (!(*str = ft_strnew(0)))
-			return (1);
-	}
-	return (0);
+        if (ft_strchr(keep, '\n'))
+        {
+                ft_strcpy(keep, ft_strchr(keep, '\n') + 1);
+                return (1);
+        }
+        if (ft_strclen(keep) > 0)
+        {
+                ft_strcpy(keep, ft_strchr(keep, '\0'));
+                return (1);
+        }
+        return (0);
 }
 
-int		get_next_line(const int fd, char **line)
+int             get_next_line(int const fd, char **line)
 {
-	static char	*str[OPEN_MAX];
-	int			i;
-	char		*tmp;
-	int			error;
+        char            buff[BUFF_SIZE + 1];
+        static char     *keep[256];
+        int                     ret;
+        char            *tmp;
 
-	error = 0;
-	if (ft_errors(&str[fd], fd, line))
-		return (-1);
-	str[fd] = ft_read_it(&str[fd], fd, &error);
-	if (error < 0)
-		return (-1);
-	i = 0;
-	if (str[fd][i])
-	{
-		while (str[fd][i] && str[fd][i] != '\n')
-			i++;
-		if (!(*line = ft_strsub(str[fd], 0, i)))
-			return (-1);
-		if (!(tmp = ft_strsub(str[fd], i + 1, ft_strlen(str[fd] + i + 1))))
-			return (-1);
-		ft_strdel(&str[fd]);
-		return ((str[fd] = tmp) || 1);
-	}
-	ft_strdel(&str[fd]);
-	return (0);
+        if (fd < 0 || BUFF_SIZE < 1 || !line || read(fd, buff, 0) < 0)
+                return (-1);
+        if (!(keep[fd]) && (keep[fd] = ft_strnew(0)) == NULL)
+                return (-1);
+        while (!(ft_strchr(keep[fd], '\n'))
+                && (ret = read(fd, buff, BUFF_SIZE)) > 0)
+        {
+                buff[ret] = '\0';
+                tmp = keep[fd];
+                keep[fd] = ft_strjoin(tmp, buff);
+                free(tmp);
+        }
+        *line = ft_strsub(keep[fd], 0, ft_strclen(keep[fd]));
+        if (check_end(keep[fd]) == 0)
+                return (0);
+        return (1);
 }

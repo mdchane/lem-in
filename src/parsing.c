@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 14:12:39 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 14:32:57 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,11 +213,10 @@ void	parsing(t_env *e)
 
 	parse_nb_ants(e);
 	line = parse_rooms(e);
-	// if (!e->start && !e->end && !line)
-	// 	error("ERROR\n");
-	// else
-	// 	parse_path(e, line);
-	// print_liste(e);
-	// print_same(e);
+	 if (!e->start && !e->end && !line)
+		error("ERROR\n");
+	 else
+		parse_path(e, line);
+	 print_same(e);
 
 }
