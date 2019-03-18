@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 12:13:09 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 14:48:17 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,18 @@ void	error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+void	init_env(t_env *e)
+{
+	e->end = NULL;
+	e->start = NULL;
+	e->graph = NULL;
+	e->nb_ants = 0;
+}
+
 int		main(void)
 {
 	t_env	e;
-
+	init_env(&e);
 	parsing(&e);
 	return (0);
 }
