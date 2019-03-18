@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 13:23:29 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 13:34:50 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,9 @@ char	*parse_rooms(t_env *e)
 	{
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
-		if (type == START && is_room(line))
+		if (type == -1 && is_room(line))
+			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
+		else if (type == START && is_room(line))
 		{
 			e->start = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 			type = -1;
@@ -113,8 +115,6 @@ char	*parse_rooms(t_env *e)
 			graph_push_back(&e->graph, e->end);
 			type = -1;
 		}
-		else if (is_room(line))
-			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
 		else if (is_path(line))
 		{
 			graph_push_front(&e->graph, e->start);
@@ -218,6 +218,6 @@ void	parsing(t_env *e)
 	else
 		parse_path(e, line);
 	// print_liste(e);
-	print_same(e);
+	// print_same(e);
 
 }
