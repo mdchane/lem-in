@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/17 12:54:36 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 13:19:59 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ void		graph_push_front(t_graph **head, t_graph *new)
 
 void		graph_push_back(t_graph **head, t_graph *new)
 {
+	t_graph		*beg;
+
+	beg = *head;
 	if (head && *head)
 	{
 		while ((*head)->next)
 			(*head) = (*head)->next;
 		(*head)->next = new;
+		*head = beg;
 	}
 	else
 		*head = new;

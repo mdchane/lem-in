@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/17 12:54:12 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/18 13:23:29 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,65 @@ void	parse_nb_ants(t_env *e)
 	error("ERROR at nb_ants\n");
 }
 
+// int		find_type(char *line, int type)
+// {
+// 	if (ft_strcmp(line, "##start") == 0)
+// 		return (START);
+// 	else if (ft_strcmp(line, "##end") == 0)
+// 		return (END);
+// 	else if (is_room(line))
+// 	{
+// 		if (type == START)
+// 			return (START_ROOM);
+// 		if (type == END)
+// 			return (END_ROOM);
+// 		return (ROOM);
+// 	}
+// 	return (-1);
+// }
+
+// char	*parse_rooms(t_env *e)
+// {
+// 	char	*line;
+// 	int		type;
+// 	char	**split;
+
+// 	e->graph = NULL;
+// 	type = -1;
+// 	while (get_next_line(0, &line) > 0)
+// 	{
+// 		type = find_type(line, type);
+// 		split = ft_strsplit(line, ' ');
+// 		if (type == START_ROOM)
+// 			e->start = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+// 		else if (type == END_ROOM)
+// 		{
+// 			e->end = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+// 			graph_push_back(&e->graph, e->end);
+// 		}
+// 		else if (type == ROOM)
+// 			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
+// 		else if (is_path(line))
+// 		{
+// 			graph_push_front(&e->graph, e->start);
+// 			free_tab(split);
+// 			return (line);
+// 		}
+// 		free_tab(split);
+// 		free(line);
+// 	}
+// 	ft_strdel(&line);
+// 	return (NULL);
+// }
+
 int		find_type(char *line, int type)
 {
 	if (ft_strcmp(line, "##start") == 0)
 		return (START);
 	else if (ft_strcmp(line, "##end") == 0)
 		return (END);
-	else if (is_room(line))
-	{
-		if (type == START)
-			return (START_ROOM);
-		if (type == END)
-			return (END_ROOM);
-		return (ROOM);
-	}
-	return (-1);
+	else
+		return (type);
 }
 
 char	*parse_rooms(t_env *e)
@@ -58,14 +102,18 @@ char	*parse_rooms(t_env *e)
 	{
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
-		if (type == START_ROOM)
+		if (type == START && is_room(line))
+		{
 			e->start = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
-		else if (type == END_ROOM)
+			type = -1;
+		}
+		else if (type == END && is_room(line))
 		{
 			e->end = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 			graph_push_back(&e->graph, e->end);
+			type = -1;
 		}
-		else if (type == ROOM)
+		else if (is_room(line))
 			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
 		else if (is_path(line))
 		{
@@ -137,7 +185,7 @@ void	print_same(t_env *e)
 	ft_printf("##end\n");
 	ft_printf("%s %d %d\n", e->end->name, e->end->point.x, e->end->point.y);
 	beg = e->graph;
-	while (e->graph)
+	while (e->graph->next)
 	{
 		if (ft_strcmp(e->graph->name, "start") && ft_strcmp(e->graph->name, "end"))
 			ft_printf("%s %d %d\n", e->graph->name, e->graph->point.x, e->graph->point.y);
@@ -165,7 +213,9 @@ void	parsing(t_env *e)
 
 	parse_nb_ants(e);
 	line = parse_rooms(e);
-	if (line)
+	if (!e->start && !e->end && !line)
+		error("ERROR\n");
+	else
 		parse_path(e, line);
 	// print_liste(e);
 	print_same(e);
