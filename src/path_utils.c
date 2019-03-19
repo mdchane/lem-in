@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/18 15:02:02 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/19 10:00:57 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,15 @@ int				path_doublon(t_path *path, char *name)
 
 void			create_path(char **split, t_env *env)
 {
-	t_graph		*graph;
+	t_graph		*graph_0;
+	t_graph		*graph_1;
 
-	graph = graph_search(env->graph, split[0]);
-	if (graph && !path_doublon(graph->path, split[1]))
-			path_push_back(&graph->path, path_new(graph_search(env->graph, split[1])));
-	 graph = graph_search(env->graph, split[1]);
-	 if (graph && !path_doublon(graph->path, split[0]))
-	 		path_push_back(&graph->path, path_new(graph_search(env->graph, split[0])));
+	graph_0 = graph_search(env->graph, split[0]);
+	graph_1 = graph_search(env->graph, split[1]);
+	if (!graph_0 || !graph_1)
+		error("ERROR\n");
+	if (!path_doublon(graph_0->path, split[1]))
+		path_push_back(&graph_0->path, path_new(graph_1));
+	if (!path_doublon(graph_1->path, split[0]))
+	 	path_push_back(&graph_1->path, path_new(graph_0));
 }
