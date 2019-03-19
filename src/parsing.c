@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/19 09:46:51 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:01:27 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	parse_path(t_env *e, char *line)
 			create_path(split, e);
 			free_tab(split);
 		}
+		else if (line[0] != '#')
+			error("ERROR\n");
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
