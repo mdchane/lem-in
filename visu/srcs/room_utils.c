@@ -6,13 +6,13 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:29:30 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/19 16:28:46 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 11:13:14 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/visu.h"
 
-t_room		*room_new(char *name, int x, int y)
+t_room		*room_new(char *name, int x, int y, int col)
 {
 	t_room	*room;
 
@@ -22,6 +22,7 @@ t_room		*room_new(char *name, int x, int y)
 		error("malloc error\n");
 	room->x = x;
 	room->y = y;
+	room->col = col;
 	room->next = NULL;
 	return (room);
 }

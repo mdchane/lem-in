@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"liblem_in.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"visu.h": "c"
 	}
 }

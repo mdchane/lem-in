@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/19 17:25:38 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 10:38:10 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ char	*parse_room(t_env *e)
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
 		if (type == -1 && is_room(split))
-			room_push_front(&e->room, room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
+			room_push_front(&e->room, room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0XFFFF00));
 		else if (type == START && is_room(split))
 		{
-			e->start = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			e->start = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0X00FF00);
 			type = -1;
 		}
 		else if (type == END && is_room(split))
 		{
-			e->end = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			e->end = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0XFF0000);
 			room_push_back(&e->room, e->end);
 			type = -1;
 		}

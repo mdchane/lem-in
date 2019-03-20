@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/19 17:24:40 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 12:38:35 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_room
 	char			*name;
 	int				x;
 	int				y;
+	int				col;
 	struct s_room	*next;
 }					t_room;
 
@@ -34,6 +35,12 @@ typedef struct 		s_point
 	int				y;
 }					t_point;
 
+typedef struct 		s_point_f
+{
+	float				x;
+	float				y;
+}					t_point_f;
+
 typedef struct		s_env
 {
 	void			*mlx_ptr;
@@ -42,9 +49,11 @@ typedef struct		s_env
 	t_room			*room;
 	t_room			*start;
 	t_room			*end;
-	int				xmax;
-	int				ymax;
-	t_point 		scale;
+	float			xmax;
+	float			ymax;
+	t_point_f 		scale;
+	int				*data;
+	void			*img_ptr;
 	int				map;
 }					t_env;
 
@@ -58,7 +67,7 @@ t_point		create_point(int x, int y);
 void		room_push_back(t_room **head, t_room *new);
 void		room_push_front(t_room **head, t_room *new);
 t_room		*room_search(t_room *head, char *name);
-t_room		*room_new(char *name, int x, int y);
+t_room		*room_new(char *name, int x, int y, int col);
 //
 void		draw_room(t_env *e);
 void        drawline(t_point point1, t_point point2, t_env *e);

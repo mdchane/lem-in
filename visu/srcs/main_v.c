@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/19 17:24:56 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 13:53:46 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,23 @@ int		ft_key_hook(int keycode, t_env *e)
 		get_scale(e);
 		draw_room(e);
 		parse_path(line, e);
+		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 	}
 	return (1);
 }
 
 int		main(void)
 {
-	t_env e;
-
+	t_env	e;
+    int		bpp;
+    int		s_l;
+    int		endian;
 	e.nb_ants = -1;
 	e.map = 0;
 	e.xmax = 0;
 	e.ymax = 0;
+	e.img_ptr = mlx_new_image(e.mlx_ptr, WIDTH, LENGTH);
+	e.data = (int *)mlx_get_data_addr(e.img_ptr, &(bpp), &(s_l), &(endian));
 	e.mlx_ptr = mlx_init();
 	e.win_ptr = mlx_new_window(e.mlx_ptr, WIDTH, LENGTH, "Visualisateur Lem-in");
 	mlx_hook(e.win_ptr, 2, 0, ft_key_hook, &e);
