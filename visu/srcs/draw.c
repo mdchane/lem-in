@@ -6,14 +6,14 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:39:11 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 13:52:44 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 16:08:29 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 #include <math.h>
 
-void		draw_cercle(int cx, int cy, int rayon, int coul, t_env *e)
+void		draw_square(int cx, int cy, int rayon, int coul, t_env *e)
 {
 	int x;
 	int y;
@@ -36,33 +36,6 @@ void		draw_cercle(int cx, int cy, int rayon, int coul, t_env *e)
 	}
 }
 
-// void		draw_cercle(int cx, int cy, int rayon, int coul, t_env *e)
-// {
-// 	int d, y, x;
- 
-// 	d = 3 - (2 * rayon);
-// 	x = 0;
-// 	y = rayon;
-// 	while (y >= x)
-// 	{
-// 		e->data[(cy + y) * LENGTH + (cx + x)] = coul;
-// 		e->data[(cy + y) * LENGTH + (cx + x)] = coul;
-// 		e->data[(cy + y) * LENGTH + (cx - x)] = coul;
-// 		e->data[(cy + y) * LENGTH + (cx - x)] = coul;
-// 		e->data[(cy - y) * LENGTH + (cx + x)] = coul;
-// 		e->data[(cy - y) * LENGTH + (cx + x)] = coul;
-// 		e->data[(cy - y) * LENGTH + (cx - x)] = coul;
-// 		e->data[(cy - y) * LENGTH + (cx - x)] = coul;
-//     if (d < 0)
-//       d = d + (4 * x) + 6;
-//     else {
-//       d = d + 4 * (x - y) + 10;
-//       y--;
-//     }
-//     x++;
-//   }
-// }
-
 void		draw_room(t_env *e)
 {
 	t_room *beg;
@@ -70,7 +43,7 @@ void		draw_room(t_env *e)
 	beg = e->room;
 	while (e->room)
 	{
-		draw_cercle(e->room->x * e->scale.x + 100, e->room->y * e->scale.y + 100, 20, e->room->col, e);
+		draw_square(e->room->x * e->scale.x + 100, e->room->y * e->scale.y + 100, 20, e->room->col, e);
 		e->room = e->room->next;
 	}
 	e->room = beg;
@@ -103,6 +76,14 @@ void ligne(int x1, int y1, int x2, int y2, int coul, t_env *e)
     x = x1;
     y = y1;
 	e->data[y * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y - 1)* LENGTH + (x - 1)] = coul;
+	e->data[y * LENGTH + (x + 1)] = coul;
+	e->data[y * LENGTH + (x - 1)] = coul;
+	e->data[(y + 1) * LENGTH + x] = coul;
+	e->data[(y + 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y + 1) * LENGTH + (x - 1)] = coul;
     for (y = y1+1; y <= y2; ++y) {
       if (d >= 0) {
 	x += xincr;
@@ -110,6 +91,14 @@ void ligne(int x1, int y1, int x2, int y2, int coul, t_env *e)
       } else
 	d += bincr;
 	e->data[y * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y - 1)* LENGTH + (x - 1)] = coul;
+	e->data[y * LENGTH + (x + 1)] = coul;
+	e->data[y * LENGTH + (x - 1)] = coul;
+	e->data[(y + 1) * LENGTH + x] = coul;
+	e->data[(y + 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y + 1) * LENGTH + (x - 1)] = coul;
     }
  
   } else {
@@ -128,13 +117,29 @@ void ligne(int x1, int y1, int x2, int y2, int coul, t_env *e)
     x = x1;
     y = y1;
  	e->data[y * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y - 1)* LENGTH + (x - 1)] = coul;
+	e->data[y * LENGTH + (x + 1)] = coul;
+	e->data[y * LENGTH + (x - 1)] = coul;
+	e->data[(y + 1) * LENGTH + x] = coul;
+	e->data[(y + 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y + 1) * LENGTH + (x - 1)] = coul;
     for (x = x1+1; x <= x2; ++x) {
       if (d >= 0) {
 	y += yincr;
 	d += aincr;
       } else
 	d += bincr;
-	 e->data[y * LENGTH + x] = coul;
+	e->data[y * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + x] = coul;
+	e->data[(y - 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y - 1)* LENGTH + (x - 1)] = coul;
+	e->data[y * LENGTH + (x + 1)] = coul;
+	e->data[y * LENGTH + (x - 1)] = coul;
+	e->data[(y + 1) * LENGTH + x] = coul;
+	e->data[(y + 1) * LENGTH + (x + 1)] = coul;
+	e->data[(y + 1) * LENGTH + (x - 1)] = coul;
     }
   }    
 }

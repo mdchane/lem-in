@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 13:53:46 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 16:31:54 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int		ft_key_hook(int keycode, t_env *e)
 		draw_room(e);
 		parse_path(line, e);
 		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
+		mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0XFFFFFF, "Nombre de fourmils restante :");
+		mlx_string_put(e->mlx_ptr, e->win_ptr, 325, 20, 0XFFFFFF, ft_itoa(e->ants));
 	}
 	return (1);
 }
@@ -70,6 +72,7 @@ int		main(void)
 	e.map = 0;
 	e.xmax = 0;
 	e.ymax = 0;
+	e.ants  = -1;
 	e.img_ptr = mlx_new_image(e.mlx_ptr, WIDTH, LENGTH);
 	e.data = (int *)mlx_get_data_addr(e.img_ptr, &(bpp), &(s_l), &(endian));
 	e.mlx_ptr = mlx_init();

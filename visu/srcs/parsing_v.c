@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 10:38:10 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/21 09:30:47 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ char	*parse_room(t_env *e)
 	e->room = NULL;
 	type = -1;
 	while (get_next_line(0, &line) > 0)
-	{
+	{	
+		if (e->ants == -1)
+			e->ants = ft_atoi(line);
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
 		if (type == -1 && is_room(split))

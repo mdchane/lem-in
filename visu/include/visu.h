@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 12:38:35 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 16:26:47 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct 		s_point_f
 
 typedef struct		s_env
 {
+	int				ants;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				nb_ants;
@@ -75,4 +76,7 @@ void 		ligne(int x1, int y1, int x2, int y2, int coul, t_env *e);
 //
 void		free_tab(char **tab);
 void		error(char *msg);
+
+void		find_random_coord(t_env *e);
+
 #endif
