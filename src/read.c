@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graph_utils.c                                      :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 15:45:22 by mdchane          ###   ########.fr       */
+/*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
+/*   Updated: 2019/03/21 15:33:56 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void	*grapht_new(t_grapht *g, char *name, int x, int y)
+void	read_map(t_env *e)
 {
-	if (name)
+	int		ret;
+	char	tmp[BUFF_SIZE + 1];
+
+	e->len_map = 0;
+	while ((ret = read(0, tmp, BUFF_SIZE)) > 0)
 	{
-		if (!(g->name = ft_strdup(name)))
-			error("malloc error\n");
+		tmp[ret] = '\0';
+		e->len_map += ret;
+		e->buff = ft_strjoinfree(e->buff, tmp);
 	}
-	else
-		g->name = NULL;
-	g->point.x = x;
-	g->point.y = y;
-	g->path = NULL;
-	return (g);
-}
-
-t_grapht	*graph_search(t_grapht *g, char *name)
-{
-	int		i;
-
-	if (!g)
-		return (NULL);
-	i = 0;
-	while (&g[i] && ft_strcmp(g[i].name, name))
-		i++;
-	return (&g[i]);
 }

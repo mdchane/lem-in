@@ -6,7 +6,7 @@
 #    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/03/18 15:48:45 by mdchane          ###   ########.fr        #
+#    Updated: 2019/03/21 12:05:03 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEADER = $(addprefix $(HEADER_PATH)/,$(HEADER_NAME))
 
 SRC_PATH = src
 
-SRC_NAME = main.c parse_utils.c parsing.c graph_utils.c free.c path_utils.c
+SRC_NAME = main.c parse_utils.c parsing.c graph_utils.c free.c path_utils.c read.c
 
 OBJ_PATH = obj
 
@@ -34,7 +34,7 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-all: $(NAME) $(NAME2)
+all: $(NAME)
 
 $(NAME): $(OBJ_PATH) $(OBJ) $(HEADER)
 	@make -j -C libft/

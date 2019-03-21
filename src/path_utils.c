@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/19 10:00:57 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:46:51 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-t_path		*path_new(t_graph *g)
+t_path		*path_new(t_grapht *g)
 {
 	t_path	*p;
 
@@ -60,13 +60,13 @@ int				path_doublon(t_path *path, char *name)
 	return (0);
 }
 
-void			create_path(char **split, t_env *env)
+void			create_path(char **split, t_env *e)
 {
-	t_graph		*graph_0;
-	t_graph		*graph_1;
+	t_grapht		*graph_0;
+	t_grapht		*graph_1;
 
-	graph_0 = graph_search(env->graph, split[0]);
-	graph_1 = graph_search(env->graph, split[1]);
+	graph_0 = graph_search(e->g, split[0]);
+	graph_1 = graph_search(e->g, split[1]);
 	if (!graph_0 || !graph_1)
 		error("ERROR\n");
 	if (!path_doublon(graph_0->path, split[1]))

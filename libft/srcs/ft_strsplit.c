@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 09:12:27 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/14 17:44:13 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/20 11:38:30 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,16 @@ char		**ft_strsplit(char const *s, char c)
 	int		i;
 	int		j;
 	int		k;
+	int		cw;
 
 	if (s == NULL)
 		return (NULL);
-	if (!(tab = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1))))
+	cw = ft_count_words(s, c);
+	if (!(tab = (char **)malloc(sizeof(char *) * (cw + 1))))
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (j < ft_count_words(s, c))
+	while (j < cw)
 	{
 		i = ft_escape(s, i, c);
 		if (!(tab[j] = (char *)malloc(sizeof(char) * (ft_len(s + i, c) + 1))))

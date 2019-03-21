@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 14:12:00 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/21 15:44:56 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 typedef struct		s_path
 {
-	struct s_graph		*adjacent;
-	struct s_path		*next;
+	struct s_grapht	*adjacent;
+	struct s_path	*next;
 }					t_path;
 
 typedef struct 		s_point
@@ -32,32 +32,35 @@ typedef struct 		s_point
 	int				y;
 }					t_point;
 
-typedef struct		s_graph
+typedef struct		s_grapht
 {
 	int				ants;
 	char			*name;
 	t_path			*path;
 	t_point			point;
-	struct s_graph	*next;
-}					t_graph;
+}					t_grapht;
 
 typedef struct	s_env
 {
-	int			nb_ants;
-	t_graph		*graph;
-	t_graph		*start;
-	t_graph		*end;
-}				t_env;
+	int				nb_ants;
+	t_grapht		*g;
+	t_grapht		*start;
+	t_grapht		*end;
+	char			*buff;
+	int				len_map;
+}					t_env;
 
-void			error(char *msg);
-int				is_nbr(char *str);
-int				is_room(char **split);
-int				is_path(char *line);
+void				read_map(t_env *e);
 
-void			graph_push_back(t_graph **head, t_graph *new);
-void			graph_push_front(t_graph **head, t_graph *new);
-t_graph			*graph_new(char *name, int x, int y);
-t_graph			*graph_search(t_graph *head, char *name);
+void				error(char *msg);
+int					is_zero(char *str);
+int					correct_nbr(char *str);
+int					is_room(char **split);
+int					is_path(char *line);
+
+
+void			*grapht_new(t_grapht *g, char *name, int x, int y);
+t_grapht		*graph_search(t_grapht *g, char *name);
 
 void			create_path(char **split, t_env *env);
 

@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/18 14:11:42 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/21 12:07:09 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,28 @@ int		is_zero(char *str)
 		i++;
 	if (i == ft_strlen(str))
 		return (1);
+	return (0);
+}
+
+int		correct_nbr(char *str)
+{
+	int		i;
+	int		nbr;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (str[i] == '\0')
+	{
+		nbr = ft_atoi(str);
+		return (nbr);
+	}
 	return (0);
 }
 

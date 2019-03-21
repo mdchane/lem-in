@@ -3,30 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/19 12:29:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/21 15:45:03 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void	parse_nb_ants(t_env *e)
+int		parse_nb_ants(t_env *e, char **lines)
 {
-	char	*line;
+	int		i;
 
-	while (get_next_line(0, &line) > 0)
+	i = 0;
+	while (lines[i])
 	{
-		if (is_nbr(line))
-		{
-			e->nb_ants = ft_atoi(line);
-			free(line);
-			return ;
-		}
-		free(line);
+		e->nb_ants = correct_nbr(lines[i]);
+		if (e->nb_ants > 0 || (e->nb_ants == 0 && is_zero(lines[i])))
+				return (++i);
+		i++;
 	}
-	error("ERROR at nb_ants\n");
+	error("ERROR\n");
+	return (0);
 }
 
 int		find_type(char *line, int type)
@@ -39,99 +38,87 @@ int		find_type(char *line, int type)
 		return (type);
 }
 
-char	*parse_rooms(t_env *e)
+int		len_tab(char **line)
 {
-	char	*line;
+	int		len;
+
+	len = 0;
+	while (line[len])
+		len++;
+	return (len);
+}
+
+int		parse_rooms(t_env *e, char **lines, int i)
+{
 	int		type;
 	char	**split;
+	int			len;
+	int			j;
 
-	e->graph = NULL;
+	len = len_tab(lines);
+	e->g = (t_grapht *)malloc(sizeof(t_grapht) * (len + 1));
 	type = -1;
-	while (get_next_line(0, &line) > 0)
+	j = 1;
+	while (lines[i])
 	{
-		type = find_type(line, type);
-		split = ft_strsplit(line, ' ');
-		if (graph_search(e->graph, split[0]))
-			error("ERROR\n");
+		type = find_type(lines[i], type);
+		split = ft_strsplit(lines[i], ' ');
 		if (type == -1 && is_room(split))
-			graph_push_front(&e->graph, graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2])));
+		{
+			grapht_new(&e->g[j], split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			j++;
+		}
 		else if (type == START && is_room(split))
 		{
-			e->start = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			grapht_new(&e->g[0], split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			e->start = &e->g[0];
 			type = -1;
 		}
 		else if (type == END && is_room(split))
 		{
-			e->end = graph_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]));
-			graph_push_back(&e->graph, e->end);
+			grapht_new(e->end, split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 			type = -1;
 		}
-		else if (is_path(line))
+		else if (is_path(lines[i]))
 		{
-			graph_push_front(&e->graph, e->start);
+			grapht_new(&e->g[j], e->end->name, e->end->point.x, e->end->point.y);
+			e->end = &e->g[j];
 			free_tab(split);
-			return (line);
+			return (i - 1);
 		}
-		else if (line[0] != '#')
+		else if (lines[i][0] != '#')
 			error("ERROR\n");
 		free_tab(split);
-		free(line);
+		i++;
 	}
-	ft_strdel(&line);
-	return (NULL);
+	return (i);
 }
 
-void	parse_path(t_env *e, char *line)
+int		parse_path(t_env *e, char **lines, int i)
 {
-	char **split;
+	char	**split;
+	int		nb_path;
 
-	split = ft_strsplit(line, '-');
-	create_path(split, e);
-	free_tab(split);
-	ft_strdel(&line);
-	while (get_next_line(0, &line) > 0)
+	nb_path = 0;
+	while (lines[i])
 	{
-		if (is_path(line))
+		if (is_path(lines[i]))
 		{
-			split = ft_strsplit(line, '-');
+			split = ft_strsplit(lines[i], '-');
 			create_path(split, e);
 			free_tab(split);
+			nb_path++;
 		}
-		else if (line[0] != '#')
+		else if (lines[i][0] != '#')
 			error("ERROR\n");
-		ft_strdel(&line);
+		i++;
 	}
-	ft_strdel(&line);
-}
-
-void	print_liste(t_env *e)
-{
-	t_graph	*beg;
-	t_path	*begp;
-
-	beg = e->graph;
-	ft_printf("nb_ants = %d\n", e->nb_ants);
-	ft_printf("----------GRAPH---------\n");
-	while (e->graph)
-	{
-		ft_printf("%s:", e->graph->name);
-		begp = e->graph->path;
-		while (e->graph->path)
-		{
-			ft_printf("->%s", e->graph->path->adjacent->name);
-			e->graph->path = e->graph->path->next;
-		}
-		ft_putchar('\n');
-		ft_putchar('\n');
-		e->graph->path = begp;
-		e->graph = e->graph->next;
-	}
-	e->graph = beg;
+	return (nb_path);
 }
 
 void	print_same(t_env *e)
 {
-	t_graph	*beg;
+	int		i;
 	t_path	*begp;
 
 	ft_printf("%d\n", e->nb_ants);
@@ -139,38 +126,40 @@ void	print_same(t_env *e)
 	ft_printf("%s %d %d\n", e->start->name, e->start->point.x, e->start->point.y);
 	ft_printf("##end\n");
 	ft_printf("%s %d %d\n", e->end->name, e->end->point.x, e->end->point.y);
-	beg = e->graph;
-	while (e->graph->next)
+	i = 0;
+	while (&e->g[i] && e->g[i].name)
 	{
-		if (ft_strcmp(e->graph->name, "start") && ft_strcmp(e->graph->name, "end"))
-			ft_printf("%s %d %d\n", e->graph->name, e->graph->point.x, e->graph->point.y);
-		e->graph = e->graph->next;
-	}
-	e->graph = beg;
-	while (e->graph)
-	{
-		begp = e->graph->path;
-		while (e->graph->path)
-		{
-			ft_printf("%s-%s\n", e->graph->name, e->graph->path->adjacent->name);
-			e->graph->path = e->graph->path->next;
-		}
-		e->graph->path = begp;
-		e->graph = e->graph->next;
-	}
-	e->graph = beg;
-}
 
+		if (ft_strcmp(e->g[i].name, "start") && ft_strcmp(e->g[i].name, "end"))
+			ft_printf("%s %d %d\n", e->g[i].name, e->g[i].point.x, e->g[i].point.y);
+		i++;
+	}
+	i = 0;
+	while (&e->g[i] && e->g[i].name != NULL)
+	{
+		begp = e->g[i].path;
+		while (e->g[i].path)
+		{
+			ft_printf("%s-%s\n", e->g[i].name, e->g[i].path->adjacent->name);
+			e->g[i].path = e->g[i].path->next;
+		}
+		e->g[i].path = begp;
+		i++;
+	}
+}
 
 void	parsing(t_env *e)
 {
-	char	*line;
+	char	**lines;
+	int		i;
 
-	parse_nb_ants(e);
-	line = parse_rooms(e);
-	if (!e->start || !e->end || !line)
+	lines = ft_strsplit(e->buff, '\n');
+	i = parse_nb_ants(e, lines);
+	i += parse_rooms(e, lines, i);
+	if (!e->start || !e->end)
 		error("ERROR\n");
 	else
-		parse_path(e, line);
-	print_same(e);
+		if (parse_path(e, lines, i) == 0)
+			error("ERROR\n");
+	// print_same(e);
 }
