@@ -3,82 +3,102 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:06:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/25 11:31:36 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/25 15:31:13 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-typedef struct		s_queue
+
+#include "liblem_in.h"
+
+typedef	struct	s_stack
 {
 	t_grapht		*graph;
-	struct s_queue	*next;
-}					t_queue;
+	struct s_stack	*next;
+}				t_stack;
 
-t_queue			*new_queue(t_grapht *g)
+t_stack		*create_new_stack(t_grapht *g)
 {
-	t_queue *queue;
+	t_stack		*stack;
 
-	if (!(queue = (t_queue *)malloc(sizeof(queue))))
+	if (!(stack = (t_stack *)malloc(sizeof(t_stack))))
 		error("malloc error\n");
-	if (queue)
-		queue->graph = g;
+	if (g)
+		stack->graph = g;
 	else
-		queue->graph = NULL;
-	queue->next = NULL;
-	return(queue);
+		stack->graph = NULL;
+	stack->next = NULL;
+	return (stack);
 }
 
-void		push_queue(t_queue *queue, t_grapht *g)
+void		push_back_stack(t_stack **stack, t_grapht *g)
 {
-	t_queue *beg;
+	t_stack *begin;
 
-	beg = queue;
-	if (queue = NULL)
-		queue = new_queue(g);
+	begin = *stack;
+	if (!*stack)
+		(*stack) = create_new_stack(g);
 	else
 	{
-		while (queue->next)
-			queue = queue->next;
-		queue->next = new_queue(g);
+		while ((*stack)->next)
+			*stack = (*stack)->next;
+		(*stack)->next = create_new_stack(g);
+		*stack = begin;
 	}
-	queue = beg;
 }
 
-t_grapht	*del_queue(t_queue *queue)
+t_grapht	*del_stack(t_stack **stack)
 {
-	t_queue		*tmp;
 	t_grapht	*ret;
+	t_stack		*tmp;
 
-	tmp = queue->next;
-	ret = queue->graph;
-	free(queue);
-	queue = tmp;
+	ret = (*stack)->graph;
+	tmp = (*stack)->next;
+	*stack = tmp;
 	return (ret);
 }
 
-void		bfs(t_env *e, t_grapht *g)
+void		print_stack(t_stack *stack)
 {
-	int			i;
-	t_queue		*queue;
-	t_grapht	*n;
-
-	i = 0;
-	push_queue(queue, &g[i]);
-	while (queue)
+	while (stack)
 	{
-		n = del_queue(queue);
-		while (n->path)
+		printf("%s->", stack->graph->name);
+		stack = stack->next;
+	}
+	printf("\n");
+}
+
+int		bfs(t_env *e)
+{
+	t_stack		*stack;
+	t_grapht	*current;
+
+	stack = NULL;
+	e->g[0].ants = 1;
+	push_back_stack(&stack, &e->g[0]);
+	while (stack)
+	{
+		current = del_stack(&stack);
+		//printf("cuurent = %s\n", current->name);
+		while (current->path)
 		{
-			if (n->path->adjacent->ants == 0)
+			current->path->adjacent->parent = ft_strnew(0);
+			if (current->path->adjacent->ants == 0)
 			{
-				n->path->adjacent->ants = 1;
-				push_queue(queue, n->path->adjacent); // adjacent = t_graph *
+				current->path->adjacent->ants = 1;
+		//		current->path->adjacent->dist++;
+		//		current->path->adjacent->parent = current->name;
+				push_back_stack(&stack, current->path->adjacent);
+				if (ft_strcmp(current->path->adjacent->name, e->end->name) == 0)
+					return (1);
+				//print_stack(stack);
 			}
-			n->path = n->path->next;
+			current->path = current->path->next;
 		}
 	}
+	return (0);
 }
