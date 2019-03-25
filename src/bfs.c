@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:06:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/25 11:00:35 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/25 11:11:49 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,17 @@
 
 typedef struct s_queue
 {	
-	t_grapht	graph;
+	t_grapht	*graph;
 	void		*next;
 }				t_queue;
 
-void		ft_list_push_back(t_list **begin_list, void *data)
-{
-	int		i;
-	t_list	*tmp;
-
-	if (begin_list == NULL)
-		*begin_list = ft_create_elem(data);
-	else
-	{
-		tmp = *begin_list;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = ft_create_elem(data);
-	}
-}
-
-t_queue		*new_queue(t_grapht g)
+t_queue		*new_queue(t_grapht *g)
 {
 	t_queue *queue;
+
 	if (!(queue = (t_queue *)malloc(sizeof(queue))))
 		error("malloc error\n");
-	if (g)
+	if (queue)
 		queue->graph = g;
 	else
 		queue->graph = NULL;
@@ -47,7 +32,7 @@ t_queue		*new_queue(t_grapht g)
 	return(queue);
 }
 
-void		push_queue(t_queue *queue, t_grapht g)
+void		push_queue(t_queue *queue, t_grapht *g)
 {
 	t_queue *beg;
 
@@ -79,7 +64,7 @@ void		bfs(t_env *e, t_grapht *g)
 	t_grapht	n;
 
 	i = 0;
-	push_queue(queue, g[i]);
+	push_queue(queue, &g[i]);
 	while (queue)
 	{
 		n = del_queue(queue);
@@ -88,7 +73,7 @@ void		bfs(t_env *e, t_grapht *g)
 			if (n.path->adjacent->vide == 0)
 			{
 				n.path->adjacent->vide = 1;
-				push_queue(queue, *n.path->adjacent); // adjacent = t_graph *
+				push_queue(queue, n.path->adjacent); // adjacent = t_graph *
 			}
 			n.path = n.path->next;
 		}
