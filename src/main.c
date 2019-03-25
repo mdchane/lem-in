@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/25 11:32:41 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/25 15:17:35 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	error(char *msg)
 
 void	init_env(t_env *e)
 {
-	if (!(e->end = (t_grapht *)malloc(sizeof(t_grapht))))
-		error("Malloc Error\n");
-	if (!(e->start = (t_grapht *)malloc(sizeof(t_grapht))))
-		error("Malloc Error\n");
+	e->start = NULL;
+	e->end = NULL;
 	e->g = NULL;
 	e->nb_ants = 0;
 	if (!(e->buff = ft_strdup("")))
