@@ -8,7 +8,7 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/visu/visu",
+			"program": "${workspaceFolder}/lem-in",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

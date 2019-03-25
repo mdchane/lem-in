@@ -6,12 +6,9 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:06:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/25 15:31:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/25 15:43:37 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "liblem_in.h"
-
 
 #include "liblem_in.h"
 
@@ -83,10 +80,9 @@ int		bfs(t_env *e)
 	while (stack)
 	{
 		current = del_stack(&stack);
-		//printf("cuurent = %s\n", current->name);
+		printf("cuurent = %s\n", current->name);
 		while (current->path)
 		{
-			current->path->adjacent->parent = ft_strnew(0);
 			if (current->path->adjacent->ants == 0)
 			{
 				current->path->adjacent->ants = 1;
@@ -95,7 +91,7 @@ int		bfs(t_env *e)
 				push_back_stack(&stack, current->path->adjacent);
 				if (ft_strcmp(current->path->adjacent->name, e->end->name) == 0)
 					return (1);
-				//print_stack(stack);
+				print_stack(stack);
 			}
 			current->path = current->path->next;
 		}

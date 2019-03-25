@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/25 15:17:35 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/25 15:43:26 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		main(void)
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
-	write(1, e.buff, e.len_map);
+	bfs(&e);
+	//write(1, e.buff, e.len_map);
 	return (0);
 }
