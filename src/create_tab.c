@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 14:00:13 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/26 14:22:39 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 14:54:56 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_grapht	**create_tab(t_env *e)
 	t_grapht	*tmp;
 	int			i;
 
-	if (!(tab = malloc(sizeof(e->end->dist + 1))))
+	if (!(tab = malloc(sizeof(*tab) * (e->end->dist + 1))))
 		error("malloc error\n");
 	tmp = e->end;
 	i = e->end->dist;
