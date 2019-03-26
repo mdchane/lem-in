@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/25 15:43:05 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 10:20:43 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct		s_grapht
 	char			*name;
 	t_path			*path;
 	t_point			point;
+	int				dist;
+	struct s_grapht	*parent;
 }					t_grapht;
 
 typedef struct	s_env

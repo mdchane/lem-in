@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/25 15:43:26 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 10:29:39 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ void	init_env(t_env *e)
 		error("Malloc Error\n");
 }
 
+void	print_path(t_env *e)
+{
+	t_grapht	*tmp;
+
+	printf("shortest path is :\n");
+	tmp = e->end;
+	while (ft_strcmp(tmp->name, e->start->name))
+	{
+		printf("%s->", tmp->name);
+		tmp = tmp->parent;
+	}
+	printf("\ndistance = %d\n", e->end->dist);
+}
+
 int		main(void)
 {
 	t_env	e;
@@ -36,6 +50,7 @@ int		main(void)
 	read_map(&e);
 	parsing(&e);
 	bfs(&e);
+	print_path(&e);
 	//write(1, e.buff, e.len_map);
 	return (0);
 }
