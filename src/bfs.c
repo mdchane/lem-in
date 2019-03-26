@@ -6,17 +6,11 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:06:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/26 10:26:19 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 12:03:28 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
-
-typedef	struct	s_stack
-{
-	t_grapht		*graph;
-	struct s_stack	*next;
-}				t_stack;
 
 t_stack		*create_new_stack(t_grapht *g)
 {
@@ -69,9 +63,7 @@ void		print_stack(t_stack *stack)
 	printf("\n");
 }
 
-
-
-int		bfs(t_env *e)
+int			bfs(t_env *e)
 {
 	t_stack		*stack;
 	t_grapht	*current;
@@ -91,12 +83,12 @@ int		bfs(t_env *e)
 				push_back_stack(&stack, current->path->adjacent);
 				current->path->adjacent->parent = current;
 				current->path->adjacent->dist = current->dist + 1;
-				if (ft_strcmp(current->path->adjacent->name, e->end->name) == 0)
-					return (1);
 			//	print_stack(stack);
 			}
 			current->path = current->path->next;
 		}
 	}
+	if (e->end->ants == 1)
+		return (1);
 	return (0);
 }

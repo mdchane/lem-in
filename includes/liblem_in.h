@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/26 10:20:43 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 12:04:16 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ typedef struct		s_grapht
 	struct s_grapht	*parent;
 }					t_grapht;
 
+typedef	struct	s_stack
+{
+	t_grapht		*graph;
+	struct s_stack	*next;
+}				t_stack;
+
 typedef struct	s_env
 {
 	int				nb_ants;
@@ -60,15 +66,15 @@ int					correct_nbr(char *str);
 int					is_room(char **split);
 int					is_path(char *line);
 
+void				*grapht_new(t_grapht *g, char *name, int x, int y);
+t_grapht			*graph_search(t_grapht *g, char *name);
 
-void			*grapht_new(t_grapht *g, char *name, int x, int y);
-t_grapht		*graph_search(t_grapht *g, char *name);
+void				create_path(char **split, t_env *env);
 
-void			create_path(char **split, t_env *env);
+void				parsing(t_env *e);
 
-void			parsing(t_env *e);
+void				free_tab(char **tab);
 
-void			free_tab(char **tab);
+int					bfs(t_env *e);
 
-int				bfs(t_env *e);
 #endif

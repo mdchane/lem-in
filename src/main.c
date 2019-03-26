@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/26 10:29:39 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 12:02:38 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	print_path(t_env *e)
 		printf("%s->", tmp->name);
 		tmp = tmp->parent;
 	}
+	printf("%s\n", e->start->name);
 	printf("\ndistance = %d\n", e->end->dist);
 }
 
@@ -51,6 +52,5 @@ int		main(void)
 	parsing(&e);
 	bfs(&e);
 	print_path(&e);
-	//write(1, e.buff, e.len_map);
 	return (0);
 }
