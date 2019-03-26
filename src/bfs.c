@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:06:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/26 12:03:28 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 14:24:23 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void		print_stack(t_stack *stack)
 	printf("\n");
 }
 
-int			bfs(t_env *e)
+t_grapht		**dijkstra(t_env *e)
 {
 	t_stack		*stack;
 	t_grapht	*current;
 
 	stack = NULL;
-	e->g[0].ants = 1;
+	e->g[0].ants += 1;
 	push_back_stack(&stack, &e->g[0]);
 	while (stack)
 	{
@@ -77,9 +77,9 @@ int			bfs(t_env *e)
 	//	printf("current = %s\n", current->name);
 		while (current->path)
 		{
-			if (current->path->adjacent->ants == 0)
+			if (current->path->adjacent->bfs == 0)
 			{
-				current->path->adjacent->ants = 1;
+				current->path->adjacent->bfs = 1;
 				push_back_stack(&stack, current->path->adjacent);
 				current->path->adjacent->parent = current;
 				current->path->adjacent->dist = current->dist + 1;
@@ -88,7 +88,8 @@ int			bfs(t_env *e)
 			current->path = current->path->next;
 		}
 	}
-	if (e->end->ants == 1)
-		return (1);
-	return (0);
+	return (create_tab(e));
+	// if (e->end->ants == 1)
+	// 	return (1);
+	// return (0);
 }

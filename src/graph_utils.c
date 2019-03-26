@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/26 11:32:33 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 14:24:07 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void	*grapht_new(t_grapht *g, char *name, int x, int y)
 	else
 		g->name = NULL;
 	g->ants = 0;
-	g->point.x = x;
+	g->bfs = 0;
 	g->dist = 0;
-	g->parent = NULL;
+	g->point.x = x;
 	g->point.y = y;
+	g->parent = NULL;
 	g->path = NULL;
 	return (g);
 }

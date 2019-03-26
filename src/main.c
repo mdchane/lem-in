@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/26 12:02:38 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 14:24:21 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int		main(void)
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
-	bfs(&e);
-	print_path(&e);
+	dijkstra(&e);
 	return (0);
 }

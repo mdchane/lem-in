@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/26 12:04:16 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/26 14:21:04 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct 		s_point
 typedef struct		s_grapht
 {
 	int				ants;
+	int				bfs;
 	char			*name;
 	t_path			*path;
 	t_point			point;
@@ -75,6 +76,7 @@ void				parsing(t_env *e);
 
 void				free_tab(char **tab);
 
-int					bfs(t_env *e);
+t_grapht			**dijkstra(t_env *e);
+t_grapht			**create_tab(t_env *e);
 
 #endif
