@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 15:40:43 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 15:43:24 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef	struct		s_pack
 {
 	t_neigh			*path;
 	struct s_pack	*next;
-}					t_stack;
+}					t_pack;
 
 typedef struct	s_env
 {
