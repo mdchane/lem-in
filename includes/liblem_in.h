@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 12:16:34 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 14:21:25 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void				free_tab(char **tab);
 int					bfs(t_env *e);
 t_grapht			**create_tab(t_env *e);
 void				print_stack(t_stack *stack);
+void		print_edmonds(t_grapht end);
 int					edmonds_karp(t_env *e);
 
 #endif
