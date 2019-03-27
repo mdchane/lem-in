@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 14:19:20 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:04:38 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,14 @@ int		edmonds_karp(t_env *e)
 		}
 		max_flow += path_flow;
 		printf("path_flow = %d et max_flow %d\n", path_flow, max_flow);
-		v = e->end;
+		v = e->end; // v = current
 		while (v != e->start)
 		{
-			u = v->parent;
-			path_search(u, v->name)->flow -= path_flow;
-			path_search(v, u->name)->flow += path_flow;
+			u = v->parent; // u = parent
+			path_search(u, v->name)->flow -= 1;  //  parent-> enfant
+			path_search(v, u->name)->flow += 1;  //  enfant-> parent
+			printf("%s->%s : %d\n",u->name, v->name ,path_search(u, v->name)->flow);
+			printf("%s->%s : %d\n", v->name, u->name ,path_search(v, u->name)->flow);
 			v = v->parent;
 		}
 		print_edmonds(*e->end);
