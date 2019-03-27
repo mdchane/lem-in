@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 14:00:13 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/26 14:54:56 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 11:06:57 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ t_grapht	**create_tab(t_env *e)
 	t_grapht	*tmp;
 	int			i;
 
-	if (!(tab = malloc(sizeof(*tab) * (e->end->dist + 1))))
+	if (!(tab = malloc(sizeof(*tab) * (e->end->dist))))
 		error("malloc error\n");
 	tmp = e->end;
 	i = e->end->dist;
 	while (i >= 0)
 	{
 		tab[i] = tmp;
-		tmp->bfs++;
+		tmp->visited++;
 		tmp = tmp->parent;
 		i--;
 	}

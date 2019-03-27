@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/26 14:21:04 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 12:16:34 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct		s_path
 {
+	int				flow;
 	struct s_grapht	*adjacent;
 	struct s_path	*next;
 }					t_path;
@@ -35,7 +36,7 @@ typedef struct 		s_point
 typedef struct		s_grapht
 {
 	int				ants;
-	int				bfs;
+	int				visited;
 	char			*name;
 	t_path			*path;
 	t_point			point;
@@ -70,13 +71,16 @@ int					is_path(char *line);
 void				*grapht_new(t_grapht *g, char *name, int x, int y);
 t_grapht			*graph_search(t_grapht *g, char *name);
 
+t_path				*path_search(t_grapht *g, char *name);
 void				create_path(char **split, t_env *env);
 
 void				parsing(t_env *e);
 
 void				free_tab(char **tab);
 
-t_grapht			**dijkstra(t_env *e);
+int					bfs(t_env *e);
 t_grapht			**create_tab(t_env *e);
+void				print_stack(t_stack *stack);
+int					edmonds_karp(t_env *e);
 
 #endif

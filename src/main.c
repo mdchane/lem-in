@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/26 14:24:21 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 12:17:23 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ int		main(void)
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
-	dijkstra(&e);
+	printf("maxflow = %d\n", edmonds_karp(&e));
 	return (0);
 }

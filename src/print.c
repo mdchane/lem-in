@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/25 13:49:00 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 11:09:24 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,14 @@ void	print_same(t_env *e)
 		e->g[i].path = begp;
 		i++;
 	}
+}
+
+void		print_stack(t_stack *stack)
+{
+	while (stack)
+	{
+		printf("%s->", stack->graph->name);
+		stack = stack->next;
+	}
+	printf("\n");
 }

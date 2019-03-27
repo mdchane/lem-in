@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/25 15:42:08 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 12:47:51 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_path		*path_new(t_grapht *g)
 		p->adjacent = g;
 	else
 		p->adjacent = NULL;
+	p->flow = 1;
 	p->next = NULL;
 	return (p);
 }
@@ -73,4 +74,21 @@ void			create_path(char **split, t_env *e)
 		path_push_back(&graph_0->path, path_new(graph_1));
 	if (!path_doublon(graph_1->path, split[0]))
 	 	path_push_back(&graph_1->path, path_new(graph_0));
+}
+
+t_path	*path_search(t_grapht *g, char *name)
+{
+	t_path	*begp;
+	t_path	*ret;
+
+	if (!name || !g || !g->path)
+		return (NULL);
+	begp = g->path;
+	while (g->path && ft_strcmp(g->path->adjacent->name, name))
+	{
+		g->path = g->path->next;
+	}
+	ret = g->path;
+	g->path = begp;
+	return (ret);
 }
