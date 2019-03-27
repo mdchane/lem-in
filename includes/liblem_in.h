@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 15:43:24 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 15:48:19 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct	s_env
 	t_grapht		*end;
 	char			*buff;
 	int				len_map;
-	t_stack			**path;
+	t_pack			*pack;
 }					t_env;
 
 void				read_map(t_env *e);
