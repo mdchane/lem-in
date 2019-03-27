@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_utils.c                                       :+:      :+:    :+:   */
+/*   neigh_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "liblem_in.h"
 
-t_path		*path_new(t_grapht *g)
+t_neigh		*neigh_new(t_grapht *g)
 {
-	t_path	*p;
+	t_neigh	*p;
 
-	if (!(p = (t_path *)malloc(sizeof(t_path))))
+	if (!(p = (t_neigh *)malloc(sizeof(t_neigh))))
 		error("malloc error\n");
 	if (g)
 		p->adjacent = g;
@@ -27,9 +27,9 @@ t_path		*path_new(t_grapht *g)
 	return (p);
 }
 
-void			path_push_back(t_path **head, t_path *new)
+void			neigh_push_back(t_neigh **head, t_neigh *new)
 {
-	t_path	*beg_p;
+	t_neigh	*beg_p;
 
 	beg_p = (*head);
 	if (*head && head)
@@ -43,25 +43,25 @@ void			path_push_back(t_path **head, t_path *new)
 		*head = new;
 }
 
-int				path_doublon(t_path *path, char *name)
+int				neigh_doublon(t_neigh *neigh, char *name)
 {
-	t_path	*beg_p;
+	t_neigh	*beg_p;
 
-	beg_p = path;
-	while (path)
+	beg_p = neigh;
+	while (neigh)
 	{
-		if (path->adjacent && ft_strcmp(name, path->adjacent->name) == 0)
+		if (neigh->adjacent && ft_strcmp(name, neigh->adjacent->name) == 0)
 		{
-			path = beg_p;
+			neigh = beg_p;
 			return (1);
 		}
-		path = path->next;
+		neigh = neigh->next;
 	}
-	path = beg_p;
+	neigh = beg_p;
 	return (0);
 }
 
-void			create_path(char **split, t_env *e)
+void			create_neigh(char **split, t_env *e)
 {
 	t_grapht		*graph_0;
 	t_grapht		*graph_1;
@@ -70,25 +70,25 @@ void			create_path(char **split, t_env *e)
 	graph_1 = graph_search(e->g, split[1]);
 	if (!graph_0 || !graph_1)
 		error("ERROR\n");
-	if (!path_doublon(graph_0->path, split[1]))
-		path_push_back(&graph_0->path, path_new(graph_1));
-	if (!path_doublon(graph_1->path, split[0]))
-	 	path_push_back(&graph_1->path, path_new(graph_0));
+	if (!neigh_doublon(graph_0->neigh, split[1]))
+		neigh_push_back(&graph_0->neigh, neigh_new(graph_1));
+	if (!neigh_doublon(graph_1->neigh, split[0]))
+	 	neigh_push_back(&graph_1->neigh, neigh_new(graph_0));
 }
 
-t_path	*path_search(t_grapht *g, char *name)
+t_neigh	*neigh_search(t_grapht *g, char *name)
 {
-	t_path	*begp;
-	t_path	*ret;
+	t_neigh	*begp;
+	t_neigh	*ret;
 
-	if (!name || !g || !g->path)
+	if (!name || !g || !g->neigh)
 		return (NULL);
-	begp = g->path;
-	while (g->path && ft_strcmp(g->path->adjacent->name, name))
+	begp = g->neigh;
+	while (g->neigh && ft_strcmp(g->neigh->adjacent->name, name))
 	{
-		g->path = g->path->next;
+		g->neigh = g->neigh->next;
 	}
-	ret = g->path;
-	g->path = begp;
+	ret = g->neigh;
+	g->neigh = begp;
 	return (ret);
 }

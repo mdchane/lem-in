@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 14:22:18 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:32:02 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_same(t_env *e)
 {
 	int		i;
-	t_path	*begp;
+	t_neigh	*begp;
 
 	ft_printf("%d\n", e->nb_ants);
 	ft_printf("##start\n");
@@ -33,13 +33,13 @@ void	print_same(t_env *e)
 	i = 0;
 	while (&e->g[i] && e->g[i].name != NULL)
 	{
-		begp = e->g[i].path;
-		while (e->g[i].path)
+		begp = e->g[i].neigh;
+		while (e->g[i].neigh)
 		{
-			ft_printf("%s-%s\n", e->g[i].name, e->g[i].path->adjacent->name);
-			e->g[i].path = e->g[i].path->next;
+			ft_printf("%s-%s\n", e->g[i].name, e->g[i].neigh->adjacent->name);
+			e->g[i].neigh = e->g[i].neigh->next;
 		}
-		e->g[i].path = begp;
+		e->g[i].neigh = begp;
 		i++;
 	}
 }
@@ -57,11 +57,11 @@ void		print_stack(t_stack *stack)
 void		print_edmonds(t_grapht end)
 {
 	t_grapht tmp;
-	
+
 	tmp = end;
 	while (tmp.parent)
 	{
-		printf("%s\n", tmp.name);
+		printf("%s<-", tmp.name);
 		tmp = *tmp.parent;
 	}
 	printf("%s\n", tmp.name);

@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 14:06:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/27 11:11:02 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 15:31:54 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,17 @@
 // 	{
 // 		current = del_stack(&stack);
 // 	//	printf("current = %s\n", current->name);
-// 		while (current->path)
+// 		while (current->neigh)
 // 		{
-// 			if (current->path->adjacent->visited == 0)
+// 			if (current->neigh->adjacent->visited == 0)
 // 			{
-// 				current->path->adjacent->visited = 1;
-// 				push_back_stack(&stack, current->path->adjacent);
-// 				current->path->adjacent->parent = current;
-// 				// current->path->adjacent->dist = current->dist + 1;
+// 				current->neigh->adjacent->visited = 1;
+// 				push_back_stack(&stack, current->neigh->adjacent);
+// 				current->neigh->adjacent->parent = current;
+// 				// current->neigh->adjacent->dist = current->dist + 1;
 // 			//	print_stack(stack);
 // 			}
-// 			current->path = current->path->next;
+// 			current->neigh = current->neigh->next;
 // 		}
 // 	}
 // 	// return (create_tab(e));

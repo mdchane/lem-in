@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 16:26:47 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:32:04 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ typedef struct		s_env
 }					t_env;
 
 char		*parse_room(t_env *e);
-void		parse_path(char *line, t_env *e);
+void		parse_neigh(char *line, t_env *e);
 int			is_name_room(char *room);
 int			is_room(char **split);
-int			is_path(char *line);
+int			is_neigh(char *line);
 t_point		create_point(int x, int y);
 //
 void		room_push_back(t_room **head, t_room *new);

@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/25 15:30:12 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 15:32:00 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		is_room(char **split)
 	return (0);
 }
 
-int		is_path(char *line)
+int		is_neigh(char *line)
 {
 	char	**split;
 

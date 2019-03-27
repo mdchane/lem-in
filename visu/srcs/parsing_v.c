@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/21 09:30:47 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:32:25 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void		find_room(char **split, t_env *e)
 //	drawline(create_point(room_a->x e->scale, room_a->y e->scale) , create_point(room_b->x e->scale, room_b->y e->scale), e);
 }
 
-void	parse_path(char *line, t_env *e)
+void	parse_neigh(char *line, t_env *e)
 {
 	find_room(ft_strsplit(line, '-'), e);
 	while (get_next_line(0, &line) > 0)
 	{
-		if (is_path(line))
+		if (is_neigh(line))
 			find_room(ft_strsplit(line, '-'), e);
 	}
 }
@@ -51,7 +51,7 @@ char	*parse_room(t_env *e)
 	e->room = NULL;
 	type = -1;
 	while (get_next_line(0, &line) > 0)
-	{	
+	{
 		if (e->ants == -1)
 			e->ants = ft_atoi(line);
 		type = find_type(line, type);
@@ -69,7 +69,7 @@ char	*parse_room(t_env *e)
 			room_push_back(&e->room, e->end);
 			type = -1;
 		}
-		else if (is_path(line))
+		else if (is_neigh(line))
 		{
 			room_push_front(&e->room, e->start);
 			free_tab(split);

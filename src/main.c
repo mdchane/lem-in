@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 12:17:23 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 15:31:59 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	init_env(t_env *e)
 		error("Malloc Error\n");
 }
 
-void	print_path(t_env *e)
+void	print_neigh(t_env *e)
 {
 	t_grapht	*tmp;
 
-	printf("shortest path is :\n");
+	printf("shortest neigh is :\n");
 	tmp = e->end;
 	while (ft_strcmp(tmp->name, e->start->name))
 	{

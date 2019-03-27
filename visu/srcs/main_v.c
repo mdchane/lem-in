@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_v.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 16:31:54 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:32:21 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		ft_key_hook(int keycode, t_env *e)
 		line = parse_room(e);
 		get_scale(e);
 		draw_room(e);
-		parse_path(line, e);
+		parse_neigh(line, e);
 		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 		mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0XFFFFFF, "Nombre de fourmils restante :");
 		mlx_string_put(e->mlx_ptr, e->win_ptr, 325, 20, 0XFFFFFF, ft_itoa(e->ants));

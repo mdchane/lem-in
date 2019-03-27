@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/27 10:43:19 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 15:31:57 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*grapht_new(t_grapht *g, char *name, int x, int y)
 	g->point.x = x;
 	g->point.y = y;
 	g->parent = NULL;
-	g->path = NULL;
+	g->neigh = NULL;
 	return (g);
 }
 

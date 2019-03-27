@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 14:19:20 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:33:50 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		bfs(t_env *e)
 {
 	t_stack		*stack;
 	t_grapht	*current;
-	t_path		*begp;
+	t_neigh		*begp;
 
 	graph_viszero(e->g);
 	stack = NULL;
@@ -78,54 +78,43 @@ int		bfs(t_env *e)
 	while (stack)
 	{
 		current = del_stack(&stack);
-		begp = current->path;
-		while (current->path)
+		begp = current->neigh;
+		while (current->neigh)
 		{
-			if (current->path->adjacent->visited == 0 && current->path->flow > 0)
+			if (current->neigh->adjacent->visited == 0 && current->neigh->flow > 0)
 			{
-				current->path->adjacent->visited = 1;
-				push_back_stack(&stack, current->path->adjacent);
-				current->path->adjacent->parent = current;
+				current->neigh->adjacent->visited = 1;
+				push_back_stack(&stack, current->neigh->adjacent);
+				current->neigh->adjacent->parent = current;
 			}
-			current->path = current->path->next;
+			current->neigh = current->neigh->next;
 		}
-		current->path = begp;
+		current->neigh = begp;
 	}
 	return (e->end->visited);
 }
 
+
 int		edmonds_karp(t_env *e)
 {
 	int			max_flow;
-	int			path_flow;
-	t_grapht	*s;
+	int			neigh_flow;
 	t_grapht	*v;
 	t_grapht	*u;
-	int			flow;
 
 	max_flow = 0;
 	while (bfs(e))
 	{
-		path_flow = INT_MAX;
-		s = e->end;
-		while (s != e->start)
-		{
-			flow = path_search(s->parent, s->name)->flow;
-		 	path_flow = (path_flow < flow) ? path_flow : flow;
-			s = s->parent;
-		}
-		max_flow += path_flow;
-		printf("path_flow = %d et max_flow %d\n", path_flow, max_flow);
+		neigh_flow = 1;
+		max_flow += neigh_flow;
 		v = e->end;
 		while (v != e->start)
 		{
 			u = v->parent;
-			path_search(u, v->name)->flow -= path_flow;
-			path_search(v, u->name)->flow += path_flow;
+			neigh_search(u, v->name)->flow -= neigh_flow;
+			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
 		}
-		print_edmonds(*e->end);
 	}
-	
 	return (max_flow);
 }

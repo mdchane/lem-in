@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 14:21:25 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/27 15:40:43 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 # define END_ROOM 20
 
 
-typedef struct		s_path
+typedef struct		s_neigh
 {
 	int				flow;
 	struct s_grapht	*adjacent;
-	struct s_path	*next;
-}					t_path;
+	struct s_neigh	*next;
+}					t_neigh;
 
 typedef struct 		s_point
 {
@@ -38,17 +38,23 @@ typedef struct		s_grapht
 	int				ants;
 	int				visited;
 	char			*name;
-	t_path			*path;
+	t_neigh			*neigh;
 	t_point			point;
 	int				dist;
 	struct s_grapht	*parent;
 }					t_grapht;
 
-typedef	struct	s_stack
+typedef	struct		s_stack
 {
 	t_grapht		*graph;
 	struct s_stack	*next;
-}				t_stack;
+}					t_stack;
+
+typedef	struct		s_pack
+{
+	t_neigh			*path;
+	struct s_pack	*next;
+}					t_stack;
 
 typedef struct	s_env
 {
@@ -58,6 +64,7 @@ typedef struct	s_env
 	t_grapht		*end;
 	char			*buff;
 	int				len_map;
+	t_stack			**path;
 }					t_env;
 
 void				read_map(t_env *e);
@@ -66,13 +73,13 @@ void				error(char *msg);
 int					is_zero(char *str);
 int					correct_nbr(char *str);
 int					is_room(char **split);
-int					is_path(char *line);
+int					is_neigh(char *line);
 
 void				*grapht_new(t_grapht *g, char *name, int x, int y);
 t_grapht			*graph_search(t_grapht *g, char *name);
 
-t_path				*path_search(t_grapht *g, char *name);
-void				create_path(char **split, t_env *env);
+t_neigh				*neigh_search(t_grapht *g, char *name);
+void				create_neigh(char **split, t_env *env);
 
 void				parsing(t_env *e);
 
@@ -81,7 +88,7 @@ void				free_tab(char **tab);
 int					bfs(t_env *e);
 t_grapht			**create_tab(t_env *e);
 void				print_stack(t_stack *stack);
-void		print_edmonds(t_grapht end);
+void				print_edmonds(t_grapht end);
 int					edmonds_karp(t_env *e);
 
 #endif

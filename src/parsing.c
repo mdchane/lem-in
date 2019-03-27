@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/25 15:25:36 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 15:32:01 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		parse_rooms(t_env *e, char **lines, int i)
 			grapht_new(e->end, split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 			type = -1;
 		}
-		else if (is_path(lines[i]))
+		else if (is_neigh(lines[i]))
 		{
 			if (e->end)
 			{
@@ -101,26 +101,26 @@ int		parse_rooms(t_env *e, char **lines, int i)
 	return (i - 1);
 }
 
-int		parse_path(t_env *e, char **lines, int i)
+int		parse_neigh(t_env *e, char **lines, int i)
 {
 	char	**split;
-	int		nb_path;
+	int		nb_neigh;
 
-	nb_path = 0;
+	nb_neigh = 0;
 	while (lines[i])
 	{
-		if (is_path(lines[i]))
+		if (is_neigh(lines[i]))
 		{
 			split = ft_strsplit(lines[i], '-');
-			create_path(split, e);
+			create_neigh(split, e);
 			free_tab(split);
-			nb_path++;
+			nb_neigh++;
 		}
 		else if (lines[i][0] != '#')
 			error("ERROR\n");
 		i++;
 	}
-	return (nb_path);
+	return (nb_neigh);
 }
 
 void	parsing(t_env *e)
@@ -134,7 +134,7 @@ void	parsing(t_env *e)
 	if (!e->start || !e->end)
 		error("ERROR\n");
 	else
-		if (parse_path(e, lines, i) == 0)
+		if (parse_neigh(e, lines, i) == 0)
 			error("ERROR\n");
 	// print_same(e);
 }
