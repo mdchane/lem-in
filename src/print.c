@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 11:09:24 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/27 14:22:18 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ void		print_stack(t_stack *stack)
 		stack = stack->next;
 	}
 	printf("\n");
+}
+
+void		print_edmonds(t_grapht end)
+{
+	t_grapht tmp;
+	
+	tmp = end;
+	while (tmp.parent)
+	{
+		printf("%s\n", tmp.name);
+		tmp = *tmp.parent;
+	}
+	printf("%s\n", tmp.name);
 }
