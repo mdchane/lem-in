@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 14:44:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 15:14:20 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ typedef	struct		s_stack
 
 typedef	struct		s_lpath
 {
-	struct t_neigh	*path;
+	t_neigh	*path;
 	struct s_lpath	*next;
 }					t_lpath;
 
 typedef	struct		s_pack
 {
-	struct s_lpath	*lpath;
+	t_lpath			*lpath;
 	struct s_pack	*next;
 }					t_pack;
 

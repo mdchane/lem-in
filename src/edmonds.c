@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 12:28:10 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 14:27:25 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,7 @@ int		edmonds_karp(t_env *e)
 			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
 		}
-		print_graph(e);
-		//print_flow(e);
-//	extract_pack(e);
-//	printf("%s-%s = %d\n", e->start->name, e->start->neigh->adjacent->name, e->start->neigh->flow);
-//	printf("%s-%s = %d\n", e->start->name, e->start->neigh->next->adjacent->name, e->start->neigh->next->flow);
-	//printf("%s-%s = %d\n", e->end->name, e->end->parent->name, neigh_search(e->end, e->end->parent->name)->flow);
+		extract_pack(e);
 	}
 	return (max_flow);
 }
