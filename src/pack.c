@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pack.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:28:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 16:32:33 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:20:23 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 t_neigh	*extract_path(t_env *e)
 {
 	t_grapht	*cur;
-	t_neigh		*path = NULL;
-	//t_neigh		*begp;
+	t_neigh		*path;
+	t_neigh		*begp;
+	t_grapht	*tmp;
+	t_grapht	*beg;
 
+	path = NULL;
 	cur = e->start;
+	beg = cur;
 	cur->visited = 2;
 	neigh_push_back(&path, neigh_new(cur));
-//	begp = cur->neigh;
 	while (cur != e->end)
 	{
+		begp = cur->neigh;
 		while (cur->neigh && (cur->neigh->flow != -1 || cur->neigh->adjacent->visited == 2))
 		{
 			cur->neigh = cur->neigh->next;
@@ -32,9 +36,11 @@ t_neigh	*extract_path(t_env *e)
 			return (NULL);
 		cur->neigh->adjacent->visited = 2;
 		neigh_push_back(&path, neigh_new(cur->neigh->adjacent));
-		cur = cur->neigh->adjacent;
-		//cur->neigh = begp;
+		tmp = cur->neigh->adjacent;
+		cur->neigh = begp;
+		cur = tmp;
 	}
+	e->start = beg;
 	return (path);
 }
 

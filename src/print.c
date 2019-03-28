@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 16:39:14 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:15:18 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	print_graph(t_env *e)
 		e->g[i].neigh = begp;
 		i++;
 	}
-
 }
 
 void	print_pack(t_env e)
