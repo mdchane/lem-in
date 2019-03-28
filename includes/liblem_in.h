@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 15:23:20 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:51:17 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_neigh				*neigh_new(t_grapht *g);
 void				neigh_push_back(t_neigh **head, t_neigh *new);
 t_neigh				*neigh_search(t_grapht *g, char *name);
 void				create_neigh(char **split, t_env *env);
-
+void				graph_viszero(t_grapht *g);
 void				parsing(t_env *e);
 
 void				free_tab(char **tab);

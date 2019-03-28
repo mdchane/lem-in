@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 17:20:01 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 17:35:55 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int		edmonds_karp(t_env *e)
 			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
 		}
+		// print_graph(e);
 		extract_pack(e); // dernier problee : on ne rentre que deux fois dans le BFS au lieu de 3
 	}
 	print_pack(*e);
