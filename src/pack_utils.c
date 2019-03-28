@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:27:19 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/28 14:43:41 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 14:46:43 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void			push_back_lpath(t_lpath **lpath, t_lpath *new)
 		(*lpath)->next = new;
 		(*lpath) = beg_p;
 	}
+	else
 		*lpath = new;
 }
