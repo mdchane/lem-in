@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 15:51:35 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 16:30:48 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_env(t_env *e)
 	e->end = NULL;
 	e->g = NULL;
 	e->nb_ants = 0;
+	e->pack = NULL;
 	if (!(e->buff = ft_strdup("")))
 		error("Malloc Error\n");
 }

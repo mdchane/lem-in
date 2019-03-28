@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 14:27:25 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 16:34:16 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ int		edmonds_karp(t_env *e)
 			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
 		}
-		extract_pack(e);
+		extract_pack(e); // dernier probleme : on ne rentre que deux fois dans le BFS au lieu de 3 
 	}
+	print_pack(*e);
 	return (max_flow);
 }
