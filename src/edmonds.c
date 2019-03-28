@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 11:59:45 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 12:20:16 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int		edmonds_karp(t_env *e)
 	t_grapht	*u;
 
 	max_flow = 0;
+	print_graph(e);
 	while (bfs(e))
 	{
 		neigh_flow = 1;
@@ -130,6 +131,7 @@ int		edmonds_karp(t_env *e)
 			neigh_search(u, v->name)->flow -= neigh_flow;
 			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
+			print_graph(e);
 		}
 		//print_flow(e);
 //	extract_pack(e);

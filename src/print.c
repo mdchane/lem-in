@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 15:32:02 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:20:54 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,27 @@ void		print_edmonds(t_grapht end)
 		tmp = *tmp.parent;
 	}
 	printf("%s\n", tmp.name);
+}
+
+void	print_graph(t_env *e)
+{
+	int		i;
+	t_neigh	*begp;
+
+	i = 0;
+	while (&e->g[i] && e->g[i].name)
+	{
+		begp = e->g[i].neigh;
+		printf("Salle = %s\n", e->g[i].name);
+		while (e->g[i].neigh)
+		{
+			printf("flow %s->%s=%d\n", e->g[i].name, e->g[i].neigh->adjacent->name, e->g[i].neigh->flow);
+			// ft_printf("flow %s->%s=%d\n", g[i].neigh->adjacent->name, g[i].name, p->flow);
+			e->g[i].neigh = e->g[i].neigh->next;
+		}
+		printf("------------------------------------------------------\n\n");
+		e->g[i].neigh = begp;
+		i++;
+	}
+
 }
