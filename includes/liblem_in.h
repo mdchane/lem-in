@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 12:19:47 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 14:19:04 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,19 @@ typedef	struct		s_stack
 	t_grapht		*graph;
 	struct s_stack	*next;
 }					t_stack;
+// ------------------------------PACK---------------------------------
 
 typedef	struct		s_pack
 {
-	t_neigh			*path;
+	struct s_n_path	*n_path;
 	struct s_pack	*next;
 }					t_pack;
+
+typedef	struct		s_n_path
+{
+	struct t_neigh	*path;
+	struct s_n_path	*next;
+}					t_n_path;
 
 typedef struct	s_env
 {
