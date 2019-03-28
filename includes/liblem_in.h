@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 15:48:19 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 09:18:03 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int					is_neigh(char *line);
 void				*grapht_new(t_grapht *g, char *name, int x, int y);
 t_grapht			*graph_search(t_grapht *g, char *name);
 
+t_neigh				*neigh_new(t_grapht *g);
+void				neigh_push_back(t_neigh **head, t_neigh *new);
 t_neigh				*neigh_search(t_grapht *g, char *name);
 void				create_neigh(char **split, t_env *env);
 
@@ -90,5 +92,6 @@ t_grapht			**create_tab(t_env *e);
 void				print_stack(t_stack *stack);
 void				print_edmonds(t_grapht end);
 int					edmonds_karp(t_env *e);
+void		extract_pack(t_env *e);
 
 #endif

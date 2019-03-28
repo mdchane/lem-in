@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 15:47:45 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 11:59:45 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,23 @@ int		bfs(t_env *e)
 	return (e->end->visited);
 }
 
+void	print_flow(t_env *e)
+{
+	t_grapht	*tmp;
+
+	int i = 0;
+	tmp = e->start;
+	while (&tmp[i])
+	{
+		while(tmp[i].neigh)
+		{
+			printf("%s->%s flow = %d", tmp[i].name, tmp[i].neigh->adjacent->name, tmp[i].neigh->flow);
+			tmp[i].neigh = tmp[i].neigh->next;
+		}
+		i++;
+	}
+}
+
 int		edmonds_karp(t_env *e)
 {
 	int			max_flow;
@@ -114,6 +131,11 @@ int		edmonds_karp(t_env *e)
 			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
 		}
+		//print_flow(e);
+//	extract_pack(e);
+//	printf("%s-%s = %d\n", e->start->name, e->start->neigh->adjacent->name, e->start->neigh->flow);
+//	printf("%s-%s = %d\n", e->start->name, e->start->neigh->next->adjacent->name, e->start->neigh->next->flow);
+	//printf("%s-%s = %d\n", e->end->name, e->end->parent->name, neigh_search(e->end, e->end->parent->name)->flow);
 	}
 	return (max_flow);
 }

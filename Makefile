@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
+#    By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/03/27 11:12:15 by mdchane          ###   ########.fr        #
+#    Updated: 2019/03/28 09:18:18 by sarobber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEADER = $(addprefix $(HEADER_PATH)/,$(HEADER_NAME))
 
 SRC_PATH = src
 
-SRC_NAME = main.c parse_utils.c parsing.c graph_utils.c free.c path_utils.c print.c read.c edmonds.c create_tab.c
+SRC_NAME = main.c parse_utils.c parsing.c graph_utils.c free.c path_utils.c print.c read.c edmonds.c create_tab.c pack.c
 
 OBJ_PATH = obj
 
