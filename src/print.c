@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 12:20:54 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:24:09 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	print_graph(t_env *e)
 		printf("Salle = %s\n", e->g[i].name);
 		while (e->g[i].neigh)
 		{
-			printf("flow %s->%s=%d\n", e->g[i].name, e->g[i].neigh->adjacent->name, e->g[i].neigh->flow);
+			printf("flow %s->%s = %d\n", e->g[i].name, e->g[i].neigh->adjacent->name, e->g[i].neigh->flow);
 			// ft_printf("flow %s->%s=%d\n", g[i].neigh->adjacent->name, g[i].name, p->flow);
 			e->g[i].neigh = e->g[i].neigh->next;
 		}

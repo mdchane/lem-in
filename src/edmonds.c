@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 12:20:16 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:28:10 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		bfs(t_env *e)
 		begp = current->neigh;
 		while (current->neigh)
 		{
-			if (current->neigh->adjacent->visited == 0 && current->neigh->flow > 0)
+			if (current->neigh->adjacent->visited == 0 && current->neigh->flow >= 0)
 			{
 				current->neigh->adjacent->visited = 1;
 				push_back_stack(&stack, current->neigh->adjacent);
@@ -119,7 +119,6 @@ int		edmonds_karp(t_env *e)
 	t_grapht	*u;
 
 	max_flow = 0;
-	print_graph(e);
 	while (bfs(e))
 	{
 		neigh_flow = 1;
@@ -131,8 +130,8 @@ int		edmonds_karp(t_env *e)
 			neigh_search(u, v->name)->flow -= neigh_flow;
 			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
-			print_graph(e);
 		}
+		print_graph(e);
 		//print_flow(e);
 //	extract_pack(e);
 //	printf("%s-%s = %d\n", e->start->name, e->start->neigh->adjacent->name, e->start->neigh->flow);

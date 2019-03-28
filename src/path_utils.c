@@ -22,7 +22,7 @@ t_neigh		*neigh_new(t_grapht *g)
 		p->adjacent = g;
 	else
 		p->adjacent = NULL;
-	p->flow = 1;
+	p->flow = 0;
 	p->next = NULL;
 	return (p);
 }
