@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 12:24:09 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 12:43:36 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	print_graph(t_env *e)
 	t_neigh	*begp;
 
 	i = 0;
-	while (&e->g[i] && e->g[i].name)
+	while (&e->g[i] && e->g[i].name && i < 8)
 	{
 		begp = e->g[i].neigh;
 		printf("Salle = %s\n", e->g[i].name);
