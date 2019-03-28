@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 14:21:27 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 14:44:13 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,8 @@ void				print_edmonds(t_grapht end);
 int					edmonds_karp(t_env *e);
 void				extract_pack(t_env *e);
 
+void				push_back_lpath(t_lpath **lpath, t_lpath *new);
+void				push_back_pack(t_pack **pack, t_pack *new);
+t_lpath				*new_lpath();
+t_pack				*new_pack();
 #endif
