@@ -6,31 +6,31 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:27:19 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/28 14:46:43 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 15:09:31 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "liblem_in.h"
 
-t_pack			*new_pack()
+t_pack			*new_pack(t_lpath *lp)
 {
 	t_pack *pack;
 
 	if (!(pack = (t_pack *)malloc(sizeof(t_pack))))
 		error("malloc error\n");
-	pack->lpath = NULL;
+	pack->lpath = lp;
 	pack->next = NULL;
 	return (pack);
 }
 
-t_lpath			*new_lpath()
+t_lpath			*new_lpath(t_neigh *p)
 {
 	t_lpath *lpath;
 
 	if (!(lpath = malloc(sizeof(t_lpath))))
 		error("malloc error\n");
-	lpath->path = NULL;
+	lpath->path = p;
 	lpath->next = NULL;
 	return (lpath);
 }
