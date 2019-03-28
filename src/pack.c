@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:28:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 17:20:23 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/03/28 17:29:46 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_neigh	*extract_path(t_env *e)
 	t_grapht	*beg;
 
 	path = NULL;
-	cur = e->start;
-	beg = cur;
+	beg = e->start;
+	cur = beg;
 	cur->visited = 2;
 	neigh_push_back(&path, neigh_new(cur));
 	while (cur != e->end)
@@ -33,7 +33,11 @@ t_neigh	*extract_path(t_env *e)
 			cur->neigh = cur->neigh->next;
 		}
 		if (!cur->neigh)
+		{
+			cur->neigh = begp;
+			e->start = beg;
 			return (NULL);
+		}
 		cur->neigh->adjacent->visited = 2;
 		neigh_push_back(&path, neigh_new(cur->neigh->adjacent));
 		tmp = cur->neigh->adjacent;
