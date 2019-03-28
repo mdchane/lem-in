@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 16:31:52 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:39:14 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,16 @@ void	print_pack(t_env e)
 	while (e.pack)
 	{
 		printf("PACK %d : \n", i);
+		j = 1;
 		while (e.pack->lpath)
 		{
 			printf("P%d Chemin %d :\n", i, j);
 			while(e.pack->lpath->path)
 			{
 				if (e.pack->lpath->path->adjacent->name)
-					printf("%s->", e.pack->lpath->path->adjacent->name);
+					printf("%s", e.pack->lpath->path->adjacent->name);
+				if (e.pack->lpath->path->next)
+					printf("->");
 				e.pack->lpath->path = e.pack->lpath->path->next;
 			}
 			printf("\n");
