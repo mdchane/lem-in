@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/28 17:51:17 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/04 12:51:35 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct		s_neigh
 {
+	int				len;
 	int				flow;
 	struct s_grapht	*adjacent;
 	struct s_neigh	*next;
@@ -53,12 +54,14 @@ typedef	struct		s_stack
 
 typedef	struct		s_lpath
 {
-	t_neigh	*path;
+	int				max_len;
+	t_neigh			*path;
 	struct s_lpath	*next;
 }					t_lpath;
 
 typedef	struct		s_pack
 {
+	int				max_len;
 	t_lpath			*lpath;
 	struct s_pack	*next;
 }					t_pack;

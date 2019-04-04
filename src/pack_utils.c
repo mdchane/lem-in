@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pack_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:27:19 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/28 16:27:16 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/04 12:53:09 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_pack			*new_pack(t_lpath *lp)
 	if (!(pack = (t_pack *)malloc(sizeof(t_pack))))
 		error("malloc error\n");
 	pack->lpath = lp;
+	pack->max_len = lp->max_len;
 	pack->next = NULL;
 	return (pack);
 }
