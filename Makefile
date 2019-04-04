@@ -6,7 +6,7 @@
 #    By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/03/28 14:44:48 by sarobber         ###   ########.fr        #
+#    Updated: 2019/04/04 17:30:10 by sarobber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ HEADER = $(addprefix $(HEADER_PATH)/,$(HEADER_NAME))
 
 SRC_PATH = src
 
-SRC_NAME = main.c parse_utils.c parsing.c graph_utils.c free.c path_utils.c print.c read.c edmonds.c create_tab.c pack.c pack_utils.c
+SRC_NAME = main.c parse_utils.c parsing.c graph_utils.c free.c path_utils.c print.c read.c edmonds.c create_tab.c pack.c pack_utils.c move_ant.c
 
 OBJ_PATH = obj
 

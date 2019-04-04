@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 16:21:20 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/04 18:35:33 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,5 @@ int		edmonds_karp(t_env *e)
 		// print_graph(e);
 		extract_pack(e); // dernier problee : on ne rentre que deux fois dans le BFS au lieu de 3
 	}
-	print_pack(*e);
 	return (max_flow);
 }

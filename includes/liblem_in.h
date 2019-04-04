@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 17:13:50 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/04 17:45:03 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct		s_pack
 
 typedef struct		s_ants
 {
+	t_neigh			*path;
 	t_grapht		*room;
 }					t_ants;
 
@@ -115,4 +116,6 @@ void				push_back_pack(t_pack **pack, t_pack *new);
 t_lpath				*new_lpath();
 t_pack				*new_pack();
 void				print_pack(t_env e);
+
+void		move_ants(t_pack *pack, t_env *e);
 #endif
