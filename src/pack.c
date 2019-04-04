@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:28:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 12:53:12 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/04 16:45:49 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,13 @@ t_lpath	*extract_lpath(t_env *e)
 {
 	t_lpath	*lpath;
 	t_neigh	*newpath;
-	int		max_len;
 
-	max_len = 0;
 	lpath = NULL;
 	while ((newpath = extract_path(e)))
 	{
-		if (newpath->len > max_len)
-			max_len = newpath->len;
 		e->end->visited = 0;
 		push_back_lpath(&lpath, new_lpath(newpath));
 	}
-	lpath->max_len = max_len;
 	return (lpath);
 }
 
