@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 17:02:12 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/04 17:13:50 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct		s_pack
 
 typedef struct		s_ants
 {
-	t_neigh			*room;
+	t_grapht		*room;
 }					t_ants;
 
 typedef struct	s_env
