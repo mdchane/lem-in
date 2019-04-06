@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/06 13:45:24 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/06 14:30:50 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,22 @@ void	print_neigh(t_env *e)
 int		main(void)
 {
 	t_env	e;
+	t_pack *tmp;
 
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
 	printf("maxflow = %d\n", edmonds_karp(&e));
 	// print_pack(e);
-	move_ants(e.pack->next, &e);
+	int i = 1;
+	tmp = e.pack;
+	while (tmp)
+	{
+		printf("Pack %d :\n\n", i);
+		move_ants(tmp, &e);
+		printf ("-------------------------------\n");
+		tmp = tmp->next;
+		i++;
+	}
 	return (0);
 }

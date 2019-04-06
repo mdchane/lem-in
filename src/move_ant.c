@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 16:59:22 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/06 14:22:39 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/06 14:44:48 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		move_ants(t_pack *pack, t_env *e)
 	line = 0;
 	while (++i < e->nb_ants)
 		ants[i].room = e->start;
-	while (e->end->ants < e->nb_ants)
+	while (1)
 	{
 		i = -1;
 		while (++i < e->nb_ants)
@@ -62,7 +62,7 @@ void		move_ants(t_pack *pack, t_env *e)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_shortest_free(*pack, ants, e)) != NULL) // probleme : marquer les salles comme rencontrer et probleme de len dans lpath->path
+				if ((ants[i].path = find_shortest_free(*pack, ants, e)) != NULL)
 				{	
 					ants[i].room = ants[i].path->adjacent;
 					printf("L%d-%s ", i + 1, ants[i].room->name);
@@ -74,9 +74,14 @@ void		move_ants(t_pack *pack, t_env *e)
 				ants[i].room = ants[i].path->adjacent;
 				printf("L%d-%s ", i + 1, ants[i].room->name); //i + 1 degueu
 			}
-			
 		}
+		if (e->end->ants == e->nb_ants)
+			break;
+		else
+			e->end->ants = 0;
+		
 		printf("\n");
 		line++;
 	}
+	e->end->ants = 0;
 } // gerer le derniere espace
