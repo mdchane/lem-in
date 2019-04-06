@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 18:24:45 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/06 13:45:24 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int		main(void)
 	parsing(&e);
 	printf("maxflow = %d\n", edmonds_karp(&e));
 	// print_pack(e);
-	move_ants(e.pack, &e);
+	move_ants(e.pack->next, &e);
 	return (0);
 }
