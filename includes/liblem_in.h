@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 17:45:03 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/06 14:56:32 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct	s_env
 	t_grapht		*g;
 	t_grapht		*start;
 	t_grapht		*end;
+	int				line;
 	char			*buff;
 	int				len_map;
 	t_pack			*pack;

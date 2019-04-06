@@ -6,16 +6,11 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 16:59:22 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/06 14:44:48 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/06 15:06:43 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
-
-// void		print_line(t_ants *ants)
-// {
-
-// }
 
 t_neigh		*find_shortest_free(t_pack pack, t_ants *ants, t_env *e)
 {
@@ -72,7 +67,7 @@ void		move_ants(t_pack *pack, t_env *e)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-				printf("L%d-%s ", i + 1, ants[i].room->name); //i + 1 degueu
+				printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
@@ -83,5 +78,9 @@ void		move_ants(t_pack *pack, t_env *e)
 		printf("\n");
 		line++;
 	}
+	printf("line = %d\n", line);
 	e->end->ants = 0;
-} // gerer le derniere espace
+	if (line < e->line)
+		e->line = line;
+} // gerer le derniers espace
+// trop de ligne trouve par rapport au res atendue...

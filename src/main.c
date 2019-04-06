@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/06 14:30:50 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/06 14:59:24 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_env(t_env *e)
 	e->g = NULL;
 	e->nb_ants = 0;
 	e->pack = NULL;
+	e->line = 1000000;
 	if (!(e->buff = ft_strdup("")))
 		error("Malloc Error\n");
 }
@@ -64,5 +65,6 @@ int		main(void)
 		tmp = tmp->next;
 		i++;
 	}
+	printf("\n\n shortes line = %d\n", e.line);
 	return (0);
 }
