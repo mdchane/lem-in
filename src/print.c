@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 16:46:30 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/07 12:03:10 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	print_pack(t_env e)
 	j = 1;
 	while (e.pack)
 	{
-		printf("PACK %d : max_len = %d\n", i, e.pack->total_len);
+		printf("PACK %d : len = %d\n", i, e.pack->len);
 		j = 1;
 		while (e.pack->lpath)
 		{

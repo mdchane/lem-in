@@ -6,27 +6,27 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:27:19 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/04 16:48:16 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/07 11:19:04 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "liblem_in.h"
 
-int				len_total(t_lpath *lp)
+int				len_pack(t_lpath *lp)
 {
-	int		len_total;
+	int		len;
 	t_lpath	*beg;
 
 	beg = lp;
-	len_total = 0;
+	len = 0;
 	while (lp)
 	{
-		len_total += lp->len;
+		len++;
 		lp = lp->next;
 	}
 	lp = beg;
-	return (len_total);
+	return (len);
 }
 
 t_pack			*new_pack(t_lpath *lp)
@@ -35,7 +35,7 @@ t_pack			*new_pack(t_lpath *lp)
 
 	if (!(pack = (t_pack *)malloc(sizeof(t_pack))))
 		error("malloc error\n");
-	pack->total_len = len_total(lp);
+	pack->len = len_pack(lp);
 	pack->lpath = lp;
 	pack->next = NULL;
 	return (pack);
