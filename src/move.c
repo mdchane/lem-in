@@ -3,84 +3,89 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/07 13:37:02 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/07 16:04:30 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-t_lpath	**fill_tab(t_pack *pack)
-{
-	int		i;
-	t_lpath	*beg;
-	t_lpath	**tab;
+// t_lpath	**fill_tab(t_pack *pack)
+// {
+// 	int		i;
+// 	t_lpath	*beg;
+// 	t_lpath	**tab;
 
-	tab = (t_lpath **)ft_memalloc(sizeof(t_lpath) * (pack->len + 1));
-	i = 0;
-	beg = pack->lpath;
-	while (pack->lpath)
-	{
-		tab[i] = pack->lpath;
-		pack->lpath = pack->lpath->next;
-		i++;
-	}
-	pack->lpath = beg;
-	tab[i] = NULL;
-	return (tab);
-}
+// 	tab = (t_lpath **)ft_memalloc(sizeof(t_lpath) * (pack->len + 1));
+// 	i = 0;
+// 	beg = pack->lpath;
+// 	while (pack->lpath)
+// 	{
+// 		tab[i] = pack->lpath;
+// 		pack->lpath = pack->lpath->next;
+// 		i++;
+// 	}
+// 	pack->lpath = beg;
+// 	tab[i] = NULL;
+// 	return (tab);
+// }
 
 void	remove_path(t_lpath *tab, t_env *e)
 {
 	int		i;
 	int		one;
-
-	for(int j=0; j < len_tab; j++)
-		printf("rem tab[%d] = %p\n", j, *tab[j]);
+	t_lpath *beg;
 	one = 0;
 	i = 0;
-	while (i < len_tab)
+	
+	beg = tab;
+	while (tab)
 	{
-		if ((*tab[i]) && (*tab[i])->len > -1)
+		if (tab && tab->len > -1)
 			one++;
-		i++;
+		tab = tab->next;
 	}
+	tab = beg;
 	if (one > 1)
 	{
 		i = 0;
-		while (i < len_tab)
+		while (tab)
 		{
-			if ((*tab[i])->len > e->start->ants)
-				(*tab[i])->len = -1;
-			i++;;
+			if (tab->len > e->start->ants)
+				tab->len = -1;
+			tab = tab->next;
 		}
 	}
+	tab = beg;
 }
 
-t_neigh		*find_free(t_lpath **tab, t_ants *ants, t_env *e)
+t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
 {
 	int		i;
 	int		j;
+	t_lpath *beg;
 
 	i = 0;
 	j = 0;
-	while (tab[j])
+	beg = tab;
+	while (tab)
 	{
-		if (tab[j]->len != -1)
+		if (tab->len != -1)
 		{
 			while (i < e->nb_ants)
 			{
-				if (ants[i].room == (tab[j])->path->next->adjacent)
+				if (ants[i].room == tab->path->next->adjacent)
 					break;
 				i++;
 			}
 			if (i == e->nb_ants)
-				return (tab[j]->path->next);
+				return (tab->path->next);
 		}
-		j++;
+		tab = tab->next;
 	}
+	tab = beg;
 	return (NULL);
 }
 
@@ -90,8 +95,6 @@ void	move_ants(t_pack *pack, t_env *e)
 	int 	line;
 	t_ants	ants[e->nb_ants];
 
-	for(int j=0; j < pack->len; j++)
-		printf("tab[%d] = %p\n", j, tab[j]);
 	e->start->ants = e->nb_ants;
 	i = -1;
 	line = 0;
@@ -102,15 +105,15 @@ void	move_ants(t_pack *pack, t_env *e)
 		i = -1;
 		while (++i < e->nb_ants)
 		{
-			remove_path(pack->lpath, pack->len, e);
+			remove_path(pack->lpath, e);
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_free(tab, ants, e)) != NULL)
+				if ((ants[i].path = find_free(pack->lpath , ants, e)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
-					// printf("L%d-%s ", i + 1, ants[i].room->name);
+						printf("L%d-%s ", i + 1, ants[i].room->name);
 					e->start->ants--;
 				}
 			}
@@ -118,18 +121,17 @@ void	move_ants(t_pack *pack, t_env *e)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-				// printf("L%d-%s ", i + 1, ants[i].room->name);
+					printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
-		// printf("e->ants = %d\n", e->end->ants);
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		// printf("\n");
+	//	printf("\n");
 		line++;
 	}
-	printf("line = %d\n", line);
+	printf("line = %d\n\n", line);
 	e->end->ants = 0;
 	if (line < e->line)
 		e->line = line;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/07 13:12:31 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/07 15:00:06 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ int		main(void)
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
-	printf("maxflow = %d\n", edmonds_karp(&e));
+	edmonds_karp(&e);
 	// print_pack(e);
 	int i = 1;
 	tmp = e.pack;
 	while (tmp)
 	{
-		printf("Pack %d :\n\n", i);
+		//printf("Pack %d :\n\n", i);
 		move_ants(tmp, &e);
-		printf ("-------------------------------\n");
+		//printf ("-------------------------------\n");
 		tmp = tmp->next;
 		i++;
 	}
-	printf("\n\n shortes line = %d\n", e.line);
+	printf("shortes line = %d\n", e.line);
 	return (0);
 }
