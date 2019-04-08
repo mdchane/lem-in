@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 12:01:56 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/08 12:26:11 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,24 @@
 
 void	remove_path(t_lpath *tab, t_env *e)
 {
-	int		i;
-	int		one;
 	t_lpath *beg;
+	int one;
+
 	one = 0;
-	i = 0;
-	
 	beg = tab;
 	while (tab)
 	{
-		if (tab && tab->free_p > -1)
+		if (tab->free_p == 1)
 			one++;
 		tab = tab->next;
 	}
 	tab = beg;
 	if (one > 1)
-	{
-		i = 0;
 		while (tab)
 		{
-			if (tab->free_p > e->start->ants)
-				tab->free_p = -1;
-			tab = tab->next;
+			if (tab->len < e->nb_ants)
+				tab->free_p = 0;
 		}
-	}
 	tab = beg;
 }
 
@@ -72,7 +66,7 @@ t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
 	beg = tab;
 	while (tab)
 	{
-		if (tab->free_p != -1)
+		if (tab->free_p != 0)
 		{
 			while (i < e->nb_ants)
 			{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pack_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:27:19 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/07 11:19:04 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 12:24:10 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_lpath			*new_lpath(t_neigh *p)
 		error("malloc error\n");
 	lpath->len = p->len;
 	lpath->path = p;
+	lpath->free_p = 1;
 	lpath->next = NULL;
 	return (lpath);
 }
