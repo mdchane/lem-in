@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 12:26:11 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/08 12:36:10 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,27 @@
 
 void	remove_path(t_lpath *tab, t_env *e)
 {
-	t_lpath *beg;
-	int one;
+	t_lpath	*beg;
+	int		one;
 
 	one = 0;
 	beg = tab;
 	while (tab)
 	{
-		if (tab->free_p == 1)
+		if (!tab->removed)
 			one++;
 		tab = tab->next;
 	}
 	tab = beg;
 	if (one > 1)
+	{
 		while (tab)
 		{
 			if (tab->len < e->nb_ants)
-				tab->free_p = 0;
+				tab->removed = 1;
 		}
-	tab = beg;
+		tab = beg;
+	}
 }
 
 t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
@@ -66,7 +68,7 @@ t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
 	beg = tab;
 	while (tab)
 	{
-		if (tab->free_p != 0)
+		if (!tab->removed)
 		{
 			while (i < e->nb_ants)
 			{
