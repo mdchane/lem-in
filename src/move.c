@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 12:36:10 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:05:46 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,31 @@
 // 	return (tab);
 // }
 
+t_lpath	*find_bigget(t_lpath *tab)
+{
+	t_lpath	*beg;
+	t_lpath	*tmp;
+
+	beg = tab;
+	while (tab && tab->removed)
+	{
+		tab = tab->next;
+	}
+	tmp = tab;
+	while (tab->next)
+	{
+		if (!tab->next->removed && tab->len < tab->next->len)
+			tmp = tab->next;
+		tab = tab->next;
+	}
+	return (tmp);
+}
+
 void	remove_path(t_lpath *tab, t_env *e)
 {
 	t_lpath	*beg;
 	int		one;
+	t_lpath	*max;
 
 	one = 0;
 	beg = tab;
@@ -50,8 +71,9 @@ void	remove_path(t_lpath *tab, t_env *e)
 	{
 		while (tab)
 		{
-			if (tab->len < e->nb_ants)
+			if (tab->len > e->nb_ants)
 				tab->removed = 1;
+			tab = tab->next;
 		}
 		tab = beg;
 	}
