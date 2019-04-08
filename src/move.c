@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/07 16:04:30 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/08 12:01:56 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	remove_path(t_lpath *tab, t_env *e)
 	beg = tab;
 	while (tab)
 	{
-		if (tab && tab->len > -1)
+		if (tab && tab->free_p > -1)
 			one++;
 		tab = tab->next;
 	}
@@ -53,8 +53,8 @@ void	remove_path(t_lpath *tab, t_env *e)
 		i = 0;
 		while (tab)
 		{
-			if (tab->len > e->start->ants)
-				tab->len = -1;
+			if (tab->free_p > e->start->ants)
+				tab->free_p = -1;
 			tab = tab->next;
 		}
 	}
@@ -72,7 +72,7 @@ t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
 	beg = tab;
 	while (tab)
 	{
-		if (tab->len != -1)
+		if (tab->free_p != -1)
 		{
 			while (i < e->nb_ants)
 			{
@@ -96,6 +96,7 @@ void	move_ants(t_pack *pack, t_env *e)
 	t_ants	ants[e->nb_ants];
 
 	e->start->ants = e->nb_ants;
+	e->end->ants = 0;
 	i = -1;
 	line = 0;
 	while (++i < e->nb_ants)
@@ -128,7 +129,7 @@ void	move_ants(t_pack *pack, t_env *e)
 			break ;
 		else
 			e->end->ants = 0;
-	//	printf("\n");
+		printf("\n");
 		line++;
 	}
 	printf("line = %d\n\n", line);
