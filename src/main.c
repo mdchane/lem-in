@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 13:36:42 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 14:58:40 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ int		main(void)
 	edmonds_karp(&e);
 	tmp = e.pack;
 	print_pack(&e);
-	int i = 1;
-	while (tmp)
-	{
+	// int i = 1;
+	// while (tmp)
+	// {
 		//printf("Pack %d :\n\n", i);
-		move_ants(tmp, &e);
+		move_ants(tmp->next->next->next->next, &e);
 		//printf ("-------------------------------\n");
-		tmp = tmp->next;
-		i++;
-	}
+		// tmp = tmp->next;
+	// 	i++;
+	// }
 	printf("shortes line = %d\n", e.line);
 	return (0);
 }
