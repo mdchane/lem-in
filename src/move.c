@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 13:05:46 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:13:38 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 // 	return (tab);
 // }
 
-t_lpath	*find_bigget(t_lpath *tab)
+t_lpath	*find_biggest(t_lpath *tab)
 {
 	t_lpath	*beg;
 	t_lpath	*tmp;
@@ -49,31 +49,38 @@ t_lpath	*find_bigget(t_lpath *tab)
 			tmp = tab->next;
 		tab = tab->next;
 	}
+	tab = beg;
 	return (tmp);
 }
 
-void	remove_path(t_lpath *tab, t_env *e)
+void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 {
 	t_lpath	*beg;
-	int		one;
+	int		count;
 	t_lpath	*max;
+	int		i;
 
-	one = 0;
+	count = 0;
 	beg = tab;
 	while (tab)
 	{
 		if (!tab->removed)
-			one++;
+			count++;
 		tab = tab->next;
 	}
 	tab = beg;
-	if (one > 1)
+	if (count > 1)
 	{
-		while (tab)
+		i = 0;
+		while (i < pack->len)
 		{
-			if (tab->len > e->nb_ants)
-				tab->removed = 1;
-			tab = tab->next;
+			max = find_biggest(tab);
+			if (max->len > nb_ants && count > 1)
+				max->removed = 1;
+			else
+				break ;
+			i++;
+			count--;
 		}
 		tab = beg;
 	}
@@ -124,7 +131,7 @@ void	move_ants(t_pack *pack, t_env *e)
 		i = -1;
 		while (++i < e->nb_ants)
 		{
-			remove_path(pack->lpath, e);
+			remove_path(pack->lpath, e->nb_ants, pack);
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
