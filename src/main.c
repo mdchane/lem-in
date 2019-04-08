@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 12:40:10 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:36:42 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int		main(void)
 	read_map(&e);
 	parsing(&e);
 	edmonds_karp(&e);
-	// print_pack(e);
-	int i = 1;
 	tmp = e.pack;
+	print_pack(&e);
+	int i = 1;
 	while (tmp)
 	{
 		//printf("Pack %d :\n\n", i);

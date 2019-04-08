@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 13:13:38 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:18:02 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	move_ants(t_pack *pack, t_env *e)
 				if ((ants[i].path = find_free(pack->lpath , ants, e)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
-						printf("L%d-%s ", i + 1, ants[i].room->name);
+						// printf("L%d-%s ", i + 1, ants[i].room->name);
 					e->start->ants--;
 				}
 			}
@@ -147,14 +147,14 @@ void	move_ants(t_pack *pack, t_env *e)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-					printf("L%d-%s ", i + 1, ants[i].room->name);
+					// printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		printf("\n");
+		// printf("\n");
 		line++;
 	}
 	printf("line = %d\n\n", line);

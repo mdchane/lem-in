@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/08 12:33:38 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:36:28 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void				push_back_lpath(t_lpath **lpath, t_lpath *new);
 void				push_back_pack(t_pack **pack, t_pack *new);
 t_lpath				*new_lpath();
 t_pack				*new_pack();
-void				print_pack(t_env e);
+void				print_pack(t_env *e);
 
 void		move_ants(t_pack *pack, t_env *e);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/25 13:48:42 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/07 12:03:10 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:38:32 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,34 +89,43 @@ void	print_graph(t_env *e)
 	}
 }
 
-void	print_pack(t_env e)
+void	print_pack(t_env *e)
 {
 	int i;
 	int j;
+	t_pack	*beg;
+	t_lpath	*beglp;
+	t_neigh	*begp;
 
 	i = 1;
 	j = 1;
-	while (e.pack)
+	beg = e->pack;
+	while (e->pack != NULL)
 	{
-		printf("PACK %d : len = %d\n", i, e.pack->len);
+		printf("PACK %d : len = %d\n", i, e->pack->len);
 		j = 1;
-		while (e.pack->lpath)
+		beglp = e->pack->lpath;
+		while (e->pack->lpath)
 		{
-			printf("P%d Chemin %d len = %d:\n", i, j, e.pack->lpath->path->len);
-			while(e.pack->lpath->path)
+			begp = e->pack->lpath->path;
+			printf("P%d Chemin %d len = %d:\n", i, j, e->pack->lpath->path->len);
+			while(e->pack->lpath->path)
 			{
-				if (e.pack->lpath->path->adjacent->name)
-					printf("%s", e.pack->lpath->path->adjacent->name);
-				if (e.pack->lpath->path->next)
+				if (e->pack->lpath->path->adjacent->name)
+					printf("%s", e->pack->lpath->path->adjacent->name);
+				if (e->pack->lpath->path->next)
 					printf("->");
-				e.pack->lpath->path = e.pack->lpath->path->next;
+				e->pack->lpath->path = e->pack->lpath->path->next;
 			}
+			e->pack->lpath->path = begp;
 			printf("\n\n");
 			j++;
-			e.pack->lpath = e.pack->lpath->next;
+			e->pack->lpath = e->pack->lpath->next;
 		}
+		e->pack->lpath = beglp;
 		i++;
-		e.pack = e.pack->next;
+		e->pack = e->pack->next;
 		printf("\n");
 	}
+	e->pack = beg;
 }
