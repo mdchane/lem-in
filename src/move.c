@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/09 12:15:48 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:03:44 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 		{
 			min = find_shortest(tab);
 			max = find_biggest(tab);
-			if ((max->len > nb_ants + 1) && count > 1 && min->len < max->len)
+			if ((max->len > nb_ants + 2) && count > 1 && min->len < max->len)
 				max->removed = 1;
 			else
 				break ;
@@ -141,7 +141,7 @@ void	move_ants(t_pack *pack, t_env *e)
 				if ((ants[i].path = find_free(pack->lpath , ants, e)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
-						printf("L%d-%s ", i + 1, ants[i].room->name);
+						// printf("L%d-%s ", i + 1, ants[i].room->name);
 					e->start->ants--;
 				}
 			}
@@ -149,17 +149,17 @@ void	move_ants(t_pack *pack, t_env *e)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-				printf("L%d-%s ", i + 1, ants[i].room->name);
+				// printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		printf("\n");
+		// printf("\n");
 		line++;
 	}
-//	printf("line = %d\n\n", line);
+	// printf("line = %d\n\n", line);
 	e->end->ants = 0;
 	if (line < e->line)
 		e->line = line;
