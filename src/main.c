@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/09 17:39:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/10 11:06:40 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ void	print_neigh(t_env *e)
 	printf("\ndistance = %d\n", e->end->dist);
 }
 
+t_pack	*pack_search(t_pack *pack, int nb)
+{
+	while (pack)
+	{
+		if (pack->len == nb)
+			return (pack);
+		pack = pack->next;
+	}
+	return (NULL);
+}
+
 int		main(void)
 {
 	t_env	e;
@@ -57,14 +68,16 @@ int		main(void)
 	tmp = e.pack;
 	//print_pack(&e);
 	int i = 1;
-	while (tmp)
+	while (e.pack)
 	{
 	//	printf("Pack %d :\n\n", i);
-		move_ants(tmp, &e);
+		move_ants(e.pack, &e);
 		//printf ("-------------------------------\n");
-		tmp = tmp->next;
+		e.pack = e.pack->next;
 		i++;
 	}
-	printf("shortes line = %d\n", e.line);
+	e.pack = tmp;
+	print_ants(pack_search(e.pack, e.best_pack), &e);
+	printf("shortes line = %d\nwith pack nb : %d\n", e.line, e.best_pack);
 	return (0);
 }

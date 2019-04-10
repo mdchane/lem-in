@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/10 10:50:59 by sarobber         ###   ########.fr       */
+/*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
+/*   Updated: 2019/04/10 11:01:34 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
-t_lpath	*find_shortest(t_lpath *tab)
+t_lpath	*find_shortest_p(t_lpath *tab)
 {
 	t_lpath	*beg;
 	t_lpath	*tmp;
@@ -32,7 +32,7 @@ t_lpath	*find_shortest(t_lpath *tab)
 	return (tmp);
 }
 
-t_lpath	*find_biggest(t_lpath *tab)
+t_lpath	*find_biggest_p(t_lpath *tab)
 {
 	t_lpath	*beg;
 	t_lpath	*tmp;
@@ -53,7 +53,7 @@ t_lpath	*find_biggest(t_lpath *tab)
 	return (tmp);
 }
 
-void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
+void	remove_path_p(t_lpath *tab, int nb_ants, t_pack *pack)
 {
 	t_lpath	*beg;
 	int		count;
@@ -75,8 +75,8 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 		i = 0;
 		while (i < pack->len)
 		{
-			min = find_shortest(tab);
-			max = find_biggest(tab);
+			min = find_shortest_p(tab);
+			max = find_biggest_p(tab);
 			if ((max->len > nb_ants + 2) && count > 1 && min->len < max->len)
 				max->removed = 1;
 			else
@@ -88,7 +88,7 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 	}
 }
 
-t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
+t_neigh		*find_free_p(t_lpath *tab, t_ants *ants, t_env *e)
 {
 	int		i;
 	int		j;
@@ -116,12 +116,14 @@ t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
 	return (NULL);
 }
 
-void	move_ants(t_pack *pack, t_env *e)
+void	print_ants(t_pack *pack, t_env *e)
 {
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
 
+	if (pack == NULL)
+		error("Pack NULL\n");
 	e->start->ants = e->nb_ants;
 	e->end->ants = 0;
 	i = -1;
@@ -133,15 +135,15 @@ void	move_ants(t_pack *pack, t_env *e)
 		i = -1;
 		while (++i < e->nb_ants)
 		{
-			remove_path(pack->lpath, e->start->ants, pack);
+			remove_path_p(pack->lpath, e->start->ants, pack);
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_free(pack->lpath , ants, e)) != NULL)
+				if ((ants[i].path = find_free_p(pack->lpath , ants, e)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
-						// printf("L%d-%s ", i + 1, ants[i].room->name);
+						printf("L%d-%s ", i + 1, ants[i].room->name);
 					e->start->ants--;
 				}
 			}
@@ -149,14 +151,14 @@ void	move_ants(t_pack *pack, t_env *e)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-				// printf("L%d-%s ", i + 1, ants[i].room->name);
+				printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		// printf("\n");
+		printf("\n");
 		line++;
 	}
 	// printf("line = %d\n\n", line);
