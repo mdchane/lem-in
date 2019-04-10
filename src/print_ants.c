@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/10 12:01:27 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/10 12:48:49 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@ void	remove_path_p(t_lpath *tab, int nb_ants, t_pack *pack)
 		{
 			min = find_shortest_p(tab);
 			max = find_biggest_p(tab);
-			if ((max->len > nb_ants + 2) && count > 1 && min->len < max->len)
+			if (((max->len - nb_ants) > min->len) && count > 1 && min->len < max->len)
+			{
+				printf("rem %s len = %d et start_ants = %d\n", max->path->next->adjacent->name, max->len, nb_ants);
 				max->removed = 1;
+			}
 			else
 				break ;
 			i++;
@@ -174,6 +177,7 @@ void	print_ants(t_pack *pack, t_env *e)
 		else
 			e->end->ants = 0;
 		printf("\n");
+		// break ;
 		line++;
 	}
 	// printf("line = %d\n\n", line);

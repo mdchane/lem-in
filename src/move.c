@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/10 11:29:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/10 12:49:46 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 		{
 			min = find_shortest(tab);
 			max = find_biggest(tab);
-			if ((max->len > nb_ants + 2) && count > 1 && min->len < max->len)
+			if (((max->len - nb_ants) > min->len) && count > 1 && min->len < max->len)
 				max->removed = 1;
 			else
 				break ;
