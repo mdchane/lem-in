@@ -6,11 +6,12 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/10 11:01:34 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/10 12:01:27 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
+
 t_lpath	*find_shortest_p(t_lpath *tab)
 {
 	t_lpath	*beg;
@@ -116,12 +117,26 @@ t_neigh		*find_free_p(t_lpath *tab, t_ants *ants, t_env *e)
 	return (NULL);
 }
 
+void	add_path(t_pack *pack)
+{
+	t_lpath *beg;
+
+	beg = pack->lpath;
+	while (pack->lpath)
+	{
+		pack->lpath->removed = 0;
+		pack->lpath = pack->lpath->next;
+	}
+	pack->lpath = beg;
+}
+
 void	print_ants(t_pack *pack, t_env *e)
 {
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
 
+	add_path(pack);
 	if (pack == NULL)
 		error("Pack NULL\n");
 	e->start->ants = e->nb_ants;
