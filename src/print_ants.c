@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/10 12:48:49 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/10 15:38:45 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_lpath	*find_biggest_p(t_lpath *tab)
 	return (tmp);
 }
 
-void	remove_path_p(t_lpath *tab, int nb_ants, t_pack *pack)
+void	remove_path_p(t_lpath *tab, int nb_ants, t_pack *pack, int *rem_once)
 {
 	t_lpath	*beg;
 	int		count;
@@ -62,6 +62,8 @@ void	remove_path_p(t_lpath *tab, int nb_ants, t_pack *pack)
 	t_lpath *min;
 	int		i;
 
+	if (*rem_once)
+		return ;
 	count = 0;
 	beg = tab;
 	while (tab)
@@ -78,10 +80,12 @@ void	remove_path_p(t_lpath *tab, int nb_ants, t_pack *pack)
 		{
 			min = find_shortest_p(tab);
 			max = find_biggest_p(tab);
-			if (((max->len - nb_ants) > min->len) && count > 1 && min->len < max->len)
+			if (((max->len - nb_ants) >= min->len - 1) && count > 1 && min->len < max->len)
 			{
-				printf("rem %s len = %d et start_ants = %d\n", max->path->next->adjacent->name, max->len, nb_ants);
+				// printf("(rem %s len = %d et start_ants = %d, min->len= %d)\n", max->path->next->adjacent->name, max->len, nb_ants, min->len);
 				max->removed = 1;
+				*rem_once = 1;
+				break ;
 			}
 			else
 				break ;
@@ -138,6 +142,7 @@ void	print_ants(t_pack *pack, t_env *e)
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
+	int		rem_once;
 
 	add_path(pack);
 	if (pack == NULL)
@@ -150,10 +155,11 @@ void	print_ants(t_pack *pack, t_env *e)
 		ants[i].room = e->start;
 	while (1)
 	{
+		rem_once = 0;
 		i = -1;
+		remove_path_p(pack->lpath, e->start->ants, pack, &rem_once);
 		while (++i < e->nb_ants)
 		{
-			remove_path_p(pack->lpath, e->start->ants, pack);
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)

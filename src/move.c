@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/10 12:49:46 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/10 15:38:57 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_lpath	*find_biggest(t_lpath *tab)
 	return (tmp);
 }
 
-void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
+void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack, int *rem_once)
 {
 	t_lpath	*beg;
 	int		count;
@@ -61,6 +61,8 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 	t_lpath *min;
 	int		i;
 
+	if (*rem_once)
+		return ;
 	count = 0;
 	beg = tab;
 	while (tab)
@@ -77,8 +79,12 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 		{
 			min = find_shortest(tab);
 			max = find_biggest(tab);
-			if (((max->len - nb_ants) > min->len) && count > 1 && min->len < max->len)
+			if (((max->len - nb_ants) >= min->len) && count > 1 && min->len < max->len)
+			{
 				max->removed = 1;
+				*rem_once = 1;
+				break ;
+			}
 			else
 				break ;
 			i++;
@@ -121,6 +127,7 @@ void	move_ants(t_pack *pack, t_env *e)
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
+	int		rem_once;
 
 	e->start->ants = e->nb_ants;
 	e->end->ants = 0;
@@ -130,10 +137,11 @@ void	move_ants(t_pack *pack, t_env *e)
 		ants[i].room = e->start;
 	while (1)
 	{
+		rem_once = 0;
 		i = -1;
+		remove_path(pack->lpath, e->start->ants, pack, &rem_once);
 		while (++i < e->nb_ants)
 		{
-			remove_path(pack->lpath, e->start->ants, pack);
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
