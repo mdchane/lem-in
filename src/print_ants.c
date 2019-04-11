@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/10 15:38:45 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/10 16:27:26 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	remove_path_p(t_lpath *tab, int nb_ants, t_pack *pack, int *rem_once)
 		{
 			min = find_shortest_p(tab);
 			max = find_biggest_p(tab);
-			if (((max->len - nb_ants) >= min->len - 1) && count > 1 && min->len < max->len)
+			if ((max->len >= nb_ants) && count > 1 && min->len < max->len)
 			{
 				// printf("(rem %s len = %d et start_ants = %d, min->len= %d)\n", max->path->next->adjacent->name, max->len, nb_ants, min->len);
 				max->removed = 1;

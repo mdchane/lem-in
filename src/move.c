@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/10 15:38:57 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/10 16:27:36 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack, int *rem_once)
 		{
 			min = find_shortest(tab);
 			max = find_biggest(tab);
-			if (((max->len - nb_ants) >= min->len) && count > 1 && min->len < max->len)
+			if ((max->len >= nb_ants) && count > 1 && min->len < max->len)
 			{
 				max->removed = 1;
 				*rem_once = 1;
