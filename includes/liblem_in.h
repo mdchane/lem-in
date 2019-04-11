@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/11 14:36:16 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:36:06 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct	s_env
 	t_grapht		*start;
 	t_grapht		*end;
 	int				line;
-	int				best_pack;
+	t_pack			*best_pack;
 	char			*buff;
 	int				len_map;
 	t_pack			*pack;
@@ -120,9 +120,12 @@ t_lpath				*new_lpath();
 t_pack				*new_pack();
 void				print_pack(t_env *e);
 
+int					eval_line(t_pack *pack, int nb_ants);
+void				get_bestpack(t_env *e);
+
 void				move_ants(t_pack *pack, t_env *e);
 void				print_ants(t_pack *pack, t_env *e);
-t_neigh				*find_free(t_lpath *tab, t_ants *ants, t_env *e);
+t_neigh				*find_free(t_lpath *tab, t_ants *ants, int nb_ants);
 void				remove_path(t_lpath *tab, int nb_ants, t_pack *pack);
 t_lpath				*find_biggest(t_lpath *tab);
 t_lpath				*find_shortest(t_lpath *tab);

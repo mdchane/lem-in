@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/11 14:35:17 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:40:16 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	print_ants(t_pack *pack, t_env *e)
 	while (1)
 	{
 		i = -1;
-		remove_path(pack->lpath, e->start->ants, pack);
 		while (++i < e->nb_ants)
 		{
+			remove_path(pack->lpath, e->start->ants, pack);
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_big_free(pack->lpath, ants, e->nb_ants)) != NULL)
+				if ((ants[i].path = find_free(pack->lpath, ants, e->nb_ants)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
 						printf("L%d-%s ", i + 1, ants[i].room->name);
@@ -74,10 +74,9 @@ void	print_ants(t_pack *pack, t_env *e)
 	}
 	// printf("line = %d\n\n", line);
 	e->end->ants = 0;
-	if (line < e->line)
+	if (line <= e->line)
 	{
 		e->line = line;
-		e->best_pack = pack->len;
 	}
 	//printf("\n\n\n");
 }

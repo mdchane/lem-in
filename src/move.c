@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 11:09:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/11 14:35:37 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:40:21 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +69,27 @@ int			is_free(t_grapht *room, t_ants *ants, int nb_ants)
 	return (1);
 }
 
-t_neigh	*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants)
-{
-	t_lpath	*beg;
-	t_lpath	*big;
+// t_neigh	*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants)
+// {
+// 	t_lpath	*beg;
+// 	t_lpath	*big;
 
-	beg = tab;
-	while (tab && (tab->removed || !is_free(tab->path->next->adjacent, ants, nb_ants)))
-		tab = tab->next;
-	big = tab;
-	while (tab)
-	{
-		if (!tab->removed && is_free(tab->path->next->adjacent, ants, nb_ants) && big->len > tab->len)
-			big = tab;
-		tab = tab->next;
-	}
-	tab = beg;
-	if (big)
-		return (big->path->next);
-	else
-		return (NULL);
-}
+// 	beg = tab;
+// 	while (tab && (tab->removed || !is_free(tab->path->next->adjacent, ants, nb_ants)))
+// 		tab = tab->next;
+// 	big = tab;
+// 	while (tab)
+// 	{
+// 		if (!tab->removed && is_free(tab->path->next->adjacent, ants, nb_ants) && big->len > tab->len)
+// 			big = tab;
+// 		tab = tab->next;
+// 	}
+// 	tab = beg;
+// 	if (big)
+// 		return (big->path->next);
+// 	else
+// 		return (NULL);
+// }
 
 void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 {
@@ -115,7 +115,7 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 		{
 			min = find_shortest(tab);
 			max = find_biggest(tab);
-			if ((max->len - nb_ants) >= min->len && count > 1 && min->len < max->len)
+			if (nb_ants <= max->len + 1 && count > 1 && min->len < max->len)
 			{
 				// printf("|rem max = %s, start_ants = %d|", max->path->next->adjacent->name, nb_ants);
 				max->removed = 1;
@@ -129,40 +129,39 @@ void	remove_path(t_lpath *tab, int nb_ants, t_pack *pack)
 	}
 }
 
-// t_neigh		*find_free(t_lpath *tab, t_ants *ants, t_env *e)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_lpath *beg;
+t_neigh		*find_free(t_lpath *tab, t_ants *ants, int nb_ants)
+{
+	int		i;
+	int		j;
+	t_lpath *beg;
 
-// 	i = 0;
-// 	j = 0;
-// 	beg = tab;
-// 	while (tab)
-// 	{
-// 		if (!tab->removed)
-// 		{
-// 			while (i < e->nb_ants)
-// 			{
-// 				if (ants[i].room == tab->path->next->adjacent)
-// 					break;
-// 				i++;
-// 			}
-// 			if (i == e->nb_ants)
-// 				return (tab->path->next);
-// 		}
-// 		tab = tab->next;
-// 	}
-// 	tab = beg;
-// 	return (NULL);
-// }
+	i = 0;
+	j = 0;
+	beg = tab;
+	while (tab)
+	{
+		if (!tab->removed)
+		{
+			while (i < nb_ants)
+			{
+				if (ants[i].room == tab->path->next->adjacent)
+					break;
+				i++;
+			}
+			if (i == nb_ants)
+				return (tab->path->next);
+		}
+		tab = tab->next;
+	}
+	tab = beg;
+	return (NULL);
+}
 
 void	move_ants(t_pack *pack, t_env *e)
 {
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
-	t_ants tmp;
 
 	e->start->ants = e->nb_ants;
 	e->end->ants = 0;
@@ -175,13 +174,12 @@ void	move_ants(t_pack *pack, t_env *e)
 		i = -1;
 		while (++i < e->nb_ants)
 		{
-			tmp = ants[i];
 			remove_path(pack->lpath, e->start->ants, pack);
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_big_free(pack->lpath, ants, e->nb_ants)) != NULL)
+				if ((ants[i].path = find_free(pack->lpath, ants, e->nb_ants)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
 						// printf("L%d-%s ", i + 1, ants[i].room->name);
@@ -207,7 +205,6 @@ void	move_ants(t_pack *pack, t_env *e)
 	if (line <= e->line)
 	{
 		e->line = line;
-		e->best_pack = pack->len;
 	}
 	//printf("\n\n\n");
 }
