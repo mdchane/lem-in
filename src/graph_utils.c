@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/27 15:31:57 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/11 12:16:37 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ t_grapht	*graph_search(t_grapht *g, char *name)
 	i = 0;
 	while (&g[i] && g[i].name && ft_strcmp(g[i].name, name))
 		i++;
+	if (g[i].name == NULL)
+		return (NULL);
 	return (&g[i]);
 }

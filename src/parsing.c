@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/27 15:32:01 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/11 12:16:06 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		parse_rooms(t_env *e, char **lines, int i)
 				grapht_new(&e->g[j], e->end->name, e->end->point.x, e->end->point.y);
 				e->end = &e->g[j];
 			}
+			e->g[++j].name = NULL;
 			free_tab(split);
 			return (i - 1);
 		}
