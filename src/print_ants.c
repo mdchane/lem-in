@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/11 12:57:33 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/11 14:35:17 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	print_ants(t_pack *pack, t_env *e)
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
-	int		rem_once;
 
 	add_path(pack);
 	if (pack == NULL)
@@ -43,16 +42,15 @@ void	print_ants(t_pack *pack, t_env *e)
 		ants[i].room = e->start;
 	while (1)
 	{
-		rem_once = 0;
 		i = -1;
-		remove_path(pack->lpath, e->start->ants, pack, &rem_once);
+		remove_path(pack->lpath, e->start->ants, pack);
 		while (++i < e->nb_ants)
 		{
 			if (ants[i].room == e->end)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_big_free(pack->lpath, ants, e->start->ants)) != NULL)
+				if ((ants[i].path = find_big_free(pack->lpath, ants, e->nb_ants)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
 						printf("L%d-%s ", i + 1, ants[i].room->name);

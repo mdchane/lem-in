@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/11 12:39:18 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/11 14:31:01 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		main(void)
 		i++;
 	}
 	e.pack = tmp;
-	print_ants(pack_search(e.pack, e.best_pack + 1), &e);
+	print_ants(pack_search(e.pack, e.best_pack), &e);
 	printf("shortes line = %d\nwith pack nb : %d\n", e.line, e.best_pack);
 	return (0);
 }
