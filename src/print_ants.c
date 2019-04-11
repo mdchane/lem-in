@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/11 12:11:01 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/11 12:57:33 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_ants(t_pack *pack, t_env *e)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_free(pack->lpath , ants, e)) != NULL)
+				if ((ants[i].path = find_big_free(pack->lpath, ants, e->start->ants)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
 						printf("L%d-%s ", i + 1, ants[i].room->name);
