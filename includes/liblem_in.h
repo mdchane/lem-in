@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/10 10:56:59 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/11 12:10:29 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,10 @@ t_lpath				*new_lpath();
 t_pack				*new_pack();
 void				print_pack(t_env *e);
 
-void		move_ants(t_pack *pack, t_env *e);
-void		print_ants(t_pack *pack, t_env *e);
-
+void				move_ants(t_pack *pack, t_env *e);
+void				print_ants(t_pack *pack, t_env *e);
+t_neigh				*find_free(t_lpath *tab, t_ants *ants, t_env *e);
+void				remove_path(t_lpath *tab, int nb_ants, t_pack *pack, int *rem_once);
+t_lpath				*find_biggest(t_lpath *tab);
+t_lpath				*find_shortest(t_lpath *tab);
 #endif
