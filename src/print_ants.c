@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/14 12:33:46 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 14:45:55 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ void	remove_path(t_lpath *tab, int st_ants, t_pack *pack)
 	{
 		while (i < pack->len)
 		{
-			max = find_biggest(tab);
+			max = find_biggest(tab); 
 			w_max = eval_line(pack, st_ants);
 			max->removed = 1;
 			wo_max = eval_line(pack, st_ants);
-			if (w_max < wo_max || wo_max < 0)
+			if (w_max <= wo_max || wo_max < 0)
 			{
 				max->removed = 0;
 				break;
@@ -162,7 +162,7 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 				if ((ants[i].path = find_free(pack->lpath, ants, e->nb_ants)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
-						printf("L%d-%s ", i + 1, ants[i].room->name);
+						//printf("L%d-%s ", i + 1, ants[i].room->name);
 					e->start->ants--;
 				}
 			}
@@ -170,16 +170,17 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-					printf("L%d-%s ", i + 1, ants[i].room->name);
+					//printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		printf("\n");
+		// printf("\n");
 		line++;
 	}
+	printf("line = %d\n", line);
 	e->end->ants = 0;
 	if (line <= e->line)
 	{

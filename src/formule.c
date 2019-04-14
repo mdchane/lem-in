@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 15:21:51 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/14 12:16:29 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 14:46:10 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		get_bestpack(t_env *e)
 	while (e->pack)
 	{
 		tmp = eval_line(e->pack, e->nb_ants);
-		if (tmp < best)
+		if (tmp <= best)
 		{
 			best = tmp;
 			e->best_pack = e->pack;
