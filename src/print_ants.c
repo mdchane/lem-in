@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/14 14:45:55 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 14:54:06 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 		// printf("\n");
 		line++;
 	}
-	printf("line = %d\n", line);
+	printf("rien    : line = %d\n", line);
 	e->end->ants = 0;
 	if (line <= e->line)
 	{
