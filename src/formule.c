@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 15:21:51 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/14 10:41:00 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 12:16:29 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,22 @@ int		eval_line(t_pack *pack, int nb_ants)
 	float	tot_len;
 	int		res;
 	t_lpath	*begp;
+	int		rm;
 
+	rm = 0;
 	tot_len = 0;
 	begp = pack->lpath;
 	while (pack->lpath)
 	{
-		tot_len += pack->lpath->len;
+		if (pack->lpath->removed != 1)
+			tot_len += pack->lpath->len;
+		else
+			rm++;
+		
 		pack->lpath = pack->lpath->next;
 	}
 	pack->lpath = begp;
-	factor = ((tot_len + nb_ants) / pack->len);
+	factor = ((tot_len + nb_ants) / (pack->len - rm));
 	res = (int)(factor + 0.999999f);
 	return (res);
 }

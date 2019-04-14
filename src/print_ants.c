@@ -3,37 +3,146 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/11 16:40:16 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/14 12:17:43 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
-
-void	add_path(t_pack *pack)
+t_lpath	*find_shortest(t_lpath *tab)
 {
-	t_lpath *beg;
+	t_lpath	*beg;
+	t_lpath	*tmp;
 
-	beg = pack->lpath;
-	while (pack->lpath)
+	beg = tab;
+	while (tab && tab->removed)
 	{
-		pack->lpath->removed = 0;
-		pack->lpath = pack->lpath->next;
+		tab = tab->next;
 	}
-	pack->lpath = beg;
+	tmp = tab;
+	while (tab)
+	{
+		if (!tab->removed && tmp->len > tab->len)
+			tmp = tab;
+		tab = tab->next;
+	}
+	tab = beg;
+	return (tmp);
 }
 
-void	print_ants(t_pack *pack, t_env *e)
+t_lpath	*find_biggest(t_lpath *tab)
+{
+	t_lpath	*beg;
+	t_lpath	*tmp;
+
+	beg = tab;
+	while (tab && tab->removed)
+	{
+		tab = tab->next;
+	}
+	tmp = tab;
+	while (tab)
+	{
+		if (!tab->removed && tmp->len < tab->len)
+			tmp = tab;
+		tab = tab->next;
+	}
+	tab = beg;
+	return (tmp);
+}
+
+int			is_free(t_grapht *room, t_ants *ants, int nb_ants)
+{
+	int	i;
+	t_ants tmp;
+
+	i = 0;
+	while (i < nb_ants)
+	{
+		tmp = ants[i];
+		if (ants[i].room == room)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	remove_path(t_lpath *tab, int st_ants, t_pack *pack)
+{
+	t_lpath	*beg;
+	int		count;
+	t_lpath	*max;
+	int		i;
+	int 	w_max;
+	int		wo_max;
+
+	count = 0;
+	// nb_ants = 0;
+	beg = tab;
+	while (tab)
+	{
+		if (!tab->removed)
+			count++;
+		tab = tab->next;
+	}
+	tab = beg;
+	i = 0;
+	if (count > 1)
+	{
+		while (i < pack->len)
+		{
+			max = find_biggest(tab);
+			w_max = eval_line(pack, st_ants);
+			max->removed = 1;
+			wo_max = eval_line(pack, st_ants);
+			if (w_max < wo_max)
+			{
+				max->removed = 0;
+				break;
+			}
+			i++;
+		}
+		tab = beg;
+	}
+}
+
+t_neigh		*find_free(t_lpath *tab, t_ants *ants, int nb_ants)
+{
+	int		i;
+	int		j;
+	t_lpath *beg;
+
+	i = 0;
+	j = 0;
+	beg = tab;
+	while (tab)
+	{
+		if (!tab->removed)
+		{
+			while (i < nb_ants)
+			{
+				if (ants[i].room == tab->path->next->adjacent)
+					break;
+				i++;
+			}
+			if (i == nb_ants)
+				return (tab->path->next);
+		}
+		tab = tab->next;
+	}
+	tab = beg;
+	return (NULL);
+}
+
+void	print_ants(t_pack *pack, t_env *e, int best_line)
 {
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
 
-	add_path(pack);
-	if (pack == NULL)
-		error("Pack NULL\n");
+	best_line = 0;
 	e->start->ants = e->nb_ants;
 	e->end->ants = 0;
 	i = -1;
@@ -61,22 +170,19 @@ void	print_ants(t_pack *pack, t_env *e)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-				printf("L%d-%s ", i + 1, ants[i].room->name);
+					printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		printf("\n");
-		// break ;
+		// printf("\n");
 		line++;
 	}
-	// printf("line = %d\n\n", line);
 	e->end->ants = 0;
 	if (line <= e->line)
 	{
 		e->line = line;
 	}
-	//printf("\n\n\n");
 }
