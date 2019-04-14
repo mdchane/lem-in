@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   formule.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 15:21:51 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/11 16:40:41 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/14 10:41:00 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ int		eval_line(t_pack *pack, int nb_ants)
 	return (res);
 }
 
-void	get_bestpack(t_env *e)
+int		get_bestpack(t_env *e)
 {
 	t_pack	*beg;
 	int		best;
+	int		best_line;
 	int		tmp;
 
 	beg = e->pack;
@@ -49,8 +50,10 @@ void	get_bestpack(t_env *e)
 		{
 			best = tmp;
 			e->best_pack = e->pack;
+			best_line = tmp;
 		}
 		e->pack = e->pack->next;
 	}
 	e->pack = beg;
+	return (best_line);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/11 16:43:11 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/14 10:41:49 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,28 @@ t_pack	*pack_search(t_pack *pack, int nb)
 int		main(void)
 {
 	t_env	e;
-	t_pack *beg;
+	int 	line;
 
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
 	edmonds_karp(&e);
-	beg = e.pack;
-	// print_pack(&e);
-	int i = 1;
-	while (e.pack)
-	{
-	//	printf("Pack %d :\n\n", i);
-		printf("pack %d, eval_line = %d\n", i, eval_line(e.pack, e.nb_ants));
-		move_ants(e.pack, &e);
-		//printf ("-------------------------------\n");
-		e.pack = e.pack->next;
-		i++;
-	}
-	e.pack = beg;
-	print_ants(e.best_pack, &e);
+	line = get_bestpack(&e);
+	// beg = e.pack;
+	// // print_pack(&e);
+	// int i = 1;
+	// while (e.pack)
+	// {
+	// //	printf("Pack %d :\n\n", i);
+	// 	printf("pack %d, eval_line = %d\n", i, eval_line(e.pack, e.nb_ants));
+	// 	move_ants(e.pack, &e);
+	// 	//printf ("-------------------------------\n");
+	// 	e.pack = e.pack->next;
+	// 	i++;
+	// }
+	// e.pack = beg;
+	// print_ants(e.best_pack, &e);
+	printf("%d\n%d\n", e.best_pack->len, line);
 	printf("shortes line = %d\n", e.line);
 	return (0);
 }
