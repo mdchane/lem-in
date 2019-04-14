@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/14 12:17:43 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 12:33:46 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	remove_path(t_lpath *tab, int st_ants, t_pack *pack)
 			w_max = eval_line(pack, st_ants);
 			max->removed = 1;
 			wo_max = eval_line(pack, st_ants);
-			if (w_max < wo_max)
+			if (w_max < wo_max || wo_max < 0)
 			{
 				max->removed = 0;
 				break;
@@ -177,7 +177,7 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 			break ;
 		else
 			e->end->ants = 0;
-		// printf("\n");
+		printf("\n");
 		line++;
 	}
 	e->end->ants = 0;
