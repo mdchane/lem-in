@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/15 13:44:28 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/15 15:04:33 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,9 +220,9 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 			break ;
 		else
 			e->end->ants = 0;
-		// ft_printf("\n");
+		ft_printf("\n");
 		line++;
 	}
-	// ft_printf("line = %d\n", line);
+	ft_printf("line = %d\n", line);
 	e->end->ants = 0;
 }

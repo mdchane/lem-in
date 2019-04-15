@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 14:52:43 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 15:12:26 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_start_end(t_env *e)
 	i = 0;
 	while (i < e->nb_ants)
 	{
-		ft_printf("L%d-end", i + 1);
+		ft_printf("L%d-%s", i + 1, e->end->name);
 		if (i != e->nb_ants - 1)
 		ft_printf(" ");
 		i++;
