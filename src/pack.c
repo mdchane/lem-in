@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:28:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 13:40:45 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 14:59:12 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ t_neigh	*extract_path(t_env *e)
 		{
 			cur->neigh = cur->neigh->next;
 		}
-		if (!cur->neigh || neigh_doublon(path, cur->name))
+		if (!cur->neigh)
 		{
-			write(1, "o\n", 2);
 			cur->neigh = begp;
 			e->start = beg;
 			return (NULL);
@@ -61,11 +60,8 @@ t_lpath	*extract_lpath(t_env *e)
 	lpath = NULL;
 	while ((newpath = extract_path(e)))
 	{
-		write(1, "o\n", 2);
 		e->end->visited = 0;
 		push_back_lpath(&lpath, new_lpath(newpath));
-		if (newpath->len == 1)
-			break ;
 	}
 	return (lpath);
 }

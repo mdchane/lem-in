@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 13:53:33 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/15 14:52:43 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	print_start_end(t_env *e)
 		ft_printf(" ");
 		i++;
 	}
+	printf("\n");
 }
 
 int		main(void)
@@ -59,7 +60,7 @@ int		main(void)
 		print_start_end(&e);
 	}
 	else
-	{	
+	{
 		edmonds_karp(&e);
 		if (!e.pack)
 			error("ERROR\n");
