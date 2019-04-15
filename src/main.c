@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 12:27:05 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 13:41:50 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ int		main(void)
 	read_map(&e);
 	parsing(&e);
 	edmonds_karp(&e);
+	if (!e.pack)
+		error("ERROR\n");
 	line = get_bestpack(&e);
+	print_pack(&e);
 	// write(1, e.buff, e.len_map);
-	print_ants(e.best_pack, &e, line);
+	// print_ants(e.best_pack, &e, line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 12:53:00 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 13:32:12 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_grapht			*graph_search(t_grapht *g, char *name);
 t_neigh				*neigh_new(t_grapht *g);
 void				neigh_push_back(t_neigh **head, t_neigh *new);
 t_neigh				*neigh_search(t_grapht *g, char *name);
+int					neigh_doublon(t_neigh *neigh, char *name);
 void				create_neigh(char **split, t_env *env);
 void				graph_viszero(t_grapht *g);
 void				parsing(t_env *e);
