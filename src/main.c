@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/14 14:43:43 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 15:44:59 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int		main(void)
 	// 	i++;
 	// }
 	// e.pack = beg;
+	printf("%s\n", e.buff);
 	print_ants(e.best_pack, &e, line);
 	//printf("%d\n%d\n", e.best_pack->len, line);
 	//printf("shortes line = %d\n", e.line);

@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/14 14:54:06 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 15:06:28 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 				if ((ants[i].path = find_free(pack->lpath, ants, e->nb_ants)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
-						//printf("L%d-%s ", i + 1, ants[i].room->name);
+						printf("L%d-%s ", i + 1, ants[i].room->name);
 					e->start->ants--;
 				}
 			}
@@ -170,20 +170,16 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-					//printf("L%d-%s ", i + 1, ants[i].room->name);
+					printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		// printf("\n");
+		printf("\n");
 		line++;
 	}
-	printf("rien    : line = %d\n", line);
+	//printf("line = %d\n", line);
 	e->end->ants = 0;
-	if (line <= e->line)
-	{
-		e->line = line;
-	}
 }

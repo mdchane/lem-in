@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 15:21:51 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/14 14:54:05 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/14 14:55:40 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		eval_line(t_pack *pack, int nb_ants)
 			tot_len += pack->lpath->len;
 		else
 			rm++;
-		
 		pack->lpath = pack->lpath->next;
 	}
 	pack->lpath = begp;
