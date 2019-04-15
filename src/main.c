@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 13:41:50 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 13:53:33 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ void	init_env(t_env *e)
 		error("Malloc Error\n");
 }
 
+void	print_start_end(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (i < e->nb_ants)
+	{
+		ft_printf("L%d-end", i + 1);
+		if (i != e->nb_ants - 1)
+		ft_printf(" ");
+		i++;
+	}
+}
+
 int		main(void)
 {
 	t_env	e;
@@ -38,12 +52,21 @@ int		main(void)
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
-	edmonds_karp(&e);
-	if (!e.pack)
-		error("ERROR\n");
-	line = get_bestpack(&e);
-	print_pack(&e);
-	// write(1, e.buff, e.len_map);
-	// print_ants(e.best_pack, &e, line);
+	if (neigh_search(e.start, e.end->name))
+	{
+		write(1, e.buff, e.len_map);
+		printf("\n");
+		print_start_end(&e);
+	}
+	else
+	{	
+		edmonds_karp(&e);
+		if (!e.pack)
+			error("ERROR\n");
+		line = get_bestpack(&e);
+		write(1, e.buff, e.len_map);
+		printf("\n");
+		print_ants(e.best_pack, &e, line);
+	}
 	return (0);
 }
