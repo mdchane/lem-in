@@ -6,7 +6,7 @@
 #    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/04/15 12:22:38 by mdchane          ###   ########.fr        #
+#    Updated: 2019/04/15 12:56:19 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_PATH = src
 
 SRC_NAME = main.c parse_utils.c parsing.c graph_utils.c\
 	free.c path_utils.c print.c read.c edmonds.c \
-	create_tab.c pack.c pack_utils.c move.c \
+	pack.c pack_utils.c\
 	print_ants.c formule.c
 
 OBJ_PATH = obj

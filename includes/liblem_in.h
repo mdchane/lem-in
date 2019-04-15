@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 11:50:22 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 12:53:00 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void				parsing(t_env *e);
 void				free_tab(char **tab);
 
 int					bfs(t_env *e);
-t_grapht			**create_tab(t_env *e);
 void				print_stack(t_stack *stack);
 void				print_graph(t_env *e);
 void				print_edmonds(t_grapht end);

@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:28:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/04 16:45:49 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 13:19:04 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_lpath	*extract_lpath(t_env *e)
 	while ((newpath = extract_path(e)))
 	{
 		e->end->visited = 0;
+		if (newpath->len == 1)
+			break ;
 		push_back_lpath(&lpath, new_lpath(newpath));
 	}
 	return (lpath);
