@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/14 15:06:28 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/15 12:30:29 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	remove_path(t_lpath *tab, int st_ants, t_pack *pack)
 	int		wo_max;
 
 	count = 0;
-	// nb_ants = 0;
 	beg = tab;
 	while (tab)
 	{
@@ -93,19 +92,63 @@ void	remove_path(t_lpath *tab, int st_ants, t_pack *pack)
 	{
 		while (i < pack->len)
 		{
-			max = find_biggest(tab); 
+			max = find_biggest(tab);
 			w_max = eval_line(pack, st_ants);
 			max->removed = 1;
 			wo_max = eval_line(pack, st_ants);
 			if (w_max <= wo_max || wo_max < 0)
 			{
 				max->removed = 0;
-				break;
+				break ;
 			}
 			i++;
 		}
 		tab = beg;
 	}
+}
+
+t_neigh	*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants)
+{
+	t_lpath	*beg;
+	t_lpath	*big;
+
+	beg = tab;
+	while (tab && (tab->removed || !is_free(tab->path->next->adjacent, ants, nb_ants)))
+		tab = tab->next;
+	big = tab;
+	while (tab)
+	{
+		if (!tab->removed && is_free(tab->path->next->adjacent, ants, nb_ants) && big->len < tab->len)
+			big = tab;
+		tab = tab->next;
+	}
+	tab = beg;
+	if (big)
+		return (big->path->next);
+	else
+		return (NULL);
+}
+
+t_neigh		*find_min_free(t_lpath *tab, t_ants *ants, int nb_ants)
+{
+	t_lpath	*beg;
+	t_lpath	*min;
+
+	beg = tab;
+	while (tab && (tab->removed || !is_free(tab->path->next->adjacent, ants, nb_ants)))
+		tab = tab->next;
+	min = tab;
+	while (tab)
+	{
+		if (!tab->removed && is_free(tab->path->next->adjacent, ants, nb_ants) && min->len > tab->len)
+			min = tab;
+		tab = tab->next;
+	}
+	tab = beg;
+	if (min)
+		return (min->path->next);
+	else
+		return (NULL);
 }
 
 t_neigh		*find_free(t_lpath *tab, t_ants *ants, int nb_ants)
@@ -159,10 +202,10 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 				e->end->ants++;
 			else if (ants[i].room == e->start)
 			{
-				if ((ants[i].path = find_free(pack->lpath, ants, e->nb_ants)) != NULL)
+				if ((ants[i].path = find_min_free(pack->lpath, ants, e->nb_ants)) != NULL)
 				{
 					ants[i].room = ants[i].path->adjacent;
-						printf("L%d-%s ", i + 1, ants[i].room->name);
+					ft_printf("L%d-%s ", i + 1, ants[i].room->name);
 					e->start->ants--;
 				}
 			}
@@ -170,16 +213,16 @@ void	print_ants(t_pack *pack, t_env *e, int best_line)
 			{
 				ants[i].path = ants[i].path->next;
 				ants[i].room = ants[i].path->adjacent;
-					printf("L%d-%s ", i + 1, ants[i].room->name);
+				ft_printf("L%d-%s ", i + 1, ants[i].room->name);
 			}
 		}
 		if (e->end->ants == e->nb_ants)
 			break ;
 		else
 			e->end->ants = 0;
-		printf("\n");
+		ft_printf("\n");
 		line++;
 	}
-	//printf("line = %d\n", line);
+	// ft_printf("line = %d\n", line);
 	e->end->ants = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/14 15:44:59 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/15 12:27:05 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,6 @@ void	init_env(t_env *e)
 		error("Malloc Error\n");
 }
 
-void	print_neigh(t_env *e)
-{
-	t_grapht	*tmp;
-
-	printf("shortest neigh is :\n");
-	tmp = e->end;
-	while (ft_strcmp(tmp->name, e->start->name))
-	{
-		printf("%s->", tmp->name);
-		tmp = tmp->parent;
-	}
-	printf("%s\n", e->start->name);
-	printf("\ndistance = %d\n", e->end->dist);
-}
-
-t_pack	*pack_search(t_pack *pack, int nb)
-{
-	while (pack)
-	{
-		if (pack->len == nb)
-			return (pack);
-		pack = pack->next;
-	}
-	return (NULL);
-}
-
 int		main(void)
 {
 	t_env	e;
@@ -66,22 +40,7 @@ int		main(void)
 	parsing(&e);
 	edmonds_karp(&e);
 	line = get_bestpack(&e);
-	// beg = e.pack;
-	// // print_pack(&e);
-	// int i = 1;
-	// while (e.pack)
-	// {
-	// //	printf("Pack %d :\n\n", i);
-	// 	printf("pack %d, eval_line = %d\n", i, eval_line(e.pack, e.nb_ants));
-	// 	move_ants(e.pack, &e);
-	// 	//printf ("-------------------------------\n");
-	// 	e.pack = e.pack->next;
-	// 	i++;
-	// }
-	// e.pack = beg;
-	printf("%s\n", e.buff);
+	// write(1, e.buff, e.len_map);
 	print_ants(e.best_pack, &e, line);
-	//printf("%d\n%d\n", e.best_pack->len, line);
-	//printf("shortes line = %d\n", e.line);
 	return (0);
 }

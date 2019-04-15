@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/11 12:16:06 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 12:27:45 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,4 @@ void	parsing(t_env *e)
 	else
 		if (parse_neigh(e, lines, i) == 0)
 			error("ERROR\n");
-	// print_same(e);
 }

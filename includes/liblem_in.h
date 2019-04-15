@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/14 12:03:10 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/15 11:50:22 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ t_pack				*new_pack();
 void				print_pack(t_env *e);
 
 int					eval_line(t_pack *pack, int nb_ants);
+int					eval_line1(t_pack *pack, int nb_ants);
 int					get_bestpack(t_env *e);
 
 void				print_ants(t_pack *pack, t_env *e, int best_line);
