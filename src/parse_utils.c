@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 12:54:53 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 13:21:56 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,12 @@ int		is_neigh(char *line)
 		return (0);
 	if (line[ft_strlen(split[0]) + 1] == '-')
 	{
-		free_tab((void ***)&split);;
 		return (0);
 	}
 	if (is_name_room(split[0]) && is_name_room(split[1]) && split[2] == NULL)
 	{
-		free_tab((void ***)&split);;
+		// free(split);
+		free_tab(&split);
 		return (1);
 	}
 	return (0);

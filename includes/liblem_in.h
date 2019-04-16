@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 12:54:10 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 13:22:42 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void				create_neigh(char **split, t_env *env);
 void				graph_viszero(t_grapht *g);
 void				parsing(t_env *e);
 
-void				free_tab(void ***tab);
+void				free_tab(char ***tab);
 
 int					bfs(t_env *e);
 void				print_stack(t_stack *stack);
@@ -130,4 +130,5 @@ void				remove_path(t_lpath *tab, int nb_ants, t_pack *pack);
 t_lpath				*find_biggest(t_lpath *tab);
 t_lpath				*find_shortest(t_lpath *tab);
 t_neigh				*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants);
+void				neighdel(t_neigh **p);
 #endif

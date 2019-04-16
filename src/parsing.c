@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 12:54:56 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 13:22:31 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ int		parse_rooms(t_env *e, char **lines, int i)
 				e->end = &e->g[j];
 			}
 			e->g[++j].name = NULL;
-			free_tab((void ***)&split);;
+			free_tab(&split);
 			return (i - 1);
 		}
 		else if (lines[i][0] != '#')
 			error(e, "ERROR\n");
-		free_tab((void ***)&split);;
+		free_tab(&split);
 		i++;
 	}
 	return (i - 1);
@@ -114,7 +114,7 @@ int		parse_neigh(t_env *e, char **lines, int i)
 		{
 			split = ft_strsplit(lines[i], '-');
 			create_neigh(split, e);
-			free_tab((void ***)&split);;
+			free_tab(&split);
 			nb_neigh++;
 		}
 		else if (lines[i][0] != '#')

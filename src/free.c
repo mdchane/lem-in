@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/16 12:54:03 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 13:21:42 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,15 @@ void	free_env(t_env *e)
 }
 
 
-void	free_tab(void ***tab)
+void	free_tab(char ***tab)
 {
 	int i;
 
 	i = 0;
 	while ((*tab)[i])
 	{
-		ft_memdel((*tab)[i]);
+		free((*tab)[i]);
 		i++;
-		printf("free\n");
 	}
-	ft_memdel(*tab);
+	free(*tab);
 }

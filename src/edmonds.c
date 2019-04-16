@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 15:55:04 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 13:12:51 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_grapht	*del_stack(t_stack **stack)
 
 	ret = (*stack)->graph;
 	tmp = (*stack)->next;
+	free(*stack);
 	*stack = tmp;
 	return (ret);
 }
