@@ -17,7 +17,7 @@ t_neigh		*neigh_new(t_grapht *g)
 	t_neigh	*p;
 
 	if (!(p = (t_neigh *)malloc(sizeof(t_neigh))))
-		error(NULL, "malloc error\n");
+		error("malloc error\n");
 	if (g)
 		p->adjacent = g;
 	else
@@ -69,7 +69,7 @@ void			create_neigh(char **split, t_env *e)
 	graph_0 = graph_search(e->g, split[0]);
 	graph_1 = graph_search(e->g, split[1]);
 	if (!graph_0 || !graph_1)
-		error(e, "ERROR\n");
+		error("ERROR\n");
 	if (!neigh_doublon(graph_0->neigh, split[1]))
 		neigh_push_back(&graph_0->neigh, neigh_new(graph_1));
 	if (!neigh_doublon(graph_1->neigh, split[0]))

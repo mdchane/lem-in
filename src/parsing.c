@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 13:24:45 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 15:55:36 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		parse_nb_ants(t_env *e, char **lines)
 				return (++i);
 		i++;
 	}
-	error(e, "ERROR\n");
+	error("ERROR\n");
 	return (0);
 }
 
@@ -71,15 +71,13 @@ int		parse_rooms(t_env *e, char **lines, int i)
 		else if (type == START && is_room(split))
 		{
 			grapht_new(&e->g[0], split[0], ft_atoi(split[1]), ft_atoi(split[2]));
-			if (!(e->start = (t_grapht *)malloc(sizeof(t_grapht))))
-				error(e, "Malloc Error\n");
 			e->start = &e->g[0];
 			type = -1;
 		}
 		else if (type == END && is_room(split))
 		{
-			if (!(e->end = (t_grapht *)malloc(sizeof(t_grapht))))
-				error(e, "Malloc Error\n");
+			if (!(e->end = (t_grapht *)malloc(sizeof(t_grapht))))    //
+				error("Malloc Error\n");
 			grapht_new(e->end, split[0], ft_atoi(split[1]), ft_atoi(split[2]));
 			type = -1;
 		}
@@ -88,6 +86,8 @@ int		parse_rooms(t_env *e, char **lines, int i)
 			if (e->end)
 			{
 				grapht_new(&e->g[j], e->end->name, e->end->point.x, e->end->point.y);
+				free(e->end->name);
+				free(e->end);
 				e->end = &e->g[j];
 			}
 			e->g[++j].name = NULL;
@@ -95,7 +95,7 @@ int		parse_rooms(t_env *e, char **lines, int i)
 			return (i - 1);
 		}
 		else if (lines[i][0] != '#')
-			error(e, "ERROR\n");
+			error("ERROR\n");
 		free_tab(&split);
 		i++;
 	}
@@ -118,7 +118,7 @@ int		parse_neigh(t_env *e, char **lines, int i)
 			nb_neigh++;
 		}
 		else if (lines[i][0] != '#')
-			error(e, "ERROR\n");
+			error("ERROR\n");
 		i++;
 	}
 	return (nb_neigh);
@@ -133,9 +133,9 @@ void	parsing(t_env *e)
 	i = parse_nb_ants(e, lines);
 	i += parse_rooms(e, lines, i);
 	if (!e->start || !e->end)
-		error(e, "ERROR\n");
+		error("ERROR\n");
 	else
 		if (parse_neigh(e, lines, i) == 0)
-			error(e, "ERROR\n");
+			error("ERROR\n");
 	free_tab(&lines);
 }

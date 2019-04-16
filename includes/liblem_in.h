@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 13:22:42 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 15:54:25 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct	s_env
 
 void				read_map(t_env *e);
 void				free_env(t_env *e);
-void				error(t_env *e, char *msg);
+void				error(char *msg);
 int					is_zero(char *str);
 int					correct_nbr(char *str);
 int					is_room(char **split);

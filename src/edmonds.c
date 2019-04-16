@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 13:12:51 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 15:54:33 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack		*create_new_stack(t_grapht *g)
 	t_stack		*stack;
 
 	if (!(stack = (t_stack *)malloc(sizeof(t_stack))))
-		error(NULL, "malloc error\n");
+		error("malloc error\n");
 	if (g)
 		stack->graph = g;
 	else

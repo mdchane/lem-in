@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/16 13:21:42 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 15:46:57 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	lpathdel(t_lpath **lp)
 
 void	packdel(t_pack **p)
 {
-	if (!p|| !p)
+	if (!p || !p)
 		return ;
 	if ((*p)->next != NULL)
 		packdel(&(*p)->next);
@@ -75,6 +75,8 @@ void	free_tab(char ***tab)
 	int i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while ((*tab)[i])
 	{
 		free((*tab)[i]);

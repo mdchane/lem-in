@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 13:25:28 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 15:59:23 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		is_neigh(char *line)
 	split = ft_strsplit(line, '-');
 	if (!split)
 		return (0);
-	if (line[ft_strlen(split[0]) + 1] == '-')
+	if (ft_strlen(line) > ft_strlen(split[0]) && line[ft_strlen(split[0]) + 1] == '-')
 	{
 		free_tab(&split);
 		return (0);

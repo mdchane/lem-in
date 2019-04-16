@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pack_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:27:19 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/15 15:57:20 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 15:55:04 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_pack			*new_pack(t_lpath *lp)
 	t_pack *pack;
 
 	if (!(pack = (t_pack *)malloc(sizeof(t_pack))))
-		error(NULL, "malloc error\n");
+		error("malloc error\n");
 	pack->len = len_pack(lp);
 	pack->lpath = lp;
 	pack->next = NULL;
@@ -46,7 +46,7 @@ t_lpath			*new_lpath(t_neigh *p)
 	t_lpath *lpath;
 
 	if (!(lpath = malloc(sizeof(t_lpath))))
-		error(NULL, "malloc error\n");
+		error("malloc error\n");
 	lpath->len = p->len;
 	lpath->path = p;
 	lpath->removed = 0;
