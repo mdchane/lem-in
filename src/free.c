@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/16 15:46:57 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:18:37 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	neighdel(t_neigh **p)
 {
-	if (!p|| !p)
+	if (!p || !p)
 		return ;
 	if ((*p)->next != NULL)
 		neighdel(&(*p)->next);
@@ -38,7 +38,7 @@ void	free_graph(t_env *e)
 
 void	lpathdel(t_lpath **lp)
 {
-	if (!lp|| !lp)
+	if (!lp || !lp)
 		return ;
 	if ((*lp)->next != NULL)
 		lpathdel(&(*lp)->next);
@@ -68,7 +68,6 @@ void	free_env(t_env *e)
 	free_graph(e);
 	packdel(&e->pack);
 }
-
 
 void	free_tab(char ***tab)
 {

@@ -6,53 +6,11 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 15:54:33 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:17:22 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
-
-t_stack		*create_new_stack(t_grapht *g)
-{
-	t_stack		*stack;
-
-	if (!(stack = (t_stack *)malloc(sizeof(t_stack))))
-		error("malloc error\n");
-	if (g)
-		stack->graph = g;
-	else
-		stack->graph = NULL;
-	stack->next = NULL;
-	return (stack);
-}
-
-void		push_back_stack(t_stack **stack, t_grapht *g)
-{
-	t_stack *begin;
-
-	begin = *stack;
-	if (!*stack)
-		(*stack) = create_new_stack(g);
-	else
-	{
-		while ((*stack)->next)
-			*stack = (*stack)->next;
-		(*stack)->next = create_new_stack(g);
-		*stack = begin;
-	}
-}
-
-t_grapht	*del_stack(t_stack **stack)
-{
-	t_grapht	*ret;
-	t_stack		*tmp;
-
-	ret = (*stack)->graph;
-	tmp = (*stack)->next;
-	free(*stack);
-	*stack = tmp;
-	return (ret);
-}
 
 void	graph_viszero(t_grapht *g)
 {
@@ -123,7 +81,8 @@ int		bfs(t_env *e)
 		begp = current->neigh;
 		while (current->neigh)
 		{
-			if (current->neigh->adjacent->visited == 0 && filter(current, current->neigh->adjacent, e, begp))
+			if (current->neigh->adjacent->visited == 0
+				&& filter(current, current->neigh->adjacent, e, begp))
 			{
 				current->neigh->adjacent->visited = 1;
 				push_back_stack(&stack, current->neigh->adjacent);
@@ -134,23 +93,6 @@ int		bfs(t_env *e)
 		current->neigh = begp;
 	}
 	return (e->end->visited);
-}
-
-void	print_flow(t_env *e)
-{
-	t_grapht	*tmp;
-
-	int i = 0;
-	tmp = e->start;
-	while (&tmp[i])
-	{
-		while(tmp[i].neigh)
-		{
-			printf("%s->%s flow = %d", tmp[i].name, tmp[i].neigh->adjacent->name, tmp[i].neigh->flow);
-			tmp[i].neigh = tmp[i].neigh->next;
-		}
-		i++;
-	}
 }
 
 int		edmonds_karp(t_env *e)
@@ -173,8 +115,7 @@ int		edmonds_karp(t_env *e)
 			neigh_search(v, u->name)->flow += neigh_flow;
 			v = v->parent;
 		}
-		// print_graph(e);
-		extract_pack(e); // dernier problee : on ne rentre que deux fois dans le BFS au lieu de 3
+		extract_pack(e);
 	}
 	return (max_flow);
 }

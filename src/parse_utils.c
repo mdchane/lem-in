@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 14:25:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 15:59:23 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:26:00 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		is_name_room(char *room)
 	if (!room)
 		return (0);
 	if (room[0] == 'L' || room[0] == '#' || ft_strchr(room, '-'))
-			return (0);
+		return (0);
 	return (1);
 }
 
@@ -95,11 +95,13 @@ int		is_room(char **split)
 int		is_neigh(char *line)
 {
 	char	**split;
+	size_t	len0;
 
 	split = ft_strsplit(line, '-');
+	len0 = ft_strlen(split[0]);
 	if (!split)
 		return (0);
-	if (ft_strlen(line) > ft_strlen(split[0]) && line[ft_strlen(split[0]) + 1] == '-')
+	if (ft_strlen(line) > len0 && line[len0 + 1] == '-')
 	{
 		free_tab(&split);
 		return (0);

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   neigh_utils.c                                       :+:      :+:    :+:   */
+/*   path_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 17:06:16 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/27 12:47:51 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 16:28:58 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-t_neigh		*neigh_new(t_grapht *g)
+t_neigh			*neigh_new(t_grapht *g)
 {
 	t_neigh	*p;
 
@@ -24,6 +24,7 @@ t_neigh		*neigh_new(t_grapht *g)
 		p->adjacent = NULL;
 	p->flow = 0;
 	p->next = NULL;
+	p->len = 0;
 	return (p);
 }
 
@@ -73,10 +74,10 @@ void			create_neigh(char **split, t_env *e)
 	if (!neigh_doublon(graph_0->neigh, split[1]))
 		neigh_push_back(&graph_0->neigh, neigh_new(graph_1));
 	if (!neigh_doublon(graph_1->neigh, split[0]))
-	 	neigh_push_back(&graph_1->neigh, neigh_new(graph_0));
+		neigh_push_back(&graph_1->neigh, neigh_new(graph_0));
 }
 
-t_neigh	*neigh_search(t_grapht *g, char *name)
+t_neigh			*neigh_search(t_grapht *g, char *name)
 {
 	t_neigh	*begp;
 	t_neigh	*ret;

@@ -6,13 +6,13 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/16 15:54:38 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:18:53 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void	*grapht_new(t_grapht *g, char *name, int x, int y)
+void		*grapht_new(t_grapht *g, char *name, int x, int y)
 {
 	if (name)
 	{

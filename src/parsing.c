@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 15:55:36 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:27:40 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		parse_nb_ants(t_env *e, char **lines)
 	{
 		e->nb_ants = correct_nbr(lines[i]);
 		if (e->nb_ants > 0 || (e->nb_ants == 0 && is_zero(lines[i])))
-				return (++i);
+			return (++i);
 		i++;
 	}
 	error("ERROR\n");
@@ -51,7 +51,7 @@ int		len_tab(char **line)
 int		parse_rooms(t_env *e, char **lines, int i)
 {
 	int			type;
-	char		**split;
+	char		**splt;
 	int			len;
 	int			j;
 
@@ -62,23 +62,23 @@ int		parse_rooms(t_env *e, char **lines, int i)
 	while (lines[i])
 	{
 		type = find_type(lines[i], type);
-		split = ft_strsplit(lines[i], ' ');
-		if (type == -1 && is_room(split))
+		splt = ft_strsplit(lines[i], ' ');
+		if (type == -1 && is_room(splt))
 		{
-			grapht_new(&e->g[j], split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			grapht_new(&e->g[j], splt[0], ft_atoi(splt[1]), ft_atoi(splt[2]));
 			j++;
 		}
-		else if (type == START && is_room(split))
+		else if (type == START && is_room(splt))
 		{
-			grapht_new(&e->g[0], split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			grapht_new(&e->g[0], splt[0], ft_atoi(splt[1]), ft_atoi(splt[2]));
 			e->start = &e->g[0];
 			type = -1;
 		}
-		else if (type == END && is_room(split))
+		else if (type == END && is_room(splt))
 		{
-			if (!(e->end = (t_grapht *)malloc(sizeof(t_grapht))))    //
+			if (!(e->end = (t_grapht *)malloc(sizeof(t_grapht))))
 				error("Malloc Error\n");
-			grapht_new(e->end, split[0], ft_atoi(split[1]), ft_atoi(split[2]));
+			grapht_new(e->end, splt[0], ft_atoi(splt[1]), ft_atoi(splt[2]));
 			type = -1;
 		}
 		else if (is_neigh(lines[i]))
@@ -91,12 +91,12 @@ int		parse_rooms(t_env *e, char **lines, int i)
 				e->end = &e->g[j];
 			}
 			e->g[++j].name = NULL;
-			free_tab(&split);
+			free_tab(&splt);
 			return (i - 1);
 		}
 		else if (lines[i][0] != '#')
 			error("ERROR\n");
-		free_tab(&split);
+		free_tab(&splt);
 		i++;
 	}
 	return (i - 1);
@@ -134,8 +134,7 @@ void	parsing(t_env *e)
 	i += parse_rooms(e, lines, i);
 	if (!e->start || !e->end)
 		error("ERROR\n");
-	else
-		if (parse_neigh(e, lines, i) == 0)
-			error("ERROR\n");
+	if (parse_neigh(e, lines, i) == 0)
+		error("ERROR\n");
 	free_tab(&lines);
 }

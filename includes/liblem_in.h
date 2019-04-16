@@ -6,19 +6,18 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 15:54:25 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:15:56 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBLEM_IN_H
 # define LIBLEM_IN_H
 # include "libft.h"
-#define ROOM 0
+# define ROOM 0
 # define START 1
 # define END 2
 # define START_ROOM 10
 # define END_ROOM 20
-
 
 typedef struct		s_neigh
 {
@@ -28,7 +27,7 @@ typedef struct		s_neigh
 	struct s_neigh	*next;
 }					t_neigh;
 
-typedef struct 		s_point
+typedef struct		s_point
 {
 	int				x;
 	int				y;
@@ -50,7 +49,6 @@ typedef	struct		s_stack
 	t_grapht		*graph;
 	struct s_stack	*next;
 }					t_stack;
-// ------------------------------PACK---------------------------------
 
 typedef struct		s_lpath
 {
@@ -73,7 +71,7 @@ typedef struct		s_ants
 	t_grapht		*room;
 }					t_ants;
 
-typedef struct	s_env
+typedef struct		s_env
 {
 	int				nb_ants;
 	t_grapht		*g;
@@ -107,10 +105,10 @@ void				parsing(t_env *e);
 
 void				free_tab(char ***tab);
 
+t_stack				*create_new_stack(t_grapht *g);
+void				push_back_stack(t_stack **stack, t_grapht *g);
+t_grapht			*del_stack(t_stack **stack);
 int					bfs(t_env *e);
-void				print_stack(t_stack *stack);
-void				print_graph(t_env *e);
-void				print_edmonds(t_grapht end);
 int					edmonds_karp(t_env *e);
 void				extract_pack(t_env *e);
 

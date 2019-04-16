@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/15 15:44:52 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 16:34:48 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
-t_lpath	*find_shortest(t_lpath *tab)
+
+t_lpath		*find_shortest(t_lpath *tab)
 {
 	t_lpath	*beg;
 	t_lpath	*tmp;
 
 	beg = tab;
 	while (tab && tab->removed)
-	{
 		tab = tab->next;
-	}
 	tmp = tab;
 	while (tab)
 	{
@@ -32,7 +31,7 @@ t_lpath	*find_shortest(t_lpath *tab)
 	return (tmp);
 }
 
-t_lpath	*find_biggest(t_lpath *tab)
+t_lpath		*find_biggest(t_lpath *tab)
 {
 	t_lpath	*beg;
 	t_lpath	*tmp;
@@ -55,8 +54,8 @@ t_lpath	*find_biggest(t_lpath *tab)
 
 int			is_free(t_grapht *room, t_ants *ants, int nb_ants)
 {
-	int	i;
-	t_ants tmp;
+	int		i;
+	t_ants	tmp;
 
 	i = 0;
 	while (i < nb_ants)
@@ -69,56 +68,47 @@ int			is_free(t_grapht *room, t_ants *ants, int nb_ants)
 	return (1);
 }
 
-void	remove_path(t_lpath *tab, int st_ants, t_pack *pack)
+void		remove_path(t_lpath *tab, int st_ants, t_pack *pack)
 {
 	t_lpath	*beg;
-	int		count;
 	t_lpath	*max;
 	int		i;
-	int 	w_max;
+	int		w_max;
 	int		wo_max;
 
-	count = 0;
 	beg = tab;
-	while (tab)
-	{
-		if (!tab->removed)
-			count++;
-		tab = tab->next;
-	}
 	tab = beg;
 	i = 0;
-	if (count > 1)
+	while (i < pack->len)
 	{
-		while (i < pack->len)
+		max = find_biggest(tab);
+		w_max = eval_line(pack, st_ants);
+		max->removed = 1;
+		wo_max = eval_line(pack, st_ants);
+		if (w_max <= wo_max || wo_max < 0)
 		{
-			max = find_biggest(tab);
-			w_max = eval_line(pack, st_ants);
-			max->removed = 1;
-			wo_max = eval_line(pack, st_ants);
-			if (w_max <= wo_max || wo_max < 0)
-			{
-				max->removed = 0;
-				break ;
-			}
-			i++;
+			max->removed = 0;
+			break ;
 		}
-		tab = beg;
+		i++;
 	}
+	tab = beg;
 }
 
-t_neigh	*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants)
+t_neigh		*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants)
 {
 	t_lpath	*beg;
 	t_lpath	*big;
 
 	beg = tab;
-	while (tab && (tab->removed || !is_free(tab->path->next->adjacent, ants, nb_ants)))
+	while (tab && (tab->removed
+		|| !is_free(tab->path->next->adjacent, ants, nb_ants)))
 		tab = tab->next;
 	big = tab;
 	while (tab)
 	{
-		if (!tab->removed && is_free(tab->path->next->adjacent, ants, nb_ants) && big->len < tab->len)
+		if (!tab->removed && is_free(tab->path->next->adjacent,
+			ants, nb_ants) && big->len < tab->len)
 			big = tab;
 		tab = tab->next;
 	}
@@ -135,12 +125,14 @@ t_neigh		*find_min_free(t_lpath *tab, t_ants *ants, int nb_ants)
 	t_lpath	*min;
 
 	beg = tab;
-	while (tab && (tab->removed || !is_free(tab->path->next->adjacent, ants, nb_ants)))
+	while (tab && (tab->removed
+		|| !is_free(tab->path->next->adjacent, ants, nb_ants)))
 		tab = tab->next;
 	min = tab;
 	while (tab)
 	{
-		if (!tab->removed && is_free(tab->path->next->adjacent, ants, nb_ants) && min->len > tab->len)
+		if (!tab->removed && is_free(tab->path->next->adjacent, ants, nb_ants)
+			&& min->len > tab->len)
 			min = tab;
 		tab = tab->next;
 	}
@@ -167,7 +159,7 @@ t_neigh		*find_free(t_lpath *tab, t_ants *ants, int nb_ants)
 			while (i < nb_ants)
 			{
 				if (ants[i].room == tab->path->next->adjacent)
-					break;
+					break ;
 				i++;
 			}
 			if (i == nb_ants)
@@ -179,10 +171,10 @@ t_neigh		*find_free(t_lpath *tab, t_ants *ants, int nb_ants)
 	return (NULL);
 }
 
-void	print_ants(t_pack *pack, t_env *e)
+void		print_ants(t_pack *pack, t_env *e)
 {
 	int		i;
-	int 	line;
+	int		line;
 	t_ants	ants[e->nb_ants];
 
 	e->start->ants = e->nb_ants;
