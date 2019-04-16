@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 09:12:27 by mdchane           #+#    #+#             */
-/*   Updated: 2019/03/20 11:38:30 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 12:53:25 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ char		**ft_strsplit(char const *s, char c)
 	if (!(tab = (char **)malloc(sizeof(char *) * (cw + 1))))
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (j < cw)
+	j = -1;
+	while (++j < cw)
 	{
 		i = ft_escape(s, i, c);
 		if (!(tab[j] = (char *)malloc(sizeof(char) * (ft_len(s + i, c) + 1))))
@@ -88,7 +88,6 @@ char		**ft_strsplit(char const *s, char c)
 		while (s[i] != c && s[i])
 			tab[j][k++] = s[i++];
 		tab[j][k] = '\0';
-		j++;
 	}
 	tab[j] = NULL;
 	return (tab);

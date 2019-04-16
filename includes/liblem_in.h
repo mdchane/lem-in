@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 13:32:12 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 12:54:10 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ typedef struct	s_env
 	t_grapht		*g;
 	t_grapht		*start;
 	t_grapht		*end;
-	int				line;
 	t_pack			*best_pack;
 	char			*buff;
 	int				len_map;
+	int				len_g;
 	t_pack			*pack;
 }					t_env;
 
 void				read_map(t_env *e);
-
-void				error(char *msg);
+void				free_env(t_env *e);
+void				error(t_env *e, char *msg);
 int					is_zero(char *str);
 int					correct_nbr(char *str);
 int					is_room(char **split);
@@ -105,7 +105,7 @@ void				create_neigh(char **split, t_env *env);
 void				graph_viszero(t_grapht *g);
 void				parsing(t_env *e);
 
-void				free_tab(char **tab);
+void				free_tab(void ***tab);
 
 int					bfs(t_env *e);
 void				print_stack(t_stack *stack);
@@ -122,9 +122,9 @@ void				print_pack(t_env *e);
 
 int					eval_line(t_pack *pack, int nb_ants);
 int					eval_line1(t_pack *pack, int nb_ants);
-int					get_bestpack(t_env *e);
+void				get_bestpack(t_env *e);
 
-void				print_ants(t_pack *pack, t_env *e, int best_line);
+void				print_ants(t_pack *pack, t_env *e);
 t_neigh				*find_free(t_lpath *tab, t_ants *ants, int nb_ants);
 void				remove_path(t_lpath *tab, int nb_ants, t_pack *pack);
 t_lpath				*find_biggest(t_lpath *tab);

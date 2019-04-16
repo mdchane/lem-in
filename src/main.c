@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 15:12:26 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/16 11:36:14 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void	error(char *msg)
+void	error(t_env *e, char *msg)
 {
+	free_env(e);
 	ft_putstr_fd(msg, 2);
 	exit(EXIT_FAILURE);
 }
@@ -25,15 +26,16 @@ void	init_env(t_env *e)
 	e->g = NULL;
 	e->nb_ants = 0;
 	e->pack = NULL;
-	e->line = 1000000;
 	if (!(e->buff = ft_strdup("")))
-		error("Malloc Error\n");
+		error(e, "Malloc Error\n");
 }
 
 void	print_start_end(t_env *e)
 {
 	int i;
 
+	write(1, e->buff, e->len_map);
+	printf("\n");
 	i = 0;
 	while (i < e->nb_ants)
 	{
@@ -48,26 +50,22 @@ void	print_start_end(t_env *e)
 int		main(void)
 {
 	t_env	e;
-	int 	line;
 
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
 	if (neigh_search(e.start, e.end->name))
-	{
-		write(1, e.buff, e.len_map);
-		printf("\n");
 		print_start_end(&e);
-	}
 	else
 	{
 		edmonds_karp(&e);
 		if (!e.pack)
-			error("ERROR\n");
-		line = get_bestpack(&e);
+			error(&e, "ERROR\n");
+		get_bestpack(&e);
 		write(1, e.buff, e.len_map);
 		printf("\n");
-		print_ants(e.best_pack, &e, line);
+		print_ants(e.best_pack, &e);
 	}
+	free_env(&e);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/10 12:27:41 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 15:55:04 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_stack		*create_new_stack(t_grapht *g)
 	t_stack		*stack;
 
 	if (!(stack = (t_stack *)malloc(sizeof(t_stack))))
-		error("malloc error\n");
+		error(NULL, "malloc error\n");
 	if (g)
 		stack->graph = g;
 	else

@@ -6,7 +6,7 @@
 #    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/04/15 12:56:19 by mdchane          ###   ########.fr        #
+#    Updated: 2019/04/15 15:50:04 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-all: $(NAME)
+all: $(NAME) $(HEADER)
 
 $(NAME): $(OBJ_PATH) $(OBJ) $(HEADER)
 	@make -j -C libft/

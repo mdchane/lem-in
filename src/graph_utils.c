@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 14:58:26 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/11 12:16:37 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/16 11:18:18 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*grapht_new(t_grapht *g, char *name, int x, int y)
 	if (name)
 	{
 		if (!(g->name = ft_strdup(name)))
-			error("malloc error\n");
+			error(NULL, "malloc error\n");
 	}
 	else
 		g->name = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/15 15:04:33 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/15 15:44:52 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,13 +179,12 @@ t_neigh		*find_free(t_lpath *tab, t_ants *ants, int nb_ants)
 	return (NULL);
 }
 
-void	print_ants(t_pack *pack, t_env *e, int best_line)
+void	print_ants(t_pack *pack, t_env *e)
 {
 	int		i;
 	int 	line;
 	t_ants	ants[e->nb_ants];
 
-	best_line = 0;
 	e->start->ants = e->nb_ants;
 	e->end->ants = 0;
 	i = -1;

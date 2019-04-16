@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:29:30 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/20 11:13:14 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/15 15:58:03 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_room		*room_new(char *name, int x, int y, int col)
 	t_room	*room;
 
 	if (!(room = (t_room *)malloc(sizeof(t_room))))
-		error("malloc error\n");
+		error(NULL, "malloc error\n");
 	if (!(room->name = ft_strdup(name)))
-		error("malloc error\n");
+		error(NULL, "malloc error\n");
 	room->x = x;
 	room->y = y;
 	room->col = col;

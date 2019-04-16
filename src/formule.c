@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 15:21:51 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/15 11:56:25 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/15 15:45:59 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@ int		eval_line(t_pack *pack, int nb_ants)
 	return (res);
 }
 
-int		get_bestpack(t_env *e)
+void	get_bestpack(t_env *e)
 {
 	t_pack	*beg;
 	int		best;
-	int		best_line;
 	int		tmp;
 
 	beg = e->pack;
@@ -55,10 +54,8 @@ int		get_bestpack(t_env *e)
 		{
 			best = tmp;
 			e->best_pack = e->pack;
-			best_line = tmp;
 		}
 		e->pack = e->pack->next;
 	}
 	e->pack = beg;
-	return (best_line);
 }
