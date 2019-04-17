@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 11:17:39 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 11:31:04 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void				neigh_push_back(t_neigh **head, t_neigh *new);
 t_neigh				*neigh_search(t_grapht *g, char *name);
 int					neigh_doublon(t_neigh *neigh, char *name);
 void				create_neigh(char **split, t_env *env);
-void				graph_viszero(t_grapht *g);
+void				graph_viszero(t_grapht *g, t_stack **stk);
 void				parsing(t_env *e);
 
 void				free_env(t_env *e);
