@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 15:08:04 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/18 14:52:25 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 11:50:07 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strclen(char *keep)
 {
-	size_t  i;
+	size_t	i;
 
 	i = 0;
 	while (keep[i] != '\n' && keep[i] != '\0')
