@@ -6,47 +6,11 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 16:27:40 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 11:09:19 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
-
-int		parse_nb_ants(t_env *e, char **lines)
-{
-	int		i;
-
-	i = 0;
-	while (lines[i])
-	{
-		e->nb_ants = correct_nbr(lines[i]);
-		if (e->nb_ants > 0 || (e->nb_ants == 0 && is_zero(lines[i])))
-			return (++i);
-		i++;
-	}
-	error("ERROR\n");
-	return (0);
-}
-
-int		find_type(char *line, int type)
-{
-	if (ft_strcmp(line, "##start") == 0)
-		return (START);
-	else if (ft_strcmp(line, "##end") == 0)
-		return (END);
-	else
-		return (type);
-}
-
-int		len_tab(char **line)
-{
-	int		len;
-
-	len = 0;
-	while (line[len])
-		len++;
-	return (len);
-}
 
 int		parse_rooms(t_env *e, char **lines, int i)
 {

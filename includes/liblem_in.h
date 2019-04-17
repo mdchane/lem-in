@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/16 16:15:56 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 11:11:52 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,15 @@ typedef struct		s_env
 }					t_env;
 
 void				read_map(t_env *e);
-void				free_env(t_env *e);
 void				error(char *msg);
 int					is_zero(char *str);
 int					correct_nbr(char *str);
 int					is_room(char **split);
 int					is_neigh(char *line);
+int					parse_nb_ants(t_env *e, char **lines);
+int					find_type(char *line, int type);
+int					len_tab(char **line);
+int					is_name_room(char *room);
 
 void				*grapht_new(t_grapht *g, char *name, int x, int y);
 t_grapht			*graph_search(t_grapht *g, char *name);
@@ -103,6 +106,11 @@ void				create_neigh(char **split, t_env *env);
 void				graph_viszero(t_grapht *g);
 void				parsing(t_env *e);
 
+void				free_env(t_env *e);
+void				free_graph(t_env *e);
+void				neighdel(t_neigh **p);
+void				lpathdel(t_lpath **lp);
+void				packdel(t_pack **p);
 void				free_tab(char ***tab);
 
 t_stack				*create_new_stack(t_grapht *g);
@@ -123,10 +131,9 @@ int					eval_line1(t_pack *pack, int nb_ants);
 void				get_bestpack(t_env *e);
 
 void				print_ants(t_pack *pack, t_env *e);
-t_neigh				*find_free(t_lpath *tab, t_ants *ants, int nb_ants);
 void				remove_path(t_lpath *tab, int nb_ants, t_pack *pack);
 t_lpath				*find_biggest(t_lpath *tab);
-t_lpath				*find_shortest(t_lpath *tab);
+int					is_free(t_grapht *room, t_ants *ants, int nb_ants);
 t_neigh				*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants);
 void				neighdel(t_neigh **p);
 #endif
