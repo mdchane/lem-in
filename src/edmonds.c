@@ -6,13 +6,13 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 11:20:31 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:16:19 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void	graph_viszero(t_grapht *g, t_stack **stk)
+static void	graph_viszero(t_grapht *g, t_stack **stk)
 {
 	int		i;
 
@@ -25,7 +25,7 @@ void	graph_viszero(t_grapht *g, t_stack **stk)
 	}
 }
 
-int		isflowing(t_grapht *current, t_env *e)
+static int	isflowing(t_grapht *current, t_env *e)
 {
 	int i;
 
@@ -41,7 +41,7 @@ int		isflowing(t_grapht *current, t_env *e)
 	return (0);
 }
 
-int		filter(t_grapht *current, t_grapht *neigh, t_env *e, t_neigh *begp)
+static int	filter(t_grapht *current, t_grapht *neigh, t_env *e, t_neigh *begp)
 {
 	t_grapht	*parent;
 	t_neigh		*begf;
@@ -66,7 +66,7 @@ int		filter(t_grapht *current, t_grapht *neigh, t_env *e, t_neigh *begp)
 	return (1);
 }
 
-int		bfs(t_env *e)
+static int	bfs(t_env *e)
 {
 	t_stack		*stack;
 	t_grapht	*current;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 10:56:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 10:45:58 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 12:13:51 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ void		print_ants(t_pack *pack, t_env *e)
 		ft_printf("\n");
 		line++;
 	}
-	ft_printf("line = %d\n", line);
+	// ft_printf("line = %d\n", line);
 	e->end->ants = 0;
 }

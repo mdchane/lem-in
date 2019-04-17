@@ -6,13 +6,13 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:28:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 11:59:17 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:23:05 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void		init_path(t_env *e, t_neigh **path, t_grapht **cur, t_grapht **beg)
+static void		init_path(t_env *e, t_neigh **path, t_grapht **cur, t_grapht **beg)
 {
 	*path = NULL;
 	*beg = e->start;
@@ -20,7 +20,7 @@ void		init_path(t_env *e, t_neigh **path, t_grapht **cur, t_grapht **beg)
 	(*cur)->visited = 2;
 }
 
-void		addpath(t_grapht **cur, t_neigh **begp, t_neigh **path)
+static void		addpath(t_grapht **cur, t_neigh **begp, t_neigh **path)
 {
 	t_grapht	*tmp;
 
@@ -32,7 +32,7 @@ void		addpath(t_grapht **cur, t_neigh **begp, t_neigh **path)
 	(*path)->len++;
 }
 
-t_neigh		*extract_path(t_env *e)
+static t_neigh	*extract_path(t_env *e)
 {
 	t_grapht	*cur;
 	t_neigh		*path;
@@ -60,7 +60,7 @@ t_neigh		*extract_path(t_env *e)
 	return (path);
 }
 
-t_lpath		*extract_lpath(t_env *e)
+static t_lpath		*extract_lpath(t_env *e)
 {
 	t_lpath *lpath;
 	t_neigh *newpath;

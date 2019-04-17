@@ -6,13 +6,13 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 12:04:34 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:21:13 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-void	neighdel(t_neigh **p)
+void		neighdel(t_neigh **p)
 {
 	if (!p || !(*p))
 		return ;
@@ -22,7 +22,7 @@ void	neighdel(t_neigh **p)
 		free(*p);
 }
 
-void	free_graph(t_env *e)
+static void	free_graph(t_env *e)
 {
 	int		i;
 
@@ -36,7 +36,7 @@ void	free_graph(t_env *e)
 	free(e->g);
 }
 
-void	lpathdel(t_lpath **lp)
+static void	lpathdel(t_lpath **lp)
 {
 	if (!lp || !(*lp))
 		return ;
@@ -49,7 +49,7 @@ void	lpathdel(t_lpath **lp)
 	}
 }
 
-void	packdel(t_pack **p)
+static void	packdel(t_pack **p)
 {
 	if (!p || !(*p))
 		return ;
@@ -62,17 +62,10 @@ void	packdel(t_pack **p)
 	}
 }
 
-void	free_tab(char ***tab)
+void	free_env(t_env *e)
 {
-	int i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while ((*tab)[i])
-	{
-		free((*tab)[i]);
-		i++;
-	}
-	free(*tab);
+	ft_strdel(&e->buff);
+	free_graph(e);
+	packdel(&e->pack);
 }
+

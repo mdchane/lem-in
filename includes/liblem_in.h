@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 11:46:54 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:21:41 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,20 +104,14 @@ void				neigh_push_back(t_neigh **head, t_neigh *new);
 t_neigh				*neigh_search(t_grapht *g, char *name);
 int					neigh_doublon(t_neigh *neigh, char *name);
 void				create_neigh(char **split, t_env *env);
-void				graph_viszero(t_grapht *g, t_stack **stk);
 void				parsing(t_env *e);
 
 void				free_env(t_env *e);
-void				free_graph(t_env *e);
-void				neighdel(t_neigh **p);
-void				lpathdel(t_lpath **lp);
-void				packdel(t_pack **p);
 void				free_tab(char ***tab);
 
 t_stack				*create_new_stack(t_grapht *g);
 void				push_back_stack(t_stack **stack, t_grapht *g);
 t_grapht			*del_stack(t_stack **stack);
-int					bfs(t_env *e);
 int					edmonds_karp(t_env *e);
 void				extract_pack(t_env *e);
 

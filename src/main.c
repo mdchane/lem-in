@@ -3,26 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 10:49:30 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 12:20:15 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
+void		free_tab(char ***tab)
+{
+	int i;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while ((*tab)[i])
+	{
+		free((*tab)[i]);
+		i++;
+	}
+	free(*tab);
+}
+
 void	error(char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	exit(EXIT_FAILURE);
-}
-
-void	free_env(t_env *e)
-{
-	ft_strdel(&e->buff);
-	free_graph(e);
-	packdel(&e->pack);
 }
 
 void	init_env(t_env *e)
