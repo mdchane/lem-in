@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   create_ants.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 17:08:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 17:24:19 by sarobber         ###   ########.fr       */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   create_ants.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: sacha <sacha@student.le-101.fr>            +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/04/17 17:08:08 by sarobber     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/17 22:51:12 by sacha       ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
 
 #include "visu.h"
 
@@ -19,11 +19,12 @@ t_ants	*create_ants(t_env *e)
 	int i;
 
 	i = 0;
-	if (!(ants = malloc(sizeof(t_ants) * e->nb_ants)))
+	if (!(ants = malloc(sizeof(t_ants) * e->nb_ants + 1)))
 		return (NULL);
 	while (i < e->nb_ants)
 	{
-		ants[i].room = e->start; 
+		ants[i].room = e->start;
+		printf("ants[%d]->room = %s\n", i, ants[i].room->name);
 		i++;
 	}
 	return (ants);
