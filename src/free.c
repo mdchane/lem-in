@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 10:50:58 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 12:04:34 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	neighdel(t_neigh **p)
 {
-	if (!p || !p)
+	if (!p || !(*p))
 		return ;
 	if ((*p)->next != NULL)
 		neighdel(&(*p)->next);
@@ -38,7 +38,7 @@ void	free_graph(t_env *e)
 
 void	lpathdel(t_lpath **lp)
 {
-	if (!lp || !lp)
+	if (!lp || !(*lp))
 		return ;
 	if ((*lp)->next != NULL)
 		lpathdel(&(*lp)->next);
@@ -51,7 +51,7 @@ void	lpathdel(t_lpath **lp)
 
 void	packdel(t_pack **p)
 {
-	if (!p || !p)
+	if (!p || !(*p))
 		return ;
 	if ((*p)->next != NULL)
 		packdel(&(*p)->next);
