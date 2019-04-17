@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 12:21:41 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:14:38 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct		s_env
 	int				len_map;
 	int				len_g;
 	t_pack			*pack;
+	int				opt[2];
 }					t_env;
 
 void				read_map(t_env *e);
@@ -131,4 +132,7 @@ t_lpath				*find_biggest(t_lpath *tab);
 int					is_free(t_grapht *room, t_ants *ants, int nb_ants);
 t_neigh				*find_big_free(t_lpath *tab, t_ants *ants, int nb_ants);
 void				neighdel(t_neigh **p);
+void				init_opt(t_env *e, int ac, char **av);
+void				print_bpack(t_pack *pack);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 12:51:08 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 15:18:23 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,20 @@ void		print_start_end(t_env *e)
 		i++;
 	}
 	printf("\n");
+	if (e->opt[0])
+		ft_printf("\nNumber of lines = 1\n");
+	if (e->opt[1])
+	{
+		ft_printf("\n----------------- BEST PACK ------------------\n");
+		ft_printf("start->end\n");
+	}
 }
 
-int			main(void)
+int			main(int ac, char **av)
 {
 	t_env	e;
 
+	init_opt(&e, ac, av);
 	init_env(&e);
 	read_map(&e);
 	parsing(&e);
@@ -79,6 +87,8 @@ int			main(void)
 		write(1, e.buff, e.len_map);
 		printf("\n");
 		print_ants(e.best_pack, &e);
+		if (e.opt[1])
+			print_bpack(e.best_pack);
 	}
 	free_env(&e);
 	exit(EXIT_SUCCESS);
