@@ -6,11 +6,31 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:28:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 11:46:46 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 11:59:17 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
+
+void		init_path(t_env *e, t_neigh **path, t_grapht **cur, t_grapht **beg)
+{
+	*path = NULL;
+	*beg = e->start;
+	*cur = *beg;
+	(*cur)->visited = 2;
+}
+
+void		addpath(t_grapht **cur, t_neigh **begp, t_neigh **path)
+{
+	t_grapht	*tmp;
+
+	(*cur)->neigh->adjacent->visited = 2;
+	neigh_push_back(path, neigh_new((*cur)->neigh->adjacent));
+	tmp = (*cur)->neigh->adjacent;
+	(*cur)->neigh = *begp;
+	*cur = tmp;
+	(*path)->len++;
+}
 
 t_neigh		*extract_path(t_env *e)
 {
@@ -18,12 +38,8 @@ t_neigh		*extract_path(t_env *e)
 	t_neigh		*path;
 	t_neigh		*begp;
 	t_grapht	*beg;
-	t_grapht	*tmp;
 
-	path = NULL;
-	beg = e->start;
-	cur = beg;
-	cur->visited = 2;
+	init_path(e, &path, &cur, &beg);
 	neigh_push_back(&path, neigh_new(cur));
 	while (cur != e->end)
 	{
@@ -38,12 +54,7 @@ t_neigh		*extract_path(t_env *e)
 			neighdel(&path);
 			return (NULL);
 		}
-		cur->neigh->adjacent->visited = 2;
-		neigh_push_back(&path, neigh_new(cur->neigh->adjacent));
-		tmp = cur->neigh->adjacent;
-		cur->neigh = begp;
-		cur = tmp;
-		path->len++;
+		addpath(&cur, &begp, &path);
 	}
 	e->start = beg;
 	return (path);
