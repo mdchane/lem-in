@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/27 15:32:04 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:57:25 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ typedef struct		s_room
 	struct s_room	*next;
 }					t_room;
 
+typedef struct		s_ants
+{
+	t_room			*room;
+}					t_ants;
+
 typedef struct 		s_point
 {
 	int				x;
@@ -43,19 +48,20 @@ typedef struct 		s_point_f
 
 typedef struct		s_env
 {
-	int				ants;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				nb_ants;
+	int				*data;
+	void			*img_ptr;
+	char			**path;
+	t_ants			*ants;
 	t_room			*room;
 	t_room			*start;
 	t_room			*end;
-	float			xmax;
-	float			ymax;
+	float			xmax; //
+	float			ymax; //
 	t_point_f 		scale;
-	int				*data;
-	void			*img_ptr;
-	int				map;
+	int				step;
 }					t_env;
 
 char		*parse_room(t_env *e);
@@ -64,6 +70,7 @@ int			is_name_room(char *room);
 int			is_room(char **split);
 int			is_neigh(char *line);
 t_point		create_point(int x, int y);
+void		create_path(t_env *e);
 //
 void		room_push_back(t_room **head, t_room *new);
 void		room_push_front(t_room **head, t_room *new);
@@ -78,5 +85,7 @@ void		free_tab(char **tab);
 void		error(char *msg);
 
 void		find_random_coord(t_env *e);
+void	draw_ants(t_env *e, char *line);
+t_ants		*create_ants(t_env *e);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/27 15:32:25 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:32:54 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	parse_neigh(char *line, t_env *e)
 	{
 		if (is_neigh(line))
 			find_room(ft_strsplit(line, '-'), e);
+		else if (line[0] != '#')
+			break ;
 	}
 }
 
@@ -52,8 +54,8 @@ char	*parse_room(t_env *e)
 	type = -1;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (e->ants == -1)
-			e->ants = ft_atoi(line);
+		if (e->nb_ants == -1)
+			e->nb_ants = ft_atoi(line);
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
 		if (type == -1 && is_room(split))

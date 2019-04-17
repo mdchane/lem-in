@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_v.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/03/27 15:32:21 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 18:07:23 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +41,32 @@ void	error(char *msg)
 
 int		ft_key_hook(int keycode, t_env *e)
 {
-	char *line;
+	int i;
+	int fin;
 
+	i = 0;
+	fin = 0;
 	if (keycode == 53)
 	{
 		mlx_destroy_window(e->mlx_ptr, e->win_ptr);
 		exit(EXIT_FAILURE);
 	}
-	if ((keycode == 49) && (e->map == 0))
+	if ((keycode == 36) && (e->step == 0))
 	{
-		e->map = 1;
-		line = parse_room(e);
-		get_scale(e);
-		draw_room(e);
-		parse_neigh(line, e);
 		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
-		mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0XFFFFFF, "Nombre de fourmils restante :");
-		mlx_string_put(e->mlx_ptr, e->win_ptr, 325, 20, 0XFFFFFF, ft_itoa(e->ants));
+		create_path(e);
+	}
+	if (keycode == 49 && e->step != -1)
+	{
+		if (e->path[e->step])
+			draw_ants(e, e->path[e->step]);
+		else
+			e->step = -1;
+		e->step++;
 	}
 	return (1);
 }
+
 
 int		main(void)
 {
@@ -68,15 +74,21 @@ int		main(void)
     int		bpp;
     int		s_l;
     int		endian;
+	char 	*line;
+
 	e.nb_ants = -1;
-	e.map = 0;
+	e.step = 0;
 	e.xmax = 0;
 	e.ymax = 0;
-	e.ants  = -1;
 	e.img_ptr = mlx_new_image(e.mlx_ptr, WIDTH, LENGTH);
 	e.data = (int *)mlx_get_data_addr(e.img_ptr, &(bpp), &(s_l), &(endian));
 	e.mlx_ptr = mlx_init();
 	e.win_ptr = mlx_new_window(e.mlx_ptr, WIDTH, LENGTH, "Visualisateur Lem-in");
+	line = parse_room(&e);
+	get_scale(&e);
+	draw_room(&e);
+	parse_neigh(line, &e);
+	e.ants = create_ants(&e);
 	mlx_hook(e.win_ptr, 2, 0, ft_key_hook, &e);
 	mlx_loop(e.mlx_ptr);
 	return (0);
