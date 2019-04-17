@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:08:36 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 11:09:10 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/17 11:19:52 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		is_neigh(char *line)
 	free_tab(&split);
 	return (0);
 }
-
 
 int		parse_nb_ants(t_env *e, char **lines)
 {
@@ -71,4 +70,3 @@ int		len_tab(char **line)
 		len++;
 	return (len);
 }
-
