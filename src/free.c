@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 12:21:13 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:50:21 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,9 @@ static void	packdel(t_pack **p)
 	}
 }
 
-void	free_env(t_env *e)
+void		free_env(t_env *e)
 {
 	ft_strdel(&e->buff);
 	free_graph(e);
 	packdel(&e->pack);
 }
-

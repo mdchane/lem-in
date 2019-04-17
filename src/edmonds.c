@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 12:16:19 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:50:41 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static int	bfs(t_env *e)
 	return (e->end->visited);
 }
 
-int		edmonds_karp(t_env *e)
+int			edmonds_karp(t_env *e)
 {
 	int			max_flow;
 	int			neigh_flow;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 12:20:15 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:51:08 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void		free_tab(char ***tab)
 	free(*tab);
 }
 
-void	error(char *msg)
+void		error(char *msg)
 {
 	ft_putstr_fd(msg, 2);
 	exit(EXIT_FAILURE);
 }
 
-void	init_env(t_env *e)
+void		init_env(t_env *e)
 {
 	e->start = NULL;
 	e->end = NULL;
@@ -44,7 +44,7 @@ void	init_env(t_env *e)
 		error("Malloc Error\n");
 }
 
-void	print_start_end(t_env *e)
+void		print_start_end(t_env *e)
 {
 	int i;
 
@@ -61,7 +61,7 @@ void	print_start_end(t_env *e)
 	printf("\n");
 }
 
-int		main(void)
+int			main(void)
 {
 	t_env	e;
 

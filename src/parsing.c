@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 12:24:18 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/17 12:52:08 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static int		end_room(t_env *e, int j, char ***splt, int i)
 	return (i - 1);
 }
 
-static void	start_room(t_env *e, char **splt, int *type)
+static void		start_room(t_env *e, char **splt, int *type)
 {
 	grapht_new(&e->g[0], splt[0], ft_atoi(splt[1]), ft_atoi(splt[2]));
 	e->start = &e->g[0];
 	*type = -1;
 }
 
-static void	set_endroom(t_env *e, char **splt, int *type)
+static void		set_endroom(t_env *e, char **splt, int *type)
 {
 	if (!(e->end = (t_grapht *)malloc(sizeof(t_grapht))))
 		error("Malloc Error\n");
@@ -69,7 +69,7 @@ static int		parse_rooms(t_env *e, char **lines, int i)
 	return (i - 1);
 }
 
-void	parsing(t_env *e)
+void			parsing(t_env *e)
 {
 	char	**lines;
 	int		i;
