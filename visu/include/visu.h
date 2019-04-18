@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   visu.h                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: sacha <sacha@student.le-101.fr>            +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/19 11:49:03 by sarobber     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 23:24:56 by sacha       ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visu.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
+/*   Updated: 2019/04/18 14:50:50 by sarobber         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
+
 #ifndef VISU_H
 # define VISU_H
 # include "libft.h"
@@ -22,6 +22,7 @@
 
 typedef struct		s_room
 {
+	int				ants;
 	char			*name;
 	int				x;
 	int				y;
@@ -31,6 +32,7 @@ typedef struct		s_room
 
 typedef struct		s_ants
 {
+	t_room			*parent;
 	t_room			*room;
 }					t_ants;
 
@@ -83,9 +85,13 @@ void 		ligne(int x1, int y1, int x2, int y2, int coul, t_env *e);
 //
 void		free_tab(char **tab);
 void		error(char *msg);
+void			drawline(t_point point1, t_point point2, t_env *e);
+void	print_big_point(int x, int y, int coul, t_env *e);
 
 void		find_random_coord(t_env *e);
+t_point		new_point(int x, int y);
 void	draw_ants(t_env *e, char *line);
 t_ants		*create_ants(t_env *e);
+void		draw_square(int cx, int cy, int rayon, int coul, t_env *e);
 
 #endif

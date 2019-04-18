@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:29:30 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 16:40:58 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/18 12:23:13 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_room		*room_new(char *name, int x, int y, int col)
 		error("malloc error\n");
 	room->x = x;
 	room->y = y;
+	room->ants = 0;
 	room->col = col;
 	room->next = NULL;
 	return (room);

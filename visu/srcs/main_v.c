@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 18:07:23 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/18 15:50:43 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ void	error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+void	count_ants(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (i < e->nb_ants)
+	{
+		if (e->ants[i].room == e->end)
+			i++;
+	}
+}
+
 int		ft_key_hook(int keycode, t_env *e)
 {
 	int i;
@@ -51,22 +63,34 @@ int		ft_key_hook(int keycode, t_env *e)
 		mlx_destroy_window(e->mlx_ptr, e->win_ptr);
 		exit(EXIT_FAILURE);
 	}
-	if ((keycode == 36) && (e->step == 0))
-	{
-		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
-		create_path(e);
-	}
 	if (keycode == 49 && e->step != -1)
 	{
 		if (e->path[e->step])
 			draw_ants(e, e->path[e->step]);
-		else
-			e->step = -1;
+		else if (e->end->ants >= e->nb_ants)
+		{
+			return (0);
+		}
+		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 		e->step++;
 	}
 	return (1);
 }
 
+void	get_coord(t_env *e)
+{
+	t_room *beg;
+
+	beg = e->room;
+	e->start->ants = e->nb_ants;
+	while (e->room)
+	{
+		e->room->x = (int)(e->room->x * e->scale.x + 100);
+		e->room->y = (int)(e->room->y * e->scale.y + 100);
+		e->room = e->room->next;
+	}
+	e->room = beg;
+}
 
 int		main(void)
 {
@@ -86,8 +110,11 @@ int		main(void)
 	e.win_ptr = mlx_new_window(e.mlx_ptr, WIDTH, LENGTH, "Visualisateur Lem-in");
 	line = parse_room(&e);
 	get_scale(&e);
-	draw_room(&e);
+	get_coord(&e);
 	parse_neigh(line, &e);
+	draw_room(&e);
+	mlx_put_image_to_window(e.mlx_ptr, e.win_ptr, e.img_ptr, 0, 0);
+	create_path(&e);
 	e.ants = create_ants(&e);
 	mlx_hook(e.win_ptr, 2, 0, ft_key_hook, &e);
 	mlx_loop(e.mlx_ptr);

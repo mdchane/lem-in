@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 17:32:54 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/18 15:47:04 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ void		find_room(char **split, t_env *e)
 {
 	t_room	*room_a;
 	t_room	*room_b;
+	int 	midx;
+	int 	midy;
+
 	room_a = room_search(e->room, split[0]);
 	room_b = room_search(e->room, split[1]);
-	ligne(room_a->x * e->scale.x + 100, room_a->y * e->scale.y + 100, room_b->x * e->scale.x + 100, room_b->y * e->scale.y + 100, 0XFFFFFF, e);
-//	drawline(create_point(room_a->x e->scale, room_a->y e->scale) , create_point(room_b->x e->scale, room_b->y e->scale), e);
+
+	midx = (room_a->x + room_b->x) / 2;
+	midy = (room_a->y + room_b->y) / 2;
+	ligne(room_a->x, room_a->y, room_b->x, room_b->y, 0XFFFFFF, e);
+	draw_square(midx, midy, 5, 0XFF0000, e);
 }
 
 void	parse_neigh(char *line, t_env *e)
@@ -59,7 +65,7 @@ char	*parse_room(t_env *e)
 		type = find_type(line, type);
 		split = ft_strsplit(line, ' ');
 		if (type == -1 && is_room(split))
-			room_push_front(&e->room, room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0XFFFF00));
+			room_push_front(&e->room, room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0X000080));
 		else if (type == START && is_room(split))
 		{
 			e->start = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0X00FF00);
