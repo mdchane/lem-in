@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 14:12:31 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:43:58 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ void	draw_ants(t_env *e, char *line)
 		draw_square(b->x, b->y, 20, 0X00BFFF, e);
 		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 		del_ants(e);
-
-		if (e->ants[ft_atoi(split[0] + 1) - 1].room == e->end)
-			e->end->ants++;
 		i++;
 	}
 	if (e->end->ants == e->nb_ants)

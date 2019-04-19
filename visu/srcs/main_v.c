@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 14:11:48 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:42:38 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	draw_red(t_env *e)
 	int i;
 
 	i = 0;
-	write (1, "0", 1);
 	while (i < e->nb_ants)
 	{
 		if (e->ants[i].parent)
@@ -67,6 +66,19 @@ void	draw_red(t_env *e)
 			y = (e->ants[i].parent->y + e->ants[i].room->y) / 2;
 			draw_square(x, y, 5, 0XFF0000, e);
 		}
+		i++;
+	}
+}
+
+void	count_end_ants(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (i < e->nb_ants)
+	{
+		if (e->ants[i].room == e->end)
+			e->end->ants++;
 		i++;
 	}
 }
@@ -85,10 +97,13 @@ int		ft_key_hook(int keycode, t_env *e)
 	}
 	if (keycode == 49 && e->step != -1)
 	{
+		draw_red(e);
 		if (e->path[e->step])
 			draw_ants(e, e->path[e->step]);
-		else if (e->end->ants >= e->nb_ants)
+		if (e->end->ants >= e->nb_ants)
 			return (0);
+		e->end->ants = 0;
+		count_end_ants(e);
 		e->test = 30;
 		e->step++;
 	}
@@ -112,12 +127,16 @@ void	get_coord(t_env *e)
 
 int		loop_hook(t_env *e)
 {
-	printf("%d\n", e->test);
+	char *end_ants;
+
 	if (e->test > -1)
 		e->test--;
 	if (e->test == 0)
 		draw_red(e);
+	end_ants = ft_itoa(e->end->ants);
 	mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
+	mlx_string_put(e->mlx_ptr, e->win_ptr, e->end->x, e->end->y, 0xFFFFFF, end_ants);
+	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0xFFFFFF, "ESPACE : Prochaie Etape");
 	return (1);
 }
 
