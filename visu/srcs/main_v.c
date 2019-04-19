@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:56:05 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 16:01:43 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,12 @@ int		ft_key_hook(int keycode, t_env *e)
 		e->step++;
 	}
 	if (keycode == 0)
-		e->autom = 1;
+	{
+		if (e->autom == 0)
+			e->autom = 1;
+		else
+			e->autom = 0;	
+	}
 	return (1);
 }
 
