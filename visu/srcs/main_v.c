@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:40:24 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 15:56:05 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init(t_env *e)
 
 	e->nb_ants = -1;
 	e->step = 0;
+	e->fin = 0;
 	e->autom = 0;	
 	e->xmax = 0;
 	e->test = -1;
@@ -48,13 +49,13 @@ int		ft_key_hook(int keycode, t_env *e)
 		mlx_destroy_window(e->mlx_ptr, e->win_ptr);
 		exit(EXIT_FAILURE);
 	}
-	if (keycode == 49 && e->autom == 0)
+	if (keycode == 49 && !e->fin)
 	{
 		draw_red(e);
 		if (e->path[e->step])
 			draw_ants(e, e->path[e->step]);
 		if (e->end->ants >= e->nb_ants)
-			return (0);
+			e->fin = 1;
 		e->end->ants = 0;
 		count_end_ants(e);
 		e->test = 30;
@@ -67,15 +68,13 @@ int		ft_key_hook(int keycode, t_env *e)
 
 int		loop_hook(t_env *e)
 {
-	char *end_ants;
-
-	if (e->autom == 1)
+	if (e->autom == 1 && !e->fin)
 	{
 		draw_red(e);
 		if (e->path[e->step])
 			draw_ants(e, e->path[e->step]);
 		if (e->end->ants >= e->nb_ants)
-			e->autom = -1;
+			e->fin = 1;
 		e->end->ants = 0;
 		count_end_ants(e);
 		e->step++;
@@ -85,10 +84,7 @@ int		loop_hook(t_env *e)
 		e->test--;
 	if (e->test == 0)
 		draw_red(e);
-	end_ants = ft_itoa(e->end->ants);
-	mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
-	mlx_string_put(e->mlx_ptr, e->win_ptr, e->end->x, e->end->y, 0xFFFFFF, end_ants);
-	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0xFFFFFF, "ESPACE : Prochaie Etape");
+	print_menu(e);
 	return (1);
 }
 

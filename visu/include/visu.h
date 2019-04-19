@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:29:07 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 15:49:42 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct		s_env
 {
 	int 			autom;
 	int				test;
+	int 			fin;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				nb_ants;
@@ -97,5 +98,6 @@ void				get_scale(t_env *e);
 void				get_coord(t_env *e);
 void				count_end_ants(t_env *e);
 void				count_ants(t_env *e);
+void				print_menu(t_env *e);
 
 #endif

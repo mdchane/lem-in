@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:10:18 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 15:54:24 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	del_ants(t_env *e)
 	beg = e->room;
 	while (e->room)
 	{
-		if (e->room->ants == 0)
+		if (e->room->ants == 0 && (e->room != e->start) && (e->room != e->end))
 			draw_square(e->room->x, e->room->y, 20,  0X000080, e);
 		e->room = e->room->next;
 	}

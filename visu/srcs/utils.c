@@ -6,11 +6,22 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 15:08:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:19:02 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 15:49:02 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
+
+void	print_menu(t_env *e)
+{
+	char *end_ants;
+
+	end_ants = ft_itoa(e->end->ants);
+	mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
+	mlx_string_put(e->mlx_ptr, e->win_ptr, e->end->x, e->end->y, 0xFFFFFF, end_ants);
+	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0xFFFFFF, "ESPACE : Prochaie Etape");
+	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 50, 0xFFFFFF, "A : Mode Automatique");
+}
 
 void	get_scale(t_env *e)
 {
