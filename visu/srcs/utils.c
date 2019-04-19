@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 15:08:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 16:01:46 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 16:09:25 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	print_menu(t_env *e)
 	mlx_string_put(e->mlx_ptr, e->win_ptr, e->end->x, e->end->y, 0xFFFFFF, end_ants);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0xFFFFFF, "ESPACE : Prochaie Etape");
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 50, 0xFFFFFF, "A : ON/OFF Automatique");
+	if (end_ants)
+		free(end_ants);
 }
 
 void	get_scale(t_env *e)
