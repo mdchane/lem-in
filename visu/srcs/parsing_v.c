@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/18 15:47:04 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 15:28:17 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,16 @@ char	*parse_room(t_env *e)
 	}
 	ft_strdel(&line);
 	return (NULL);
+}
+
+void	parser(t_env *e)
+{
+	char *line;
+
+	line = parse_room(e);
+	get_scale(e);
+	get_coord(e);
+	parse_neigh(line, e);
+	draw_room(e);
+	create_path(e);
 }

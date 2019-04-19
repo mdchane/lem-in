@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:29:30 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/18 12:23:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 15:17:07 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,4 @@ t_room		*room_search(t_room *head, char *name)
 	while (head && ft_strcmp(head->name, name))
 		head = head->next;
 	return (head);
-}
-
-t_point		create_point(int x, int y)
-{
-	t_point p;
-	p.x = x;
-	p.y = y;
-	return (p);
 }

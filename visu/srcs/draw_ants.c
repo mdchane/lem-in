@@ -6,13 +6,32 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 14:43:58 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/19 15:10:18 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "visu.h"
 #include <math.h>
+
+void	draw_red(t_env *e)
+{
+	int x;
+	int y;
+	int i;
+
+	i = 0;
+	while (i < e->nb_ants)
+	{
+		if (e->ants[i].parent)
+		{
+			x = (e->ants[i].parent->x + e->ants[i].room->x) / 2;
+			y = (e->ants[i].parent->y + e->ants[i].room->y) / 2;
+			draw_square(x, y, 5, 0XFF0000, e);
+		}
+		i++;
+	}
+}
 
 void	del_ants(t_env *e)
 {
