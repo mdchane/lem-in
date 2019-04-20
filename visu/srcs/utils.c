@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 15:08:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/20 14:34:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/20 16:09:28 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	get_scale(t_env *e)
 			e->ymax = beg->y;
 		beg = beg->next;
 	}
-	e->scale.x = (700 / e->xmax);
-	e->scale.y = (700 / e->ymax);
+	e->scale.x = (e->xmax == 0) ? 1 : (700 / e->xmax);
+	e->scale.y = (e->ymax == 0) ? 1 : (700 / e->ymax);
 }
 
 

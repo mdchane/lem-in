@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:08:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/20 15:13:18 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/20 16:29:51 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	create_path(t_env *e, char *line)
 {
 	char *split;
 
+	split = "";
 	if (line[0] == 'L')
 		split = ft_strjoin(line, "\n");;
 	while (get_next_line(0, &line) > 0)
