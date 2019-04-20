@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:49:42 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/20 15:13:28 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct		s_env
 }					t_env;
 
 t_ants				*create_ants(t_env *e);
-void				create_path(t_env *e);
+void				create_path(t_env *e, char *line);
 
 void				draw_red(t_env *e);
 void				draw_ants(t_env *e, char *line);
@@ -80,8 +80,7 @@ void 				ligne(int x1, int y1, int x2, int y2, int coul, t_env *e);
 void				draw_square(int cx, int cy, int rayon, int coul, t_env *e);
 void				draw_room(t_env *e);
 
-void				error(char *msg);
-
+void				error();
 int					is_name_room(char *room);
 int					is_room(char **split);
 int					is_neigh(char *line);

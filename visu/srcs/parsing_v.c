@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:28:17 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/20 14:30:12 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		find_room(char **split, t_env *e)
 	draw_square(midx, midy, 5, 0XFF0000, e);
 }
 
-void	parse_neigh(char *line, t_env *e)
+char	*parse_neigh(char *line, t_env *e)
 {
 	find_room(ft_strsplit(line, '-'), e);
 	while (get_next_line(0, &line) > 0)
@@ -48,6 +48,7 @@ void	parse_neigh(char *line, t_env *e)
 		else if (line[0] != '#')
 			break ;
 	}
+	return (line);
 }
 
 char	*parse_room(t_env *e)
@@ -86,6 +87,8 @@ char	*parse_room(t_env *e)
 		free_tab(split);
 		free(line);
 	}
+	if (!e->room)
+		error("ERROR\n");
 	ft_strdel(&line);
 	return (NULL);
 }
@@ -97,7 +100,7 @@ void	parser(t_env *e)
 	line = parse_room(e);
 	get_scale(e);
 	get_coord(e);
-	parse_neigh(line, e);
+	line = parse_neigh(line, e);
 	draw_room(e);
-	create_path(e);
+	create_path(e, line);
 }

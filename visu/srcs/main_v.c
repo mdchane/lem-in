@@ -6,15 +6,14 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 16:01:43 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/20 15:18:00 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-void	error(char *msg)
+void	error()
 {
-	ft_putstr_fd(msg, 2);
 	exit(EXIT_FAILURE);
 }
 
@@ -66,7 +65,7 @@ int		ft_key_hook(int keycode, t_env *e)
 		if (e->autom == 0)
 			e->autom = 1;
 		else
-			e->autom = 0;	
+			e->autom = 0;
 	}
 	return (1);
 }
@@ -85,6 +84,8 @@ int		loop_hook(t_env *e)
 		e->step++;
 		usleep(500000);
 	}
+	else if (e->fin)
+		draw_red(e);
 	if (e->test > -1)
 		e->test--;
 	if (e->test == 0)
