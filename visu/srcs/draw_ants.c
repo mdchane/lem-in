@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/20 16:14:37 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/20 17:11:32 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	draw_ants(t_env *e, char *line)
 	int i;
 	
 	i = 0;
-	printf("%s\n", line);
 	step = ft_strsplit(line, ' ');
 	while (step[i])
 	{
