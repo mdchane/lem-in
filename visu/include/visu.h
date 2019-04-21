@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 12:24:14 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 13:07:38 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include "../minilibx_macos/mlx.h"
 # define WIDTH 1000
 # define LENGTH 1000
+# define KEY_ESC 53
+# define GREEN 0X00FF00
+# define WHITE 0XFFFFFF
+# define N_BLUE 0X0000FF
+# define S_BLUE 0X00BFFF
+# define RED 0XFF0000
+# define KEY_ESP 49
+# define KEY_A 0
 # define START 1
 #define END 0
 # define ABS(x) ((x < 0) ? -x : x)
@@ -97,7 +105,6 @@ void				error();
 int					is_name_room(char *room);
 int					is_room(char **split);
 int					is_neigh(char *line);
-void				free_tab(char **tab);
 
 void				parser(t_env *e);
 
@@ -111,5 +118,7 @@ void				get_coord(t_env *e);
 void				count_end_ants(t_env *e);
 void				count_ants(t_env *e);
 void				print_menu(t_env *e);
+
+void				free_tab(char ***tab);
 
 #endif

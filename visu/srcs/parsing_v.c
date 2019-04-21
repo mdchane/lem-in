@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 12:23:34 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 15:02:20 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,24 @@ void		find_room(char **split, t_env *e)
 
 	room_a = room_search(e->room, split[0]);
 	room_b = room_search(e->room, split[1]);
-
 	midx = (room_a->x + room_b->x) / 2;
 	midy = (room_a->y + room_b->y) / 2;
-	draw_line(new_point(room_a->x, room_a->y), new_point(room_b->x, room_b->y), 0XFFFFFF, e);
-	draw_square(midx, midy, 5, 0XFF0000, e);
+	draw_line(new_point(room_a->x, room_a->y), new_point(room_b->x, room_b->y), WHITE, e);
+	draw_square(midx, midy, 5, RED, e);
+	free_tab(&split);
 }
 
 char	*parse_neigh(char *line, t_env *e)
 {
 	find_room(ft_strsplit(line, '-'), e);
+	ft_strdel(&line);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (is_neigh(line))
 			find_room(ft_strsplit(line, '-'), e);
 		else if (line[0] != '#')
 			break ;
+		ft_strdel(&line);
 	}
 	return (line);
 }
@@ -61,35 +63,36 @@ char	*parse_room(t_env *e)
 	type = -1;
 	while (get_next_line(0, &line) > 0)
 	{
+		split = ft_strsplit(line, ' ');
+		type = find_type(line, type);
 		if (e->nb_ants == -1)
 			e->nb_ants = ft_atoi(line);
-		type = find_type(line, type);
-		split = ft_strsplit(line, ' ');
-		if (type == -1 && is_room(split))
-			room_push_front(&e->room, room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0X000080));
+		else if (type == -1 && is_room(split))
+			room_push_front(&e->room, room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), N_BLUE));
 		else if (type == START && is_room(split))
 		{
-			e->start = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0X00FF00);
+			e->start = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), GREEN);
 			type = -1;
 		}
 		else if (type == END && is_room(split))
 		{
-			e->end = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), 0XFF0000);
+			e->end = room_new(split[0], ft_atoi(split[1]), ft_atoi(split[2]), RED);
 			room_push_back(&e->room, e->end);
 			type = -1;
 		}
 		else if (is_neigh(line))
 		{
 			room_push_front(&e->room, e->start);
-			free_tab(split);
+			free_tab(&split);
 			return (line);
 		}
-		free_tab(split);
 		free(line);
+		free_tab(&split);
 	}
 	if (!e->room)
 		error("ERROR\n");
-	ft_strdel(&line);
+	if (line)
+		ft_strdel(&line);
 	return (NULL);
 }
 

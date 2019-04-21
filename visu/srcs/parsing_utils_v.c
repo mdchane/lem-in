@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 13:11:14 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:48:59 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 15:00:50 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,4 @@ int		is_neigh(char *line)
 	if (is_name_room(split[0]) && is_name_room(split[1]) && split[2] == NULL)
 		return (1);
 	return (0);
-}
-
-void	free_tab(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
-	{
-		ft_strdel(&(tab[i]));
-		i++;
-	}
-	free(tab);
 }

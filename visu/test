@@ -1,0 +1,29 @@
+10
+##start
+start 1 0
+un 0 1
+2 1 1
+3 2 1
+4 0 2
+5 1 2
+6 2 2
+##end
+end 1 3
+start-un
+start-2
+un-4
+4-5
+2-5
+2-3
+3-6
+5-end
+6-end
+
+L1-un L2-2
+L1-4 L2-3 L3-un L4-2
+L1-5 L2-6 L3-4 L4-3 L5-un L6-2
+L1-end L2-end L3-5 L4-6 L5-4 L6-3 L7-un L8-2
+L3-end L4-end L5-5 L6-6 L7-4 L8-3 L9-un L10-2
+L5-end L6-end L7-5 L8-6 L9-4 L10-3
+L7-end L8-end L9-5 L10-6
+L9-end L10-end

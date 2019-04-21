@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:39:11 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/19 15:52:26 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 12:56:32 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void		draw_square(int cx, int cy, int rayon, int coul, t_env *e)
 		while (y < cy + rayon)
 		{
 			if (y == cy - rayon || x == cx - rayon || x == cx + rayon - 1)
-				e->data[(int)(y * LENGTH + x)] = 0XFFFFFF;
+				e->data[(int)(y * LENGTH + x)] = WHITE;
 			else
 				e->data[(int)(y * LENGTH + x)] = coul;
 			y++;
 		}
-		e->data[(int)(y * LENGTH + x)] = 0XFFFFFF;
+		e->data[(int)(y * LENGTH + x)] = WHITE;
 		x++;
 	}
 }
