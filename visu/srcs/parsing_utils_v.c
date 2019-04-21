@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_v.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 13:11:14 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:12:08 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 16:01:34 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		is_name_room(char *room)
 	if (!room)
 		return (0);
 	if (room[0] == 'L' || room[0] == '#' || ft_strchr(room, '-'))
-			return (0);
+		return (0);
 	return (1);
 }
 
