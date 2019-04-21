@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   options.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:23:49 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 15:19:19 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/21 17:32:54 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,20 @@ void		init_opt(t_env *e, int ac, char **av)
 	}
 }
 
+void	print(t_pack *pack)
+{
+	ft_printf("\n----------------- BEST PACK ------------------\n");
+	ft_printf("Number of paths = %d\n", pack->len);
+}
+
 void	print_bpack(t_pack *pack)
 {
 	int		i;
 	t_lpath	*beglp;
 	t_neigh	*begp;
 
-	ft_printf("\n----------------- BEST PACK ------------------\n");
-	ft_printf("Number of paths = %d\n", pack->len);
 	i = 1;
+	print(pack);
 	beglp = pack->lpath;
 	while (pack->lpath)
 	{
