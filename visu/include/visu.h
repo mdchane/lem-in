@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 13:07:38 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 15:51:23 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct 		s_point_f
 typedef struct		s_env
 {
 	int 			autom;
-	int				test;
+	int				count;
 	int 			fin;
 	void			*mlx_ptr;
 	void			*win_ptr;

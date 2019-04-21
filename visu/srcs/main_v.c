@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_v.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:40:45 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/21 15:51:44 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init(t_env *e)
 	e->fin = 0;
 	e->autom = 0;
 	e->xmax = 0;
-	e->test = -1;
+	e->count = -1;
 	e->ymax = 0;
 	e->img_ptr = mlx_new_image(e->mlx_ptr, WIDTH, LENGTH);
 	e->data = (int *)mlx_get_data_addr(e->img_ptr, &(bpp), &(s_l), &(endian));
@@ -57,7 +57,7 @@ int		ft_key_hook(int keycode, t_env *e)
 			e->fin = 1;
 		e->end->ants = 0;
 		count_end_ants(e);
-		e->test = 30;
+		e->count = 30;
 		e->step++;
 	}
 	if (keycode == KEY_A)
@@ -81,9 +81,9 @@ int		loop_hook(t_env *e)
 	}
 	else if (e->fin)
 		draw_red(e);
-	if (e->test > -1)
-		e->test--;
-	if (e->test == 0)
+	if (e->count > -1)
+		e->count--;
+	if (e->count == 0)
 		draw_red(e);
 	print_menu(e);
 	return (1);
