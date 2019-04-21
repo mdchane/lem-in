@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_v.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 13:11:14 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:00:50 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 15:09:52 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,22 @@ int		is_room(char **split)
 int		is_neigh(char *line)
 {
 	char	**split;
+	size_t	len0;
 
 	split = ft_strsplit(line, '-');
+	len0 = ft_strlen(split[0]);
 	if (!split)
 		return (0);
-	if (line[ft_strlen(split[0]) + 1] == '-')
+	if (ft_strlen(line) > len0 && line[len0 + 1] == '-')
+	{
+		free_tab(&split);
 		return (0);
+	}
 	if (is_name_room(split[0]) && is_name_room(split[1]) && split[2] == NULL)
+	{
+		free_tab(&split);
 		return (1);
+	}
+	free_tab(&split);
 	return (0);
 }
