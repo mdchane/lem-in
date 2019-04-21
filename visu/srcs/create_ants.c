@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:08:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 16:00:24 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 16:55:42 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,23 @@ void	create_path(t_env *e, char *line)
 {
 	char *split;
 
-	if (line[0] == 'L')
+	if (line && line[0] == 'L')
 		split = ft_strjoinfree(line, "\n");
+	else
+		split = ft_strnew(0);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (line[0] == 'L')
 		{
-			split = ft_strjoinfree(split, line);
+			split = ft_strjoinfree(split, line);	
 			split = ft_strjoinfree(split, "\n");
 		}
 		ft_strdel(&line);
 	}
 	if (line)
 		ft_strdel(&line);
+	if (!split)
+		error();
 	e->path = ft_strsplit(split, '\n');
 	if (split)
 		free(split);
