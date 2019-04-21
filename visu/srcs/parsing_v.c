@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:06:54 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/21 15:16:32 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*parse_room(t_env *e)
 		free_tab(&split);
 	}
 	if (!e->room)
-		error("ERROR\n");
+		error();
 	if (line)
 		ft_strdel(&line);
 	return (NULL);
@@ -101,10 +101,10 @@ void	parser(t_env *e)
 	char *line;
 
 	line = parse_room(e);
-	while (1);
 	get_scale(e);
 	get_coord(e);
 	line = parse_neigh(line, e);
 	draw_room(e);
 	create_path(e, line);
+	while (1);
 }
