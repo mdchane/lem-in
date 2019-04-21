@@ -6,10 +6,9 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 13:34:35 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 16:20:10 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "visu.h"
 
@@ -26,7 +25,7 @@ void	draw_red(t_env *e)
 		{
 			x = (e->ants[i].parent->x + e->ants[i].room->x) / 2;
 			y = (e->ants[i].parent->y + e->ants[i].room->y) / 2;
-			draw_square(x, y, 5, RED, e);
+			draw_square(new_point(x, y), 5, RED, e);
 		}
 		i++;
 	}
@@ -40,7 +39,7 @@ void	del_ants(t_env *e)
 	while (e->room)
 	{
 		if (e->room->ants == 0 && (e->room != e->start) && (e->room != e->end))
-			draw_square(e->room->x, e->room->y, 20,  N_BLUE, e);
+			draw_square(new_point(e->room->x, e->room->y), 20, N_BLUE, e);
 		e->room = e->room->next;
 	}
 	e->room = beg;
@@ -48,16 +47,15 @@ void	del_ants(t_env *e)
 
 void	draw_ants(t_env *e, char *line)
 {
-	char **step;
-	char **split;
-
+	char	**step;
+	char	**split;
 	t_room	*a;
 	t_room	*b;
-	int i;
-	
-	i = 0;
+	int		i;
+
+	i = -1;
 	step = ft_strsplit(line, ' ');
-	while (step[i])
+	while (step[++i])
 	{
 		split = ft_strsplit(step[i], '-');
 		a = e->ants[ft_atoi(split[0] + 1) - 1].room;
@@ -66,13 +64,12 @@ void	draw_ants(t_env *e, char *line)
 		e->ants[ft_atoi(split[0] + 1) - 1].parent = a;
 		a->ants--;
 		b->ants++;
-		draw_square((a->x + b->x) / 2, (a->y + b->y) / 2, 5, GREEN, e);
-		draw_square(b->x, b->y, 20, S_BLUE, e);
+		draw_square(new_point((a->x + b->x) / 2, (a->y + b->y) / 2), 5, GREEN, e);
+		draw_square(new_point(b->x, b->y), 20, S_BLUE, e);
 		del_ants(e);
-		i++;
 		free_tab(&split);
 	}
 	free_tab(&step);
 	if (e->end->ants == e->nb_ants)
-		draw_square(e->end->x, e->end->y, 20, RED, e);
+		draw_square(new_point(e->end->x, e->end->y), 20, RED, e);
 }

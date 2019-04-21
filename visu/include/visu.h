@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:51:23 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 16:19:11 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void				draw_ants(t_env *e, char *line);
 void 				draw_line(t_point p1, t_point p2, int coul, t_env *e);
 t_point				new_point(int x, int y);
 
-void				draw_square(int cx, int cy, int rayon, int coul, t_env *e);
+void				draw_square(t_point point, int rayon, int coul, t_env *e);
 void				draw_room(t_env *e);
 
 void				error();

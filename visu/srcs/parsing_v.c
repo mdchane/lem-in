@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 16:21:18 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/21 16:29:05 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		find_room(char **split, t_env *e)
 	midy = (room_a->y + room_b->y) / 2;
 	draw_line(new_point(room_a->x, room_a->y),
 		new_point(room_b->x, room_b->y), WHITE, e);
-	draw_square(midx, midy, 5, RED, e);
+	draw_square(new_point(midx, midy), 5, RED, e);
 	free_tab(&split);
 }
 

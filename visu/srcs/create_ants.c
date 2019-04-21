@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   create_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:08:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:36:00 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/21 16:00:24 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "visu.h"
 
 t_ants	*create_ants(t_env *e)
 {
-	t_ants *ants;
-	int i;
+	t_ants	*ants;
+	int		i;
 
 	i = 0;
 	if (!(ants = malloc(sizeof(t_ants) * e->nb_ants + 1)))
