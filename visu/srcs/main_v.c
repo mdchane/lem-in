@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_v.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:14:48 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 15:40:45 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init(t_env *e)
 	e->nb_ants = -1;
 	e->step = 0;
 	e->fin = 0;
-	e->autom = 0;	
+	e->autom = 0;
 	e->xmax = 0;
 	e->test = -1;
 	e->ymax = 0;
@@ -46,7 +46,7 @@ int		ft_key_hook(int keycode, t_env *e)
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(e->mlx_ptr, e->win_ptr);
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 	if (keycode == KEY_ESP && !e->fin)
 	{

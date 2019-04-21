@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 15:16:32 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 15:36:29 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,4 @@ void	parser(t_env *e)
 	line = parse_neigh(line, e);
 	draw_room(e);
 	create_path(e, line);
-	while (1);
 }

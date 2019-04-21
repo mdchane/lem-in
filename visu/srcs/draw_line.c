@@ -12,7 +12,7 @@
 
 #include "visu.h"
 
-t_point		new_point(int x, int y)
+t_point	new_point(int x, int y)
 {
 	t_point	point;
 
@@ -21,20 +21,20 @@ t_point		new_point(int x, int y)
 	return (point);
 }
 
-void echangerEntiers(int* x, int* y)
+void	echangerEntiers(int* x, int* y)
 {
 	int t = *x;
 	*x = *y;
 	*y = t;
 }
 
-void 	cas1(t_point p1, t_point p2, int coul, t_env *e)
+void	cas1(t_point p1, t_point p2, int coul, t_env *e)
 {
 	t_line	line;
 	int 	x;
 	int		y;
 
-	if (p1.y > p2.y) 
+	if (p1.y > p2.y)
 	{
 		echangerEntiers(&p1.x, &p2.x);
 		echangerEntiers(&p1.y, &p2.y);
@@ -61,7 +61,7 @@ void 	cas1(t_point p1, t_point p2, int coul, t_env *e)
 	}
 }
 
-void 	cas2(t_point p1, t_point p2, int coul, t_env *e)
+void	cas2(t_point p1, t_point p2, int coul, t_env *e)
 {
 	t_line	line;
 	int 	x;
