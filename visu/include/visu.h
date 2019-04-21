@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 12:20:46 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 12:24:14 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_ants
 	t_room			*room;
 }					t_ants;
 
-typedef	struct		s_ligne 
+typedef	struct		s_line 
 {
 	int				d;
 	int				dx;
@@ -45,7 +45,7 @@ typedef	struct		s_ligne
 	int				bincr;
 	int				xincr;
 	int				yincr;
-}					t_ligne;
+}					t_line;
 
 
 typedef struct 		s_point
@@ -87,7 +87,7 @@ void				create_path(t_env *e, char *line);
 void				draw_red(t_env *e);
 void				draw_ants(t_env *e, char *line);
 
-void 				ligne(t_point p1, t_point p2, int coul, t_env *e);
+void 				draw_line(t_point p1, t_point p2, int coul, t_env *e);
 t_point				new_point(int x, int y);
 
 void				draw_square(int cx, int cy, int rayon, int coul, t_env *e);
