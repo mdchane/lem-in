@@ -6,13 +6,12 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/20 17:11:32 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 11:56:00 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "visu.h"
-#include <math.h>
 
 void	draw_red(t_env *e)
 {
@@ -69,10 +68,9 @@ void	draw_ants(t_env *e, char *line)
 		b->ants++;
 		draw_square((a->x + b->x) / 2, (a->y + b->y) / 2, 5, 0X00FF00, e);
 		draw_square(b->x, b->y, 20, 0X00BFFF, e);
-		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 		del_ants(e);
-		i++;
+		i++;	
 	}
 	if (e->end->ants == e->nb_ants)
-		e->step = -1;
+		draw_square(e->end->x, e->end->y, 20, 0XFF0000, e);
 }

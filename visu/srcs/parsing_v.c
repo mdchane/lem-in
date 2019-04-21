@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/20 16:27:27 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 12:21:41 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void		find_room(char **split, t_env *e)
 
 	midx = (room_a->x + room_b->x) / 2;
 	midy = (room_a->y + room_b->y) / 2;
-	ligne(room_a->x, room_a->y, room_b->x, room_b->y, 0XFFFFFF, e);
+	ligne(new_point(room_a->x, room_a->y), new_point(room_b->x, room_b->y), 0XFFFFFF, e);
+	// ligne(room_a->x, room_a->y, room_b->x, room_b->y, 0XFFFFFF, e);
 	draw_square(midx, midy, 5, 0XFF0000, e);
 }
 

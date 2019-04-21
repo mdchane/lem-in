@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/20 16:14:33 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/21 11:45:51 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		ft_key_hook(int keycode, t_env *e)
 		e->test = 30;
 		e->step++;
 	}
-	if (keycode == 0)
+	if (keycode == 0) // ternaire
 	{
 		if (e->autom == 0)
 			e->autom = 1;
