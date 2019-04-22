@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_v.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 16:00:54 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/22 10:34:28 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int		loop_hook(t_env *e)
 		e->count--;
 	if (e->count == 0)
 		draw_red(e);
+	if (!e->path[e->step])
+		e->fin = 1;
 	print_menu(e);
 	return (1);
 }

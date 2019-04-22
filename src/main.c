@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 15:18:23 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/22 11:19:58 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		print_start_end(t_env *e)
 	int i;
 
 	write(1, e->buff, e->len_map);
-	printf("\n");
+	ft_printf("\n");
 	i = 0;
 	while (i < e->nb_ants)
 	{
@@ -58,7 +58,7 @@ void		print_start_end(t_env *e)
 			ft_printf(" ");
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 	if (e->opt[0])
 		ft_printf("\nNumber of lines = 1\n");
 	if (e->opt[1])
@@ -85,7 +85,7 @@ int			main(int ac, char **av)
 			error("ERROR\n");
 		get_bestpack(&e);
 		write(1, e.buff, e.len_map);
-		printf("\n");
+		ft_printf("\n");
 		print_ants(e.best_pack, &e);
 		if (e.opt[1])
 			print_bpack(e.best_pack);

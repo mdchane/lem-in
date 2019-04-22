@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 13:23:49 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/21 17:32:54 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 11:20:02 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ void	print_bpack(t_pack *pack)
 	beglp = pack->lpath;
 	while (pack->lpath)
 	{
-		printf("Chemin %d len = %d:\n", i, pack->lpath->path->len);
+		ft_printf("Chemin %d len = %d:\n", i, pack->lpath->path->len);
 		begp = pack->lpath->path;
 		while (pack->lpath->path)
 		{
 			if (pack->lpath->path->adjacent->name)
-				printf("%s", pack->lpath->path->adjacent->name);
+				ft_printf("%s", pack->lpath->path->adjacent->name);
 			if (pack->lpath->path->next)
-				printf("->");
+				ft_printf("->");
 			pack->lpath->path = pack->lpath->path->next;
 		}
 		pack->lpath->path = begp;
-		printf("\n\n");
+		ft_printf("\n\n");
 		i++;
 		pack->lpath = pack->lpath->next;
 	}
