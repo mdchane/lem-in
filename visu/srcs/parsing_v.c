@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 14:58:56 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:01:23 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ char		*parse_room(t_env *e)
 		free_tab(&split);
 	}
 	error();
+	return (NULL);
 }
 
 void		parser(t_env *e)

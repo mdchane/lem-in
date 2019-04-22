@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 14:58:16 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:00:35 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**split_check(char *step, t_env *e)
 	char **split;
 
 	split = ft_strsplit(step, '-');
-	if (!split[0] || !split[1])
+	if (!split[0] || !split[1] || split[2])
 		error();
 	if (ft_atoi(split[0] + 1) <= 0 || ft_atoi(split[0] + 1) > e->nb_ants)
 		error();
