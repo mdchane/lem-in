@@ -6,13 +6,13 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 11:28:38 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 13:22:28 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visu.h"
 
-void	error(void)
+int		error(void)
 {
 	exit(EXIT_FAILURE);
 }
@@ -100,6 +100,7 @@ int		main(void)
 	parser(&e);
 	e.ants = create_ants(&e);
 	mlx_hook(e.win_ptr, 2, 0, ft_key_hook, &e);
+	mlx_hook(e.win_ptr, 17, 0, error, &e);
 	mlx_loop_hook(e.mlx_ptr, loop_hook, &e);
 	mlx_loop(e.mlx_ptr);
 	return (0);

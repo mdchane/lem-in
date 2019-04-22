@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 11:30:59 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 14:58:16 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ void	del_ants(t_env *e)
 	e->room = beg;
 }
 
+char	**split_check(char *step, t_env *e)
+{
+	char **split;
+
+	split = ft_strsplit(step, '-');
+	if (!split[0] || !split[1])
+		error();
+	if (ft_atoi(split[0] + 1) <= 0 || ft_atoi(split[0] + 1) > e->nb_ants)
+		error();
+	if (room_search(e->room, split[1]) == NULL)
+		error();
+	return (split);
+}
+
 void	draw_ants(t_env *e, char *line)
 {
 	char	**step;
@@ -57,7 +71,7 @@ void	draw_ants(t_env *e, char *line)
 	step = ft_strsplit(line, ' ');
 	while (step[++i])
 	{
-		split = ft_strsplit(step[i], '-');
+		split = split_check(step[i], e);
 		a = e->ants[ft_atoi(split[0] + 1) - 1].room;
 		b = room_search(e->room, split[1]);
 		e->ants[ft_atoi(split[0] + 1) - 1].room = b;

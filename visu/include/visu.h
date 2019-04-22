@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 12:16:38 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 14:28:20 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_point				new_point(int x, int y);
 void				draw_square(t_point point, int rayon, int coul, t_env *e);
 void				draw_room(t_env *e);
 
-void				error();
+int					error();
 int					is_name_room(char *room);
 int					is_room(char **split);
 int					is_neigh(char *line);

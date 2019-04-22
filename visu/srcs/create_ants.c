@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:08:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 11:22:59 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 14:08:11 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	create_path(t_env *e, char *line)
 		ft_strdel(&line);
 	}
 	if (line)
-		ft_strdel(&line);
+		free(line);
 	if (!split)
 		error();
 	e->path = ft_strsplit(split, '\n');

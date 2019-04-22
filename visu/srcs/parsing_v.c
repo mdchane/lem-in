@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 12:17:13 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 14:58:56 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		find_room(char **split, t_env *e)
 
 char		*parse_neigh(char *line, t_env *e)
 {
-	find_room(ft_strsplit(line, '-'), e);
+	if (is_neigh(line))
+		find_room(ft_strsplit(line, '-'), e);
 	ft_strdel(&line);
 	while (get_next_line(0, &line) > 0)
 	{
@@ -74,11 +75,12 @@ char		*parse_room(t_env *e)
 			end_room(e, split, &type);
 		else if (is_neigh(line))
 			return (push_start(e, &split, line));
+		else if (line[0] != '#')
+			error();
 		free(line);
 		free_tab(&split);
 	}
-	ft_strdel(&line);
-	return (NULL);
+	error();
 }
 
 void		parser(t_env *e)
@@ -87,11 +89,12 @@ void		parser(t_env *e)
 
 	e->room = NULL;
 	line = parse_room(e);
-	if (!e->room)
+	if (!e->room || !e->start || !e->end)
 		error();
 	get_scale(e);
 	get_coord(e);
 	line = parse_neigh(line, e);
 	draw_room(e);
 	create_path(e, line);
+	ft_strdel(&line);
 }
