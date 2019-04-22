@@ -6,7 +6,7 @@
 #    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 12:57:11 by sarobber          #+#    #+#              #
-#    Updated: 2019/04/22 16:16:14 by mdchane          ###   ########.fr        #
+#    Updated: 2019/04/22 16:53:05 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER_NAME = visu.h
 
 CC = gcc
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 HEADER_PATH = include
 

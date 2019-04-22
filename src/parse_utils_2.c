@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:08:36 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/17 11:43:03 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/22 16:47:33 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		parse_neigh(t_env *e, char **lines, int i)
 			nb_neigh++;
 		}
 		else if (lines[i][0] != '#')
-			error("ERROR\n");
+			break ;
 		i++;
 	}
 	return (nb_neigh);

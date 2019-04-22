@@ -1,0 +1,21 @@
+10
+##start
+start 1 0
+un 0 1
+2 1 1
+3 2 1
+4 0 2
+5 1 2
+6 2 2
+##end
+end 1 3
+start-un
+start-2
+un-4
+4-5
+2-5
+2-3
+3-6
+5-end
+6-end
+hqoidjpq

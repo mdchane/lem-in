@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_v.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 16:19:45 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 16:34:59 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ void		parse_ants(t_env *e, char *line)
 		error();
 }
 
-char		*parse_room(t_env *e)
+char		*parse_room(t_env *e, int type)
 {
 	char	*line;
-	int		type;
 	char	**split;
 
-	type = -1;
 	while (get_next_line(0, &line) > 0)
 	{
 		split = ft_strsplit(line, ' ');
@@ -86,10 +84,12 @@ char		*parse_room(t_env *e)
 
 void		parser(t_env *e)
 {
-	char *line;
+	char	*line;
+	int		type;
 
+	type = -1;
 	e->room = NULL;
-	line = parse_room(e);
+	line = parse_room(e, type);
 	if (!e->room || !e->start || !e->end)
 		error();
 	get_scale(e);
