@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+         #
+#    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/04/22 11:42:17 by sarobber         ###   ########.fr        #
+#    Updated: 2019/04/22 16:15:46 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,16 +51,22 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 $(OBJ_PATH):
 	@mkdir -p $@
 
+visual:
+	$(MAKE) -C visu/
+
 clean:
 	@make -C libft/ fclean
 	@rm -rf $(OBJ_PATH) || true
 	@$(info $(OBJ_PATH) deleted)
+	@make -C visu/ clean
 
 fclean: clean
 	@rm -f $(NAME)
 	@$(info Executable $(NAME) deleted)
+	@make -C visu/ fclean
 
 re: fclean all
 	@echo "Make re done"
+	@make -C visu/ re
 
-.PHONY: all lib clean fclean re
+.PHONY: all lib clean fclean re visu
