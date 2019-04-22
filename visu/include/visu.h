@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:03 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 16:19:11 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 11:42:09 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WIDTH 1000
 # define LENGTH 1000
 # define KEY_ESC 53
-# define GREEN 0X00FF00
+# define G 0X00FF00
 # define WHITE 0XFFFFFF
 # define N_BLUE 0X0000FF
 # define S_BLUE 0X00BFFF
@@ -25,7 +25,7 @@
 # define KEY_ESP 49
 # define KEY_A 0
 # define START 1
-#define END 0
+# define END 0
 # define ABS(x) ((x < 0) ? -x : x)
 
 typedef struct		s_room
@@ -44,7 +44,7 @@ typedef struct		s_ants
 	t_room			*room;
 }					t_ants;
 
-typedef	struct		s_line 
+typedef	struct		s_line
 {
 	int				d;
 	int				dx;
@@ -55,14 +55,13 @@ typedef	struct		s_line
 	int				yincr;
 }					t_line;
 
-
-typedef struct 		s_point
+typedef struct		s_point
 {
 	int				x;
 	int				y;
 }					t_point;
 
-typedef struct 		s_point_f
+typedef struct		s_point_f
 {
 	float				x;
 	float				y;
@@ -70,9 +69,9 @@ typedef struct 		s_point_f
 
 typedef struct		s_env
 {
-	int 			autom;
+	int				autom;
 	int				count;
-	int 			fin;
+	int				fin;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	int				nb_ants;
@@ -83,9 +82,9 @@ typedef struct		s_env
 	t_room			*room;
 	t_room			*start;
 	t_room			*end;
-	float			xmax; //
-	float			ymax; //
-	t_point_f 		scale;
+	float			xmax;
+	float			ymax;
+	t_point_f		scale;
 	int				step;
 }					t_env;
 
@@ -95,7 +94,7 @@ void				create_path(t_env *e, char *line);
 void				draw_red(t_env *e);
 void				draw_ants(t_env *e, char *line);
 
-void 				draw_line(t_point p1, t_point p2, int coul, t_env *e);
+void				draw_line(t_point p1, t_point p2, int coul, t_env *e);
 t_point				new_point(int x, int y);
 
 void				draw_square(t_point point, int rayon, int coul, t_env *e);
@@ -120,5 +119,10 @@ void				count_ants(t_env *e);
 void				print_menu(t_env *e);
 
 void				free_tab(char ***tab);
+
+char				*push_start(t_env *e, char ***split, char *line);
+void				end_room(t_env *e, char **split, int *type);
+void				start_room(t_env *e, char **split, int *type);
+int					find_type(char *line, int type);
 
 #endif

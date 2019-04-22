@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:33:37 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/21 16:20:10 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 11:30:59 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_ants(t_env *e, char *line)
 		e->ants[ft_atoi(split[0] + 1) - 1].parent = a;
 		a->ants--;
 		b->ants++;
-		draw_square(new_point((a->x + b->x) / 2, (a->y + b->y) / 2), 5, GREEN, e);
+		draw_square(new_point((a->x + b->x) / 2, (a->y + b->y) / 2), 5, G, e);
 		draw_square(new_point(b->x, b->y), 20, S_BLUE, e);
 		del_ants(e);
 		free_tab(&split);

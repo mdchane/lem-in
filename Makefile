@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
+#    By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/04/17 14:46:02 by mdchane          ###   ########.fr        #
+#    Updated: 2019/04/22 11:42:17 by sarobber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER_NAME = liblem_in.h
 
 CC = gcc
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 HEADER_PATH = includes
 
