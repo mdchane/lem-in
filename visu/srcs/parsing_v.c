@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:52:48 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 11:38:38 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/22 12:17:13 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ char		*parse_neigh(char *line, t_env *e)
 	return (line);
 }
 
+void		parse_ants(t_env *e, char *line)
+{
+	if (is_nbr(line))
+		e->nb_ants = ft_atoi(line);
+	else
+		error();
+}
+
 char		*parse_room(t_env *e)
 {
 	char	*line;
@@ -56,7 +64,7 @@ char		*parse_room(t_env *e)
 		split = ft_strsplit(line, ' ');
 		type = find_type(line, type);
 		if (e->nb_ants == -1)
-			e->nb_ants = ft_atoi(line);
+			parse_ants(e, line);
 		else if (type == -1 && is_room(split))
 			room_push_front(&e->room, room_new(split[0],
 				ft_atoi(split[1]), ft_atoi(split[2]), N_BLUE));
