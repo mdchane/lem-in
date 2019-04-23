@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 17:08:08 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 16:21:01 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/23 17:14:05 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	create_path(t_env *e, char *line)
 	char *split;
 
 	if (line && line[0] == 'L')
-		split = ft_strjoinfree(line, "\n");
+	{
+		split = ft_strjoin(line, "\n");
+		free(line);
+	}
 	else
 		split = ft_strnew(0);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (line[0] == 'L')
-		{
 			split = ft_strjoinfree(split, line);
-			split = ft_strjoinfree(split, "\n");
-		}
 		ft_strdel(&line);
 	}
 	if (line)
