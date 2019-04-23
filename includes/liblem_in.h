@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/23 15:19:19 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/23 16:16:04 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,9 @@ int					is_name_room(char *room);
 
 int					graph_realloc(t_grapht *g, int j, int *len);
 t_grapht			*g_new(char *name, int x, int y);
-void		grapht_new(t_grapht *g, char *name, int x, int y);
 t_grapht			*graph_search(t_grapht *g, char *name);
 void				grapht_push_front(t_grapht **head, t_grapht *new);
-void    grapht_push_back(t_grapht **head, t_grapht *new);
+void				grapht_push_back(t_grapht **head, t_grapht *new);
 
 t_neigh				*neigh_new(t_grapht *g);
 void				neigh_push_back(t_neigh **head, t_neigh *new);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:08:36 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/23 15:59:03 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/23 16:13:52 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parse_nb_ants(t_env *e)
 {
 	char	*line;
 
-	if (get_next_line(0, &line) > 1)
+	if (get_next_line(0, &line) > 0)
 	{
 		e->buff = ft_strjoinfree(e->buff, line);
 		e->nb_ants = correct_nbr(line);
@@ -79,12 +79,11 @@ int		parse_neigh(t_env *e, char *line)
 	int		nb_neigh;
 
 	e->buff = ft_strjoinfree(e->buff, line);
-	nb_neigh = 0;
+	nb_neigh = 1;
 	split = ft_strsplit(line, '-');
 	create_neigh(split, e);
 	free_tab(&split);
 	ft_strdel(&line);
-	nb_neigh++;
 	while (get_next_line(0, &line) > 0)
 	{
 		e->buff = ft_strjoinfree(e->buff, line);

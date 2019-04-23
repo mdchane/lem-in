@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/23 15:39:46 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/23 16:11:17 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int			main(int ac, char **av)
 
 	init_opt(&e, ac, av);
 	init_env(&e);
-	// read_map(&e);
 	parsing(&e);
 	if (neigh_search(e.start, e.end->name))
 		print_start_end(&e);

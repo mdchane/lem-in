@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/23 15:51:19 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/23 16:10:21 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static char		*end_room(t_env *e, char ***splt, char *line)
 
 static void		start_room(t_env *e, char **splt, int *type)
 {
-	grapht_push_front(&e->g, g_new(splt[0], ft_atoi(splt[1]), ft_atoi(splt[2])));
+	grapht_push_front(&e->g, g_new(splt[0], ft_atoi(splt[1]),
+	ft_atoi(splt[2])));
 	e->start = e->g;
 	*type = -1;
 }
@@ -48,7 +49,8 @@ static char		*parse_rooms(t_env *e)
 		type = find_type(line, type);
 		splt = ft_strsplit(line, ' ');
 		if (type == -1 && is_room(splt))
-			grapht_push_back(&e->g, g_new(splt[0], ft_atoi(splt[1]), ft_atoi(splt[2])));
+			grapht_push_back(&e->g, g_new(splt[0],
+			ft_atoi(splt[1]), ft_atoi(splt[2])));
 		else if (type == START && is_room(splt))
 			start_room(e, splt, &type);
 		else if (type == END && is_room(splt))
@@ -62,7 +64,6 @@ static char		*parse_rooms(t_env *e)
 	}
 	return (NULL);
 }
-
 
 void			parsing(t_env *e)
 {
