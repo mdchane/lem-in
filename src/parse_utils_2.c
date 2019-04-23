@@ -6,26 +6,28 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:08:36 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 16:47:33 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/23 15:59:03 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblem_in.h"
 
-int		parse_nb_ants(t_env *e, char **lines)
+void	parse_nb_ants(t_env *e)
 {
-	int		i;
+	char	*line;
 
-	i = 0;
-	while (lines[i])
+	if (get_next_line(0, &line) > 1)
 	{
-		e->nb_ants = correct_nbr(lines[i]);
-		if (e->nb_ants > 0 || (e->nb_ants == 0 && is_zero(lines[i])))
-			return (++i);
-		i++;
+		e->buff = ft_strjoinfree(e->buff, line);
+		e->nb_ants = correct_nbr(line);
+		if (e->nb_ants > 0 || (e->nb_ants == 0 && is_zero(line)))
+		{
+			ft_strdel(&line);
+			return ;
+		}
 	}
+	free(line);
 	error("ERROR\n");
-	return (0);
 }
 
 int		find_type(char *line, int type)
@@ -71,24 +73,32 @@ int		is_neigh(char *line)
 	return (0);
 }
 
-int		parse_neigh(t_env *e, char **lines, int i)
+int		parse_neigh(t_env *e, char *line)
 {
 	char	**split;
 	int		nb_neigh;
 
+	e->buff = ft_strjoinfree(e->buff, line);
 	nb_neigh = 0;
-	while (lines[i])
+	split = ft_strsplit(line, '-');
+	create_neigh(split, e);
+	free_tab(&split);
+	ft_strdel(&line);
+	nb_neigh++;
+	while (get_next_line(0, &line) > 0)
 	{
-		if (is_neigh(lines[i]))
+		e->buff = ft_strjoinfree(e->buff, line);
+		if (is_neigh(line))
 		{
-			split = ft_strsplit(lines[i], '-');
+			split = ft_strsplit(line, '-');
 			create_neigh(split, e);
 			free_tab(&split);
 			nb_neigh++;
 		}
-		else if (lines[i][0] != '#')
+		else if (line[0] != '#')
 			break ;
-		i++;
+		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	return (nb_neigh);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:40:31 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/21 13:17:29 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/23 13:23:16 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ char	*ft_strjoinfree(char *s1, char const *s2)
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	s3 = ft_strnew(len + 1);
+	s3 = ft_strnew(len + 2);
 	if (!s3)
 		exit(1);
 	ft_strcpy(s3, s1);
 	ft_strcat(s3, s2);
+	s3[len] = '\n';
 	free(s1);
 	return (s3);
 }

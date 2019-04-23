@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmonds.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 10:35:25 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/17 12:50:41 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/23 15:42:11 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 static void	graph_viszero(t_grapht *g, t_stack **stk)
 {
-	int		i;
+	t_grapht	*beg;
 
+	beg = g;
 	*stk = NULL;
-	i = 0;
-	while (g[i].name)
+	while (g && g->name)
 	{
-		g[i].visited = 0;
-		i++;
+		g->visited = 0;
+		g = g->next;
 	}
+	g = beg;
 }
 
 static int	isflowing(t_grapht *current, t_env *e)
@@ -73,7 +74,7 @@ static int	bfs(t_env *e)
 	t_neigh		*begp;
 
 	graph_viszero(e->g, &stack);
-	e->g[0].visited = 1;
+	e->g->visited = 1;
 	push_back_stack(&stack, &e->g[0]);
 	while (stack)
 	{

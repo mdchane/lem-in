@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/22 11:19:58 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/23 15:39:46 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void		print_start_end(t_env *e)
 {
 	int i;
 
-	write(1, e->buff, e->len_map);
-	ft_printf("\n");
+	ft_putstr(e->buff);
 	i = 0;
 	while (i < e->nb_ants)
 	{
@@ -74,7 +73,7 @@ int			main(int ac, char **av)
 
 	init_opt(&e, ac, av);
 	init_env(&e);
-	read_map(&e);
+	// read_map(&e);
 	parsing(&e);
 	if (neigh_search(e.start, e.end->name))
 		print_start_end(&e);
@@ -84,7 +83,7 @@ int			main(int ac, char **av)
 		if (!e.pack)
 			error("ERROR\n");
 		get_bestpack(&e);
-		write(1, e.buff, e.len_map);
+		ft_putstr(e.buff);
 		ft_printf("\n");
 		print_ants(e.best_pack, &e);
 		if (e.opt[1])

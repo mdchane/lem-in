@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/21 17:11:13 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/23 15:19:19 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_grapht
 	t_point			point;
 	int				dist;
 	struct s_grapht	*parent;
+	struct s_grapht	*next;
 }					t_grapht;
 
 typedef	struct		s_stack
@@ -91,14 +92,18 @@ int					is_zero(char *str);
 int					correct_nbr(char *str);
 int					is_room(char **split);
 int					is_neigh(char *line);
-int					parse_nb_ants(t_env *e, char **lines);
-int					parse_neigh(t_env *e, char **lines, int i);
+void				parse_nb_ants(t_env *e);
+int					parse_neigh(t_env *e, char *line);
 int					find_type(char *line, int type);
 int					len_tab(char **line);
 int					is_name_room(char *room);
 
-void				*grapht_new(t_grapht *g, char *name, int x, int y);
+int					graph_realloc(t_grapht *g, int j, int *len);
+t_grapht			*g_new(char *name, int x, int y);
+void		grapht_new(t_grapht *g, char *name, int x, int y);
 t_grapht			*graph_search(t_grapht *g, char *name);
+void				grapht_push_front(t_grapht **head, t_grapht *new);
+void    grapht_push_back(t_grapht **head, t_grapht *new);
 
 t_neigh				*neigh_new(t_grapht *g);
 void				neigh_push_back(t_neigh **head, t_neigh *new);

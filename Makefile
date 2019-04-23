@@ -6,7 +6,7 @@
 #    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/04/22 16:39:19 by mdchane          ###   ########.fr        #
+#    Updated: 2019/04/23 13:10:34 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER_NAME = liblem_in.h
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 
 HEADER_PATH = includes
 
