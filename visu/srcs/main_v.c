@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 11:49:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/22 13:22:28 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:40:17 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init(t_env *e)
 	e->nb_ants = -1;
 	e->step = 0;
 	e->fin = 0;
+	e->aff_name = 0;
 	e->autom = 0;
 	e->xmax = 0;
 	e->count = -1;
@@ -34,16 +35,11 @@ void	init(t_env *e)
 	e->data = (int *)mlx_get_data_addr(e->img_ptr, &(bpp), &(s_l), &(endian));
 	e->mlx_ptr = mlx_init();
 	e->win_ptr =
-		mlx_new_window(e->mlx_ptr, WIDTH, LENGTH, "Visualisateur Lem-in");
+	mlx_new_window(e->mlx_ptr, WIDTH, LENGTH, "Visualisateur Lem-in");
 }
 
 int		ft_key_hook(int keycode, t_env *e)
 {
-	int i;
-	int fin;
-
-	i = 0;
-	fin = 0;
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(e->mlx_ptr, e->win_ptr);
@@ -63,6 +59,8 @@ int		ft_key_hook(int keycode, t_env *e)
 	}
 	if (keycode == KEY_A)
 		e->autom = (e->autom == 1) ? 0 : 1;
+	if (keycode == 1)
+		e->aff_name = (e->aff_name == 1) ? 0 : 1;
 	return (1);
 }
 
