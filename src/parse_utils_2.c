@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:08:36 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/23 16:13:52 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:22:07 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int		parse_neigh(t_env *e, char *line)
 	char	**split;
 	int		nb_neigh;
 
-	e->buff = ft_strjoinfree(e->buff, line);
 	nb_neigh = 1;
 	split = ft_strsplit(line, '-');
 	create_neigh(split, e);
@@ -96,6 +95,8 @@ int		parse_neigh(t_env *e, char *line)
 		}
 		else if (line[0] != '#')
 			break ;
+		else if (find_type(line, -1) != -1)
+			error("ERROR\n");
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);

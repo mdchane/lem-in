@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/23 16:11:17 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/24 10:45:43 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		print_start_end(t_env *e)
 {
 	int i;
 
-	ft_putstr(e->buff);
+	ft_putendl(e->buff);
 	i = 0;
 	while (i < e->nb_ants)
 	{
