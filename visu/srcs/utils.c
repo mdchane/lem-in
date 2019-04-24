@@ -6,7 +6,7 @@
 /*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 15:08:05 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/24 11:55:53 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:58:49 by sarobber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_menu(t_env *e)
 {
-	char *end_ants;
-	t_room *beg;
+	char	*end_ants;
+	t_room	*beg;
 
 	end_ants = ft_itoa(e->end->ants);
 	mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
@@ -33,7 +33,8 @@ void	print_menu(t_env *e)
 		beg = e->room;
 		while (e->room)
 		{
-			mlx_string_put(e->mlx_ptr, e->win_ptr, e->room->x - 10, e->room->y - 14, 0xFFFFFF, e->room->name);
+			mlx_string_put(e->mlx_ptr, e->win_ptr, e->room->x - 10,
+			e->room->y - 14, 0xFFFFFF, e->room->name);
 			e->room = e->room->next;
 		}
 		e->room = beg;
