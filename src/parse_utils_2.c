@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 11:08:36 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/24 11:22:07 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:50:48 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int		parse_neigh(t_env *e, char *line)
 	ft_strdel(&line);
 	while (get_next_line(0, &line) > 0)
 	{
-		e->buff = ft_strjoinfree(e->buff, line);
 		if (is_neigh(line))
 		{
+			e->buff = ft_strjoinfree(e->buff, line);
 			split = ft_strsplit(line, '-');
 			create_neigh(split, e);
 			free_tab(&split);
@@ -97,6 +97,8 @@ int		parse_neigh(t_env *e, char *line)
 			break ;
 		else if (find_type(line, -1) != -1)
 			error("ERROR\n");
+		else
+			e->buff = ft_strjoinfree(e->buff, line);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
