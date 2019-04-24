@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 16:46:52 by sarobber          #+#    #+#             */
-/*   Updated: 2019/04/23 15:28:43 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/24 12:29:11 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	free_graph(t_grapht **g)
 	if (!g || !((*g)))
 		return ;
 	if ((*g)->next != NULL)
+		free_graph(&(*g)->next);
+	if (g)
 	{
 		ft_strdel(&(*g)->name);
 		neighdel(&(*g)->neigh);
 	}
-	if (*g)
-		free(*g);
 }
 
 static void	lpathdel(t_lpath **lp)

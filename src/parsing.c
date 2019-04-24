@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/24 11:19:26 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:35:54 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ static void		set_endroom(t_env *e, char **splt, int *type)
 	*type = -1;
 }
 
-static char		*parse_rooms(t_env *e)
+static char		*parse_rooms(t_env *e, int type)
 {
-	int			type;
 	char		*line;
 	char		**splt;
 
-	type = -1;
 	while (get_next_line(0, &line) > 0)
 	{
 		e->buff = ft_strjoinfree(e->buff, line);
@@ -58,19 +56,22 @@ static char		*parse_rooms(t_env *e)
 		else if (is_neigh(line) && type == -1)
 			return (end_room(e, &splt, line));
 		else if (line[0] != '#')
-			error("ERROR\n");
+			error("ERR\n");
 		free_tab(&splt);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	return (NULL);
 }
 
 void			parsing(t_env *e)
 {
 	char	*line;
+	int		type;
 
+	type = -1;
 	parse_nb_ants(e);
-	line = parse_rooms(e);
+	line = parse_rooms(e, type);
 	if (!e->start || !e->end || !line)
 		error("ERROR\n");
 	parse_neigh(e, line);
