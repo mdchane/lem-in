@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:39 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/24 12:35:54 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/24 12:38:55 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char		*parse_rooms(t_env *e, int type)
 		else if (is_neigh(line) && type == -1)
 			return (end_room(e, &splt, line));
 		else if (line[0] != '#')
-			error("ERR\n");
+			error("ERROR\n");
 		free_tab(&splt);
 		ft_strdel(&line);
 	}

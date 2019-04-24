@@ -6,7 +6,7 @@
 /*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 11:39:28 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/24 12:37:15 by mdchane          ###   ########.fr       */
+/*   Updated: 2019/04/24 12:50:16 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		free_tab(char ***tab)
 
 void		error(char *msg)
 {
-	ft_putstr_fd(msg, 2);
+	ft_putstr_fd(msg, 1);
 	exit(EXIT_FAILURE);
 }
 
