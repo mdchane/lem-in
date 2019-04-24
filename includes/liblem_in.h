@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liblem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarobber <sarobber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 10:22:04 by mdchane           #+#    #+#             */
-/*   Updated: 2019/04/23 16:16:04 by sarobber         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:03:44 by mdchane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int					is_neigh(char *line);
 void				parse_nb_ants(t_env *e);
 int					parse_neigh(t_env *e, char *line);
 int					find_type(char *line, int type);
-int					len_tab(char **line);
 int					is_name_room(char *room);
 
 int					graph_realloc(t_grapht *g, int j, int *len);
