@@ -3,6 +3,6 @@
 start 0 0
 ##end
 end 1 1
-##invalidcommand
 room 2 2
+start-room
 start-end

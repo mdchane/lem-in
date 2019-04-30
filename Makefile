@@ -6,7 +6,7 @@
 #    By: mdchane <mdchane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/01 09:49:18 by mdchane           #+#    #+#              #
-#    Updated: 2019/04/23 13:10:34 by mdchane          ###   ########.fr        #
+#    Updated: 2019/04/24 13:11:02 by mdchane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER_NAME = liblem_in.h
 
 CC = gcc
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 HEADER_PATH = includes
 
@@ -67,6 +67,5 @@ fclean: clean
 
 re: fclean all
 	@echo "Make re done"
-	@make -C visu/ re
 
 .PHONY: all lib clean fclean re visu
